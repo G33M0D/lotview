@@ -8,7 +8,6 @@ import {
   MessageSquare,
   Plus,
   Pencil,
-  Trash2,
   CheckCircle,
   Clock,
 } from 'lucide-react';
@@ -56,11 +55,11 @@ export default function SellerDashboard() {
       sold: 'bg-red-100 text-red-800',
       new: 'bg-blue-100 text-blue-800',
       responded: 'bg-gray-100 text-gray-700',
-      closed: 'bg-gray-200 text-gray-500',
+      closed: 'bg-gray-200 text-muted-foreground',
     };
     return (
       <span
-        className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${colors[status] ?? 'bg-gray-100 text-gray-600'}`}
+        className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${colors[status] ?? 'bg-gray-100 text-muted-foreground'}`}
       >
         {getStatusLabel(status)}
       </span>
@@ -72,8 +71,8 @@ export default function SellerDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Seller Dashboard</h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <h1 className="text-2xl font-bold text-foreground">Seller Dashboard</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
             Manage your land listings and track inquiries
           </p>
         </div>
@@ -116,74 +115,67 @@ export default function SellerDashboard() {
 
       {/* Listings Table */}
       <div className="mt-10">
-        <h2 className="text-lg font-semibold text-gray-900">Your Listings</h2>
-        <div className="mt-4 overflow-hidden rounded-lg border border-gray-200">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+        <h2 className="text-lg font-semibold text-foreground">Your Listings</h2>
+        <div className="mt-4 overflow-hidden rounded-lg border border-border">
+          <table className="min-w-full divide-y divide-border">
+            <thead className="bg-muted">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Title
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Location
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Area
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Price
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Status
                 </th>
-                <th className="px-4 py-3 text-center text-xs font-medium uppercase tracking-wider text-gray-500">
+                <th className="px-4 py-3 text-center text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Inquiries
                 </th>
-                <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 bg-white">
+            <tbody className="divide-y divide-border bg-card">
               {listings.map((listing) => (
-                <tr key={listing.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={listing.id} className="hover:bg-muted transition-colors">
                   <td className="px-4 py-3">
                     <Link
-                      href={`/listing/${listing.id}`}
-                      className="text-sm font-medium text-gray-900 hover:text-green-700"
+                      href={`/listings/${listing.id}`}
+                      className="text-sm font-medium text-foreground hover:text-green-700"
                     >
                       {listing.title}
                     </Link>
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-600">
+                  <td className="px-4 py-3 text-sm text-muted-foreground">
                     {listing.barangay}, {listing.municipality}
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-600">
+                  <td className="px-4 py-3 text-sm text-muted-foreground">
                     {formatArea(listing.areaSqm)}
                   </td>
-                  <td className="px-4 py-3 text-sm font-medium text-gray-900">
+                  <td className="px-4 py-3 text-sm font-medium text-foreground">
                     {formatPrice(listing.pricePHP)}
                   </td>
                   <td className="px-4 py-3">{statusBadge(listing.status)}</td>
-                  <td className="px-4 py-3 text-center text-sm text-gray-600">
+                  <td className="px-4 py-3 text-center text-sm text-muted-foreground">
                     {inquiriesPerListing[listing.id] ?? 0}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center justify-end gap-2">
-                      <button
-                        type="button"
-                        className="rounded p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
-                        title="Edit listing"
+                      <Link
+                        href={`/listings/${listing.id}`}
+                        className="rounded p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                        title="View listing"
                       >
                         <Pencil className="h-4 w-4" />
-                      </button>
-                      <button
-                        type="button"
-                        className="rounded p-1.5 text-gray-400 hover:bg-red-50 hover:text-red-600 transition-colors"
-                        title="Delete listing"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
+                      </Link>
                     </div>
                   </td>
                 </tr>
@@ -195,30 +187,30 @@ export default function SellerDashboard() {
 
       {/* Recent Inquiries */}
       <div className="mt-10">
-        <h2 className="text-lg font-semibold text-gray-900">
+        <h2 className="text-lg font-semibold text-foreground">
           Recent Inquiries
         </h2>
         <div className="mt-4 space-y-3">
           {recentInquiries.map((inq) => (
             <div
               key={inq.id}
-              className="flex items-start justify-between rounded-lg border border-gray-200 bg-white p-4"
+              className="flex items-start justify-between rounded-lg border border-border bg-card p-4"
             >
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-3">
-                  <span className="text-sm font-medium text-gray-900">
+                  <span className="text-sm font-medium text-foreground">
                     {inq.buyerName}
                   </span>
                   {statusBadge(inq.status)}
                 </div>
-                <p className="mt-1 truncate text-sm text-gray-500">
+                <p className="mt-1 truncate text-sm text-muted-foreground">
                   {getListingTitle(inq.listingId)}
                 </p>
-                <p className="mt-1 text-sm text-gray-400 line-clamp-1">
+                <p className="mt-1 text-sm text-muted-foreground line-clamp-1">
                   {inq.message}
                 </p>
               </div>
-              <span className="ml-4 shrink-0 text-xs text-gray-400">
+              <span className="ml-4 shrink-0 text-xs text-muted-foreground">
                 {new Date(inq.createdAt).toLocaleDateString('en-PH', {
                   month: 'short',
                   day: 'numeric',
@@ -245,13 +237,13 @@ function SummaryCard({
   bg: string;
 }) {
   return (
-    <div className="flex items-center gap-4 rounded-lg border border-gray-200 bg-white p-5">
+    <div className="flex items-center gap-4 rounded-lg border border-border bg-card p-5">
       <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${bg}`}>
         {icon}
       </div>
       <div>
-        <p className="text-sm text-gray-500">{label}</p>
-        <p className="text-2xl font-bold text-gray-900">{value}</p>
+        <p className="text-sm text-muted-foreground">{label}</p>
+        <p className="text-2xl font-bold text-foreground">{value}</p>
       </div>
     </div>
   );

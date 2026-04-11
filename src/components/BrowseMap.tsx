@@ -69,7 +69,7 @@ export default function BrowseMap({ listings, onSelectListing }: BrowseMapProps)
               ${getStatusLabel(listing.status)}
             </span>
             <br/>
-            <a href="/listing/${listing.id}" style="display:inline-block;margin-top:8px;font-size:12px;color:#2563eb;text-decoration:underline;">
+            <a href="/listings/${listing.id}" style="display:inline-block;margin-top:8px;font-size:12px;color:#2563eb;text-decoration:underline;">
               View Details
             </a>
           </div>
@@ -84,6 +84,14 @@ export default function BrowseMap({ listings, onSelectListing }: BrowseMapProps)
 
       polygonsRef.current.push(polygon);
     });
+
+    if (listings.length > 0) {
+      const bounds = new google.maps.LatLngBounds();
+      listings.forEach((listing) => {
+        listing.polygon.forEach((point) => bounds.extend(point));
+      });
+      map.fitBounds(bounds, 50); // 50px padding
+    }
 
     return () => {
       clearPolygons();

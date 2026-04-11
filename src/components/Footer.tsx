@@ -38,7 +38,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/sell"
+                  href="/seller/dashboard"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   For Sellers
@@ -46,10 +46,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/about"
+                  href="/compare"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  About
+                  Compare Lots
                 </Link>
               </li>
             </ul>

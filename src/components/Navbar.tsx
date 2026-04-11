@@ -7,7 +7,7 @@ import { MapPin, Menu, X, LayoutDashboard, GitCompare } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Browse", icon: MapPin },
-  { href: "/sell", label: "Sell", icon: LayoutDashboard },
+  { href: "/seller/dashboard", label: "Sell", icon: LayoutDashboard },
   { href: "/compare", label: "Compare", icon: GitCompare },
 ];
 
@@ -16,9 +16,9 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-white shadow-sm group-hover:bg-primary-dark transition-colors">
@@ -35,7 +35,7 @@ export default function Navbar() {
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
-                  : pathname.startsWith(link.href);
+                  : pathname.startsWith(link.href === "/seller/dashboard" ? "/seller" : link.href);
               const Icon = link.icon;
               return (
                 <Link
@@ -57,7 +57,7 @@ export default function Navbar() {
           {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-3">
             <Link
-              href="/sell"
+              href="/seller/create"
               className="hidden md:inline-flex items-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors shadow-sm"
             >
               List Your Lot
@@ -80,13 +80,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-white">
+        <div className="md:hidden border-t border-border bg-background">
           <nav className="px-4 py-3 space-y-1">
             {navLinks.map((link) => {
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
-                  : pathname.startsWith(link.href);
+                  : pathname.startsWith(link.href === "/seller/dashboard" ? "/seller" : link.href);
               const Icon = link.icon;
               return (
                 <Link
@@ -106,7 +106,7 @@ export default function Navbar() {
             })}
             <div className="pt-2 pb-1">
               <Link
-                href="/sell"
+                href="/seller/create"
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center px-4 py-3 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors"
               >

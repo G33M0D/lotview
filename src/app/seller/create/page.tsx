@@ -183,15 +183,15 @@ export default function CreateListing() {
       <div className="flex items-center gap-4">
         <Link
           href="/seller/dashboard"
-          className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+          className="rounded-lg p-2 text-muted-foreground hover:bg-muted hover:text-muted-foreground transition-colors"
         >
           <ArrowLeft className="h-5 w-5" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-foreground">
             Create New Listing
           </h1>
-          <p className="mt-0.5 text-sm text-gray-500">
+          <p className="mt-0.5 text-sm text-muted-foreground">
             Step {step + 1} of {STEPS.length}: {STEPS[step].label}
           </p>
         </div>
@@ -211,8 +211,8 @@ export default function CreateListing() {
                     isComplete
                       ? 'border-green-600 bg-green-600 text-white'
                       : isActive
-                        ? 'border-green-600 bg-white text-green-600'
-                        : 'border-gray-300 bg-white text-gray-400'
+                        ? 'border-green-600 bg-card text-green-600'
+                        : 'border-border bg-card text-muted-foreground'
                   }`}
                 >
                   {isComplete ? (
@@ -227,7 +227,7 @@ export default function CreateListing() {
                       ? 'text-green-700'
                       : isComplete
                         ? 'text-green-600'
-                        : 'text-gray-400'
+                        : 'text-muted-foreground'
                   }`}
                 >
                   {s.label}
@@ -236,7 +236,7 @@ export default function CreateListing() {
               {i < STEPS.length - 1 && (
                 <div
                   className={`mx-1 mt-[-18px] h-0.5 w-full ${
-                    i < step ? 'bg-green-600' : 'bg-gray-200'
+                    i < step ? 'bg-green-600' : 'bg-muted'
                   }`}
                 />
               )}
@@ -246,14 +246,14 @@ export default function CreateListing() {
       </div>
 
       {/* Step Content */}
-      <div className="mt-8 rounded-lg border border-gray-200 bg-white p-6">
+      <div className="mt-8 rounded-lg border border-border bg-card p-6">
         {/* Step 1: Location */}
         {step === 0 && (
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-foreground">
               Draw Lot Boundary
             </h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Use the drawing tool to outline your lot on the map. Click to add
               points, then close the shape.
             </p>
@@ -269,7 +269,7 @@ export default function CreateListing() {
               </MapProvider>
             </div>
             {form.polygon.length >= 3 && (
-              <p className="mt-3 text-sm text-gray-600">
+              <p className="mt-3 text-sm text-muted-foreground">
                 Estimated area: {computeArea(form.polygon)}
               </p>
             )}
@@ -279,12 +279,12 @@ export default function CreateListing() {
         {/* Step 2: Details */}
         {step === 1 && (
           <div className="space-y-5">
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-foreground">
               Listing Details
             </h2>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-foreground">
                 Title <span className="text-red-500">*</span>
               </label>
               <input
@@ -294,12 +294,12 @@ export default function CreateListing() {
                   setForm((prev) => ({ ...prev, title: e.target.value }))
                 }
                 placeholder="e.g. Prime Residential Lot in Jaro"
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-foreground">
                 Description
               </label>
               <textarea
@@ -312,13 +312,13 @@ export default function CreateListing() {
                 }
                 rows={4}
                 placeholder="Describe your lot — nearby landmarks, terrain, what makes it special..."
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
               />
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-foreground">
                   Municipality <span className="text-red-500">*</span>
                 </label>
                 <select
@@ -329,7 +329,7 @@ export default function CreateListing() {
                       municipality: e.target.value,
                     }))
                   }
-                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                  className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
                 >
                   <option value="">Select municipality</option>
                   {MUNICIPALITIES.map((m) => (
@@ -340,7 +340,7 @@ export default function CreateListing() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-foreground">
                   Barangay
                 </label>
                 <input
@@ -350,14 +350,14 @@ export default function CreateListing() {
                     setForm((prev) => ({ ...prev, barangay: e.target.value }))
                   }
                   placeholder="e.g. Dungon-A, Jaro"
-                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                  className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-foreground">
                   Price (PHP) <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -368,11 +368,11 @@ export default function CreateListing() {
                   }
                   placeholder="e.g. 2500000"
                   min={0}
-                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                  className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-foreground">
                   Title Type
                 </label>
                 <select
@@ -383,7 +383,7 @@ export default function CreateListing() {
                       titleType: e.target.value as (typeof TITLE_TYPES)[number],
                     }))
                   }
-                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                  className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
                 >
                   {TITLE_TYPES.map((t) => (
                     <option key={t} value={t}>
@@ -396,7 +396,7 @@ export default function CreateListing() {
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-foreground">
                   Zoning
                 </label>
                 <input
@@ -406,11 +406,11 @@ export default function CreateListing() {
                     setForm((prev) => ({ ...prev, zoning: e.target.value }))
                   }
                   placeholder="e.g. Residential, Agricultural"
-                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                  className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-foreground">
                   Road Access
                 </label>
                 <input
@@ -423,27 +423,27 @@ export default function CreateListing() {
                     }))
                   }
                   placeholder="e.g. Concrete barangay road, 6m wide"
-                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                  className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
                 />
               </div>
             </div>
 
             {/* Utilities */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-foreground">
                 Utilities Available
               </label>
               <div className="mt-2 flex flex-wrap gap-3">
                 {UTILITY_OPTIONS.map((u) => (
                   <label
                     key={u}
-                    className="flex items-center gap-2 text-sm text-gray-700"
+                    className="flex items-center gap-2 text-sm text-foreground"
                   >
                     <input
                       type="checkbox"
                       checked={form.utilities.includes(u)}
                       onChange={() => handleUtilityToggle(u)}
-                      className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                      className="h-4 w-4 rounded border-border text-green-600 focus:ring-green-500"
                     />
                     {u}
                   </label>
@@ -453,11 +453,11 @@ export default function CreateListing() {
 
             {/* Boundary Confidence */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-foreground">
                 Boundary Confidence
               </label>
               <div className="mt-2 flex gap-6">
-                <label className="flex items-center gap-2 text-sm text-gray-700">
+                <label className="flex items-center gap-2 text-sm text-foreground">
                   <input
                     type="radio"
                     name="boundaryConfidence"
@@ -468,11 +468,11 @@ export default function CreateListing() {
                         boundaryConfidence: 'approximate',
                       }))
                     }
-                    className="h-4 w-4 border-gray-300 text-green-600 focus:ring-green-500"
+                    className="h-4 w-4 border-border text-green-600 focus:ring-green-500"
                   />
                   Approximate
                 </label>
-                <label className="flex items-center gap-2 text-sm text-gray-700">
+                <label className="flex items-center gap-2 text-sm text-foreground">
                   <input
                     type="radio"
                     name="boundaryConfidence"
@@ -483,7 +483,7 @@ export default function CreateListing() {
                         boundaryConfidence: 'survey-based',
                       }))
                     }
-                    className="h-4 w-4 border-gray-300 text-green-600 focus:ring-green-500"
+                    className="h-4 w-4 border-border text-green-600 focus:ring-green-500"
                   />
                   Survey-based
                 </label>
@@ -495,25 +495,25 @@ export default function CreateListing() {
         {/* Step 3: Documents */}
         {step === 2 && (
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-foreground">
               Available Documents
             </h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Check the documents you currently have for this property.
             </p>
             <div className="mt-4 space-y-3">
               {DOCUMENT_TYPES.map((doc) => (
                 <label
                   key={doc.type}
-                  className="flex items-center gap-3 rounded-lg border border-gray-200 p-4 hover:bg-gray-50 transition-colors cursor-pointer"
+                  className="flex items-center gap-3 rounded-lg border border-border p-4 hover:bg-muted transition-colors cursor-pointer"
                 >
                   <input
                     type="checkbox"
                     checked={form.documents[doc.type]}
                     onChange={() => handleDocToggle(doc.type)}
-                    className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                    className="h-4 w-4 rounded border-border text-green-600 focus:ring-green-500"
                   />
-                  <span className="text-sm font-medium text-gray-700">
+                  <span className="text-sm font-medium text-foreground">
                     {doc.label}
                   </span>
                 </label>
@@ -525,23 +525,23 @@ export default function CreateListing() {
         {/* Step 4: Photos */}
         {step === 3 && (
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-foreground">
               Upload Photos
             </h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Add photos of the lot, surroundings, road access, and any
               structures.
             </p>
 
             <div
-              className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-8 transition-colors hover:border-green-400 hover:bg-green-50/50"
+              className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-border p-8 transition-colors hover:border-green-400 hover:bg-green-50/50"
               onClick={() => fileInputRef.current?.click()}
             >
-              <Upload className="h-8 w-8 text-gray-400" />
-              <p className="mt-2 text-sm font-medium text-gray-600">
+              <Upload className="h-8 w-8 text-muted-foreground" />
+              <p className="mt-2 text-sm font-medium text-muted-foreground">
                 Click to upload photos
               </p>
-              <p className="text-xs text-gray-400">PNG, JPG up to 10MB each</p>
+              <p className="text-xs text-muted-foreground">PNG, JPG up to 10MB each</p>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -557,11 +557,11 @@ export default function CreateListing() {
                 {form.photos.map((file, idx) => (
                   <div
                     key={`${file.name}-${idx}`}
-                    className="group relative rounded-lg border border-gray-200 bg-gray-50 p-2"
+                    className="group relative rounded-lg border border-border bg-muted p-2"
                   >
                     <div className="flex items-center gap-2">
-                      <Camera className="h-4 w-4 shrink-0 text-gray-400" />
-                      <span className="truncate text-xs text-gray-600">
+                      <Camera className="h-4 w-4 shrink-0 text-muted-foreground" />
+                      <span className="truncate text-xs text-muted-foreground">
                         {file.name}
                       </span>
                     </div>
@@ -582,14 +582,14 @@ export default function CreateListing() {
         {/* Step 5: Review */}
         {step === 4 && (
           <div className="space-y-6">
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-foreground">
               Review Your Listing
             </h2>
 
             {/* Map Preview */}
             {form.polygon.length >= 3 && (
               <div>
-                <h3 className="text-sm font-medium text-gray-700">
+                <h3 className="text-sm font-medium text-foreground">
                   Lot Boundary
                 </h3>
                 <div className="mt-2">
@@ -601,15 +601,15 @@ export default function CreateListing() {
                     />
                   </MapProvider>
                 </div>
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="mt-1 text-sm text-muted-foreground">
                   Estimated area: {computeArea(form.polygon)}
                 </p>
               </div>
             )}
 
             {/* Details Summary */}
-            <div className="rounded-lg border border-gray-200 p-4">
-              <h3 className="text-sm font-medium text-gray-700">Details</h3>
+            <div className="rounded-lg border border-border p-4">
+              <h3 className="text-sm font-medium text-foreground">Details</h3>
               <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
                 <ReviewField label="Title" value={form.title} />
                 <ReviewField
@@ -654,11 +654,11 @@ export default function CreateListing() {
                 />
               </dl>
               {form.description && (
-                <div className="mt-3 border-t border-gray-100 pt-3">
-                  <dt className="text-xs font-medium text-gray-500">
+                <div className="mt-3 border-t border-border pt-3">
+                  <dt className="text-xs font-medium text-muted-foreground">
                     Description
                   </dt>
-                  <dd className="mt-1 text-sm text-gray-700 whitespace-pre-line">
+                  <dd className="mt-1 text-sm text-foreground whitespace-pre-line">
                     {form.description}
                   </dd>
                 </div>
@@ -666,8 +666,8 @@ export default function CreateListing() {
             </div>
 
             {/* Documents Summary */}
-            <div className="rounded-lg border border-gray-200 p-4">
-              <h3 className="text-sm font-medium text-gray-700">Documents</h3>
+            <div className="rounded-lg border border-border p-4">
+              <h3 className="text-sm font-medium text-foreground">Documents</h3>
               <ul className="mt-2 space-y-1">
                 {DOCUMENT_TYPES.map((doc) => (
                   <li
@@ -682,8 +682,8 @@ export default function CreateListing() {
                     <span
                       className={
                         form.documents[doc.type]
-                          ? 'text-gray-700'
-                          : 'text-gray-400'
+                          ? 'text-foreground'
+                          : 'text-muted-foreground'
                       }
                     >
                       {doc.label}
@@ -694,9 +694,9 @@ export default function CreateListing() {
             </div>
 
             {/* Photos Summary */}
-            <div className="rounded-lg border border-gray-200 p-4">
-              <h3 className="text-sm font-medium text-gray-700">Photos</h3>
-              <p className="mt-1 text-sm text-gray-500">
+            <div className="rounded-lg border border-border p-4">
+              <h3 className="text-sm font-medium text-foreground">Photos</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
                 {form.photos.length > 0
                   ? `${form.photos.length} photo${form.photos.length !== 1 ? 's' : ''} attached`
                   : 'No photos uploaded'}
@@ -722,7 +722,7 @@ export default function CreateListing() {
             type="button"
             onClick={handleBack}
             disabled={step === 0}
-            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+            className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground shadow-sm hover:bg-muted transition-colors disabled:cursor-not-allowed disabled:opacity-40"
           >
             <ArrowLeft className="h-4 w-4" />
             Back
@@ -753,8 +753,8 @@ export default function CreateListing() {
 function ReviewField({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-xs font-medium text-gray-500">{label}</dt>
-      <dd className="mt-0.5 text-gray-700">{value || 'Not specified'}</dd>
+      <dt className="text-xs font-medium text-muted-foreground">{label}</dt>
+      <dd className="mt-0.5 text-foreground">{value || 'Not specified'}</dd>
     </div>
   );
 }

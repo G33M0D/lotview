@@ -73,16 +73,26 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
   const convertedPrice = listing.pricePHP * (EXCHANGE_RATES[selectedCurrency] ?? 1);
   const currencyInfo = CURRENCIES.find((c) => c.code === selectedCurrency);
 
-  function handleCopyLink() {
-    navigator.clipboard.writeText(listingUrl);
+  async function handleCopyLink() {
+    try {
+      await navigator.clipboard.writeText(listingUrl);
+    } catch {
+      const input = document.createElement('input');
+      input.value = listingUrl;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
 
   function handleSubmitInquiry(e: React.FormEvent) {
     e.preventDefault();
-    // Demo: just show success
     setInquirySubmitted(true);
+    setInquiry({ buyerName: '', buyerPhone: '', buyerEmail: '', message: '' });
+    setTimeout(() => setInquirySubmitted(false), 5000);
   }
 
   return (
@@ -140,7 +150,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
       {/* Details grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Price card */}
-        <div className="bg-white rounded-xl border border-border p-5 shadow-sm">
+        <div className="bg-card rounded-xl border border-border p-5 shadow-sm">
           <div className="text-sm text-muted-foreground mb-1">Price</div>
           <div className="text-2xl font-bold text-primary">
             {formatPrice(listing.pricePHP)}
@@ -159,7 +169,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
         </div>
 
         {/* Area card */}
-        <div className="bg-white rounded-xl border border-border p-5 shadow-sm">
+        <div className="bg-card rounded-xl border border-border p-5 shadow-sm">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
             <Ruler className="w-4 h-4" />
             Area
@@ -173,7 +183,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
         </div>
 
         {/* Title type */}
-        <div className="bg-white rounded-xl border border-border p-5 shadow-sm">
+        <div className="bg-card rounded-xl border border-border p-5 shadow-sm">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
             <FileText className="w-4 h-4" />
             Title Type
@@ -184,7 +194,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
         </div>
 
         {/* Zoning */}
-        <div className="bg-white rounded-xl border border-border p-5 shadow-sm">
+        <div className="bg-card rounded-xl border border-border p-5 shadow-sm">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
             <Building2 className="w-4 h-4" />
             Zoning
@@ -195,7 +205,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
         </div>
 
         {/* Road access */}
-        <div className="bg-white rounded-xl border border-border p-5 shadow-sm">
+        <div className="bg-card rounded-xl border border-border p-5 shadow-sm">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
             <Car className="w-4 h-4" />
             Road Access
@@ -206,7 +216,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
         </div>
 
         {/* Utilities */}
-        <div className="bg-white rounded-xl border border-border p-5 shadow-sm">
+        <div className="bg-card rounded-xl border border-border p-5 shadow-sm">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
             <Zap className="w-4 h-4" />
             Utilities
@@ -223,7 +233,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
 
         {/* Elevation */}
         {listing.elevation != null && (
-          <div className="bg-white rounded-xl border border-border p-5 shadow-sm">
+          <div className="bg-card rounded-xl border border-border p-5 shadow-sm">
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
               <Mountain className="w-4 h-4" />
               Elevation
@@ -255,7 +265,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
 
       {/* Currency converter section */}
       {showCurrencies && (
-        <section className="bg-white rounded-xl border border-border p-6 shadow-sm">
+        <section className="bg-card rounded-xl border border-border p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-foreground mb-4">
             Currency Converter
           </h2>
@@ -268,7 +278,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
                 id="currency"
                 value={selectedCurrency}
                 onChange={(e) => setSelectedCurrency(e.target.value)}
-                className="mt-1 block w-full sm:w-auto rounded-lg border border-border px-3 py-2 text-sm bg-white"
+                className="mt-1 block w-full sm:w-auto rounded-lg border border-border px-3 py-2 text-sm bg-card"
               >
                 {CURRENCIES.filter((c) => c.code !== 'PHP').map((c) => (
                   <option key={c.code} value={c.code}>
@@ -319,7 +329,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
       )}
 
       {/* Document checklist */}
-      <section className="bg-white rounded-xl border border-border p-6 shadow-sm">
+      <section className="bg-card rounded-xl border border-border p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-foreground mb-4">
           Document Checklist
         </h2>
@@ -352,7 +362,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
       </section>
 
       {/* Photo gallery */}
-      <section className="bg-white rounded-xl border border-border p-6 shadow-sm">
+      <section className="bg-card rounded-xl border border-border p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-foreground mb-4">Photos</h2>
         {listing.photos.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -381,7 +391,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
       </section>
 
       {/* Description */}
-      <section className="bg-white rounded-xl border border-border p-6 shadow-sm">
+      <section className="bg-card rounded-xl border border-border p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-foreground mb-3">
           Description
         </h2>
@@ -391,7 +401,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
       </section>
 
       {/* Inquiry form */}
-      <section className="bg-white rounded-xl border border-border p-6 shadow-sm">
+      <section className="bg-card rounded-xl border border-border p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-foreground mb-4">
           Send an Inquiry
         </h2>
@@ -421,7 +431,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
                   onChange={(e) =>
                     setInquiry((prev) => ({ ...prev, buyerName: e.target.value }))
                   }
-                  className="block w-full rounded-lg border border-border px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="block w-full rounded-lg border border-border px-3 py-2 text-sm bg-card focus:outline-none focus:ring-2 focus:ring-primary/50"
                   placeholder="Juan Dela Cruz"
                 />
               </div>
@@ -437,7 +447,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
                   onChange={(e) =>
                     setInquiry((prev) => ({ ...prev, buyerPhone: e.target.value }))
                   }
-                  className="block w-full rounded-lg border border-border px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="block w-full rounded-lg border border-border px-3 py-2 text-sm bg-card focus:outline-none focus:ring-2 focus:ring-primary/50"
                   placeholder="+63 917 123 4567"
                 />
               </div>
@@ -454,7 +464,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
                 onChange={(e) =>
                   setInquiry((prev) => ({ ...prev, buyerEmail: e.target.value }))
                 }
-                className="block w-full rounded-lg border border-border px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/50"
+                className="block w-full rounded-lg border border-border px-3 py-2 text-sm bg-card focus:outline-none focus:ring-2 focus:ring-primary/50"
                 placeholder="you@email.com"
               />
             </div>
@@ -470,7 +480,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
                 onChange={(e) =>
                   setInquiry((prev) => ({ ...prev, message: e.target.value }))
                 }
-                className="block w-full rounded-lg border border-border px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 resize-y"
+                className="block w-full rounded-lg border border-border px-3 py-2 text-sm bg-card focus:outline-none focus:ring-2 focus:ring-primary/50 resize-y"
                 placeholder="I'm interested in this lot. Can you share more details?"
               />
             </div>
@@ -486,7 +496,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
       </section>
 
       {/* Share section */}
-      <section className="bg-white rounded-xl border border-border p-6 shadow-sm">
+      <section className="bg-card rounded-xl border border-border p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-foreground mb-4">
           Share This Listing
         </h2>

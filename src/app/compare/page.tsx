@@ -138,24 +138,24 @@ export default function ComparePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
+      <header className="bg-card border-b border-border sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Link
                 href="/"
-                className="text-gray-500 hover:text-gray-700 transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
               </Link>
               <div className="flex items-center gap-2">
                 <Scale className="w-6 h-6 text-emerald-600" />
-                <h1 className="text-xl font-bold text-gray-900">Compare Lots</h1>
+                <h1 className="text-xl font-bold text-foreground">Compare Lots</h1>
               </div>
             </div>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-muted-foreground">
               {selectedLots.length} of 3 lots selected
             </span>
           </div>
@@ -165,23 +165,23 @@ export default function ComparePage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {selectedLots.length === 0 ? (
           <div className="text-center py-20">
-            <Scale className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-500 text-lg mb-4">No lots selected for comparison</p>
-            <p className="text-gray-400 text-sm">Add up to 3 lots to compare them side by side</p>
+            <Scale className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+            <p className="text-muted-foreground text-lg mb-4">No lots selected for comparison</p>
+            <p className="text-muted-foreground text-sm">Add up to 3 lots to compare them side by side</p>
           </div>
         ) : (
           <>
             {/* Desktop table view */}
             <div className="hidden md:block">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+              <div className="bg-card rounded-xl shadow-sm border border-border overflow-hidden">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-gray-200">
-                      <th className="text-left p-4 bg-gray-50 w-48 text-sm font-semibold text-gray-600">
+                    <tr className="border-b border-border">
+                      <th className="text-left p-4 bg-muted w-48 text-sm font-semibold text-muted-foreground">
                         Property
                       </th>
                       {selectedLots.map((lot) => (
-                        <th key={lot.id} className="p-4 text-left border-l border-gray-200">
+                        <th key={lot.id} className="p-4 text-left border-l border-border">
                           <div className="flex items-start justify-between gap-2">
                             <Link
                               href={`/listings/${lot.id}`}
@@ -191,20 +191,20 @@ export default function ComparePage() {
                             </Link>
                             <button
                               onClick={() => removeLot(lot.id)}
-                              className="shrink-0 p-1 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                              className="shrink-0 p-1 rounded-full text-muted-foreground hover:text-red-500 hover:bg-red-50 transition-colors"
                               title="Remove from comparison"
                             >
                               <X className="w-4 h-4" />
                             </button>
                           </div>
-                          <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
+                          <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
                             <MapPin className="w-3 h-3" />
                             {lot.municipality}
                           </div>
                         </th>
                       ))}
                       {selectedLots.length < 3 && (
-                        <th className="p-4 border-l border-gray-200 w-48">
+                        <th className="p-4 border-l border-border w-48">
                           <AddLotButton
                             availableToAdd={availableToAdd}
                             selectorOpen={selectorOpen}
@@ -221,9 +221,9 @@ export default function ComparePage() {
                       return (
                         <tr
                           key={field.label}
-                          className={rowIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
+                          className={rowIdx % 2 === 0 ? 'bg-card' : 'bg-muted/50'}
                         >
-                          <td className="p-4 text-sm font-medium text-gray-600 align-top">
+                          <td className="p-4 text-sm font-medium text-muted-foreground align-top">
                             {field.label}
                           </td>
                           {selectedLots.map((lot, colIdx) => {
@@ -232,7 +232,7 @@ export default function ComparePage() {
                             return (
                               <td
                                 key={lot.id}
-                                className={`p-4 text-sm border-l border-gray-200 align-top ${
+                                className={`p-4 text-sm border-l border-border align-top ${
                                   isBest ? 'bg-emerald-50' : ''
                                 }`}
                               >
@@ -241,7 +241,7 @@ export default function ComparePage() {
                             );
                           })}
                           {selectedLots.length < 3 && (
-                            <td className="p-4 border-l border-gray-200" />
+                            <td className="p-4 border-l border-border" />
                           )}
                         </tr>
                       );
@@ -256,9 +256,9 @@ export default function ComparePage() {
               {selectedLots.map((lot, lotIdx) => (
                 <div
                   key={lot.id}
-                  className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
+                  className="bg-card rounded-xl shadow-sm border border-border overflow-hidden"
                 >
-                  <div className="p-4 bg-emerald-50 border-b border-gray-200">
+                  <div className="p-4 bg-emerald-50 border-b border-border">
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <Link
@@ -267,21 +267,21 @@ export default function ComparePage() {
                         >
                           {lot.title}
                         </Link>
-                        <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
+                        <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
                           <MapPin className="w-3 h-3" />
                           {lot.municipality}, {lot.barangay}
                         </div>
                       </div>
                       <button
                         onClick={() => removeLot(lot.id)}
-                        className="shrink-0 p-1.5 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                        className="shrink-0 p-1.5 rounded-full text-muted-foreground hover:text-red-500 hover:bg-red-50 transition-colors"
                         title="Remove from comparison"
                       >
                         <X className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
-                  <div className="divide-y divide-gray-100">
+                  <div className="divide-y divide-border">
                     {COMPARE_FIELDS.map((field) => {
                       const value = field.getValue(lot);
                       const bestIdx = field.bestIndex?.(selectedLots) ?? null;
@@ -293,7 +293,7 @@ export default function ComparePage() {
                             isBest ? 'bg-emerald-50' : ''
                           }`}
                         >
-                          <span className="text-xs font-medium text-gray-500 shrink-0">
+                          <span className="text-xs font-medium text-muted-foreground shrink-0">
                             {field.label}
                           </span>
                           <span className="text-sm text-right">
@@ -323,7 +323,7 @@ export default function ComparePage() {
 
         {/* Legend */}
         {selectedLots.length >= 2 && (
-          <div className="mt-6 flex items-center gap-2 text-xs text-gray-500">
+          <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">
             <Trophy className="w-3.5 h-3.5 text-emerald-600" />
             <span>Green highlight = best value in row (cheapest price, largest area, lowest price/sqm)</span>
           </div>
@@ -344,7 +344,7 @@ function CellValue({
   field: CompareField;
   lot: Listing;
 }) {
-  const textColor = isBest ? 'text-emerald-700 font-semibold' : 'text-gray-900';
+  const textColor = isBest ? 'text-emerald-700 font-semibold' : 'text-foreground';
 
   if (field.label === 'Status') {
     const color = getStatusColor(lot.status);
@@ -362,7 +362,7 @@ function CellValue({
   if (field.label === 'Documents Available') {
     return (
       <span className={`inline-flex items-center gap-1.5 ${textColor}`}>
-        <FileText className="w-3.5 h-3.5 text-gray-400" />
+        <FileText className="w-3.5 h-3.5 text-muted-foreground" />
         {value as string}
       </span>
     );
@@ -393,7 +393,7 @@ function CellValue({
   }
 
   if (value === 'None') {
-    return <span className="text-gray-400 text-sm">None</span>;
+    return <span className="text-muted-foreground text-sm">None</span>;
   }
 
   return <span className={textColor}>{value}</span>;
@@ -415,7 +415,7 @@ function AddLotButton({
       <button
         onClick={() => setSelectorOpen(!selectorOpen)}
         disabled={availableToAdd.length === 0}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-dashed border-gray-300 text-gray-500 hover:border-emerald-400 hover:text-emerald-600 transition-colors disabled:opacity-40 disabled:cursor-not-allowed text-sm w-full justify-center"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-dashed border-border text-muted-foreground hover:border-emerald-400 hover:text-emerald-600 transition-colors disabled:opacity-40 disabled:cursor-not-allowed text-sm w-full justify-center"
       >
         <Plus className="w-4 h-4" />
         Add Lot
@@ -428,17 +428,17 @@ function AddLotButton({
             className="fixed inset-0 z-10"
             onClick={() => setSelectorOpen(false)}
           />
-          <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-20 max-h-64 overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-1 bg-card border border-border rounded-lg shadow-lg z-20 max-h-64 overflow-y-auto">
             {availableToAdd.map((lot) => (
               <button
                 key={lot.id}
                 onClick={() => onAdd(lot.id)}
-                className="w-full text-left px-4 py-3 hover:bg-emerald-50 transition-colors border-b border-gray-100 last:border-b-0"
+                className="w-full text-left px-4 py-3 hover:bg-emerald-50 transition-colors border-b border-border last:border-b-0"
               >
-                <div className="text-sm font-medium text-gray-900 leading-tight">
+                <div className="text-sm font-medium text-foreground leading-tight">
                   {lot.title}
                 </div>
-                <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
+                <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <MapPin className="w-3 h-3" />
                     {lot.municipality}

@@ -31,6 +31,9 @@ export function getStatusLabel(status: string): string {
     available: 'Available',
     reserved: 'Reserved',
     sold: 'Sold',
+    new: 'New',
+    responded: 'Responded',
+    closed: 'Closed',
   };
   return labels[status] ?? status;
 }
@@ -40,7 +43,7 @@ export function generateShareUrl(listingId: string): string {
     typeof window !== 'undefined'
       ? window.location.origin
       : 'https://lotview.app';
-  return `${baseUrl}/listing/${listingId}`;
+  return `${baseUrl}/listings/${listingId}`;
 }
 
 export function generateFamilyReviewToken(): string {
