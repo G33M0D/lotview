@@ -92,12 +92,12 @@ export default function BrowseMap({ listings, onSelectListing }: BrowseMapProps)
 
   if (!isLoaded) {
     return (
-      <div className="flex h-[500px] w-full flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100">
+      <div className="flex h-full min-h-[300px] w-full flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100">
         <MapPin className="mb-2 h-10 w-10 text-gray-400" />
         <p className="text-sm text-gray-500">Google Maps &mdash; Set API key to enable</p>
       </div>
     );
   }
 
-  return <div ref={mapRef} className="h-[500px] w-full rounded-lg" />;
+  return <div ref={mapRef} className="h-full min-h-[300px] w-full rounded-lg" />;
 }

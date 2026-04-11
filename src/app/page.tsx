@@ -131,13 +131,11 @@ export default function BrowsePage() {
         </div>
 
         {/* Map */}
-        <div className="flex-1 md:h-full">
-          <div className="h-full [&>div]:!h-full [&>div]:!rounded-none">
-            <BrowseMap
-              listings={filteredListings}
-              onSelectListing={handleSelectListing}
-            />
-          </div>
+        <div className="h-[60vh] flex-1 md:h-full">
+          <BrowseMap
+            listings={filteredListings}
+            onSelectListing={handleSelectListing}
+          />
         </div>
       </div>
     </MapProvider>
