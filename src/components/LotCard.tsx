@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { MapPin, Ruler, Tag, Shield } from 'lucide-react';
 import { Listing } from '@/lib/types';
 import { formatPrice, formatArea, getStatusColor, getStatusLabel } from '@/lib/utils';
+import FavoriteButton from '@/components/FavoriteButton';
 
 interface LotCardProps {
   listing: Listing;
@@ -27,6 +28,10 @@ export default function LotCard({ listing, selected }: LotCardProps) {
       <div className="relative h-36 w-full overflow-hidden rounded-t-xl bg-gradient-to-br from-primary-light/30 to-primary/40">
         <div className="flex h-full items-center justify-center">
           <MapPin className="h-10 w-10 text-primary/50" />
+        </div>
+        {/* Favorite button */}
+        <div className="absolute top-2 left-2 z-10">
+          <FavoriteButton listingId={listing.id} />
         </div>
         {/* Status badge */}
         <span
