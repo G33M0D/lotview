@@ -17,8 +17,18 @@ export default function BrowsePage() {
 
   const filteredListings = useMemo(() => {
     return MOCK_LISTINGS.filter((listing) => {
+      // Province filter
+      if (filters.province && listing.province !== filters.province) {
+        return false;
+      }
+
       // Municipality filter
       if (filters.municipality && listing.municipality !== filters.municipality) {
+        return false;
+      }
+
+      // Barangay filter
+      if (filters.barangay && listing.barangay !== filters.barangay) {
         return false;
       }
 

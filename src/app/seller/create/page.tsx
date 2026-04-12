@@ -15,7 +15,8 @@ import {
 } from 'lucide-react';
 import { MapProvider } from '@/components/MapProvider';
 import PolygonDrawer from '@/components/PolygonDrawer';
-import { MUNICIPALITIES, PANAY_CENTER } from '@/lib/constants';
+import { PANAY_CENTER } from '@/lib/constants';
+import { getProvinces, getMunicipalities, getBarangays } from '@/lib/locations';
 import { formatPrice, formatArea } from '@/lib/utils';
 import type { DocumentInfo } from '@/lib/types';
 
@@ -48,6 +49,7 @@ interface FormData {
   polygon: google.maps.LatLngLiteral[];
   title: string;
   description: string;
+  province: string;
   municipality: string;
   barangay: string;
   pricePHP: string;
@@ -64,6 +66,7 @@ const initialForm: FormData = {
   polygon: [],
   title: '',
   description: '',
+  province: '',
   municipality: '',
   barangay: '',
   pricePHP: '',
@@ -95,6 +98,7 @@ export default function CreateListing() {
       case 1:
         return (
           form.title.trim() !== '' &&
+          form.province !== '' &&
           form.municipality !== '' &&
           form.pricePHP.trim() !== ''
         );
@@ -316,42 +320,77 @@ export default function CreateListing() {
               />
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               <div>
                 <label className="block text-sm font-medium text-foreground">
-                  Municipality <span className="text-red-500">*</span>
+                  Province <span className="text-red-500">*</span>
                 </label>
                 <select
-                  value={form.municipality}
+                  value={form.province}
                   onChange={(e) =>
                     setForm((prev) => ({
                       ...prev,
-                      municipality: e.target.value,
+                      province: e.target.value,
+                      municipality: '',
+                      barangay: '',
                     }))
                   }
                   className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
                 >
-                  <option value="">Select municipality</option>
-                  {MUNICIPALITIES.map((m) => (
-                    <option key={m} value={m}>
-                      {m}
+                  <option value="">Select province</option>
+                  {getProvinces().map((p) => (
+                    <option key={p} value={p}>
+                      {p}
                     </option>
                   ))}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-foreground">
+                  Municipality <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={form.municipality}
+                  disabled={!form.province}
+                  onChange={(e) =>
+                    setForm((prev) => ({
+                      ...prev,
+                      municipality: e.target.value,
+                      barangay: '',
+                    }))
+                  }
+                  className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <option value="">Select municipality</option>
+                  {form.province &&
+                    getMunicipalities(form.province).map((m) => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground">
                   Barangay
                 </label>
-                <input
-                  type="text"
+                <select
                   value={form.barangay}
+                  disabled={!form.municipality}
                   onChange={(e) =>
                     setForm((prev) => ({ ...prev, barangay: e.target.value }))
                   }
-                  placeholder="e.g. Dungon-A, Jaro"
-                  className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
-                />
+                  className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-sm shadow-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <option value="">Select barangay</option>
+                  {form.province &&
+                    form.municipality &&
+                    getBarangays(form.province, form.municipality).map((b) => (
+                      <option key={b} value={b}>
+                        {b}
+                      </option>
+                    ))}
+                </select>
               </div>
             </div>
 
@@ -615,7 +654,7 @@ export default function CreateListing() {
                 <ReviewField
                   label="Location"
                   value={
-                    [form.barangay, form.municipality].filter(Boolean).join(', ') ||
+                    [form.barangay, form.municipality, form.province].filter(Boolean).join(', ') ||
                     'Not specified'
                   }
                 />

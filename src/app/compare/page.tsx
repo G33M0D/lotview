@@ -63,12 +63,9 @@ const COMPARE_FIELDS: CompareField[] = [
     bestIndex: (lots) => findBestIndex(lots, (l) => l.pricePHP / l.areaSqm, 'min'),
   },
   {
-    label: 'Municipality',
-    getValue: (lot) => lot.municipality,
-  },
-  {
-    label: 'Barangay',
-    getValue: (lot) => lot.barangay,
+    label: 'Location',
+    getValue: (lot) =>
+      [lot.barangay, lot.municipality, lot.province].filter(Boolean).join(', '),
   },
   {
     label: 'Title Type',

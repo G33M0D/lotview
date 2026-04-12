@@ -46,7 +46,7 @@ export default function LotCard({ listing, selected }: LotCardProps) {
         <div className="mt-1.5 flex items-center gap-1 text-xs text-muted-foreground">
           <MapPin className="h-3 w-3 shrink-0" />
           <span className="truncate">
-            {listing.municipality}, {listing.barangay}
+            {listing.municipality}, {listing.province}
           </span>
         </div>
 

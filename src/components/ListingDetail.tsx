@@ -114,7 +114,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
             </h1>
             <p className="mt-1 text-muted-foreground flex items-center gap-1.5">
               <MapPin className="w-4 h-4" />
-              {listing.barangay}, {listing.municipality}
+              {[listing.barangay, listing.municipality, listing.province].filter(Boolean).join(', ')}
             </p>
           </div>
 

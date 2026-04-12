@@ -7,8 +7,9 @@ export const MOCK_LISTINGS: Listing[] = [
     title: 'Prime Residential Lot in Jaro, Iloilo City',
     description:
       'Flat, ready-to-build residential lot in a quiet subdivision in Brgy. Dungon-A, Jaro. Walking distance to Jaro Cathedral, schools, and wet market. Perfect for OFW families looking to build their dream home close to city conveniences. Concrete road frontage with existing perimeter fence on two sides.',
-    municipality: 'Iloilo City',
-    barangay: 'Dungon-A, Jaro',
+    province: 'Iloilo City',
+    municipality: 'Jaro',
+    barangay: 'Dungon-A',
     polygon: [
       { lat: 10.71987, lng: 122.56243 },
       { lat: 10.71987, lng: 122.56257 },
@@ -43,6 +44,7 @@ export const MOCK_LISTINGS: Listing[] = [
     title: 'Spacious Agricultural Lot in Oton',
     description:
       'Productive agricultural land in Brgy. Trapiche, Oton. Currently planted with mango and coconut trees. Ideal for farming, agri-tourism, or future residential development as the area is rapidly urbanizing. Just 15 minutes from SM City Iloilo. Great long-term investment for overseas Ilonggos wanting to keep roots in the province.',
+    province: 'Iloilo',
     municipality: 'Oton',
     barangay: 'Trapiche',
     polygon: [
@@ -80,6 +82,7 @@ export const MOCK_LISTINGS: Listing[] = [
     title: 'Commercial Corner Lot in Pavia',
     description:
       'High-visibility corner lot along the national highway in Brgy. Aganan, Pavia. Zoned commercial with steady foot traffic from nearby schools and the public market. Ideal for a convenience store, pharmacy, or small commercial building. Fully titled with clean documentation — hassle-free transfer for buyers abroad.',
+    province: 'Iloilo',
     municipality: 'Pavia',
     barangay: 'Aganan',
     polygon: [
@@ -117,6 +120,7 @@ export const MOCK_LISTINGS: Listing[] = [
     title: 'Hilltop Lot with View in Santa Barbara',
     description:
       'Elevated residential lot in Brgy. Balabag, Santa Barbara with panoramic views of the Iloilo plains and distant mountains. Peaceful neighborhood away from city noise but only 20 minutes to Iloilo City proper. Slight slope — perfect for a split-level home design. Neighbors have already built modern houses in the area.',
+    province: 'Iloilo',
     municipality: 'Santa Barbara',
     barangay: 'Balabag',
     polygon: [
@@ -154,6 +158,7 @@ export const MOCK_LISTINGS: Listing[] = [
     title: 'Beachside Lot near Roxas City',
     description:
       'Rare residential lot just 200 meters from the shoreline in Brgy. Baybay, Roxas City. Gentle sea breeze, sandy soil, and coconut-lined surroundings. Walk to the famous Baybay Beach seafood strip. Ideal for a vacation home or rental property catering to local tourism. Title is clean and ready for transfer.',
+    province: 'Capiz',
     municipality: 'Roxas City',
     barangay: 'Baybay',
     polygon: [

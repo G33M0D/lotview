@@ -1,9 +1,12 @@
 'use client';
 
-import { MUNICIPALITIES } from '@/lib/constants';
+import { useMemo } from 'react';
+import { getProvinces, getMunicipalities, getBarangays } from '@/lib/locations';
 
 export interface FilterState {
+  province: string;
   municipality: string;
+  barangay: string;
   priceMin: string;
   priceMax: string;
   areaMin: string;
@@ -14,7 +17,9 @@ export interface FilterState {
 }
 
 export const DEFAULT_FILTERS: FilterState = {
+  province: '',
   municipality: '',
+  barangay: '',
   priceMin: '',
   priceMax: '',
   areaMin: '',
@@ -30,6 +35,19 @@ interface FilterPanelProps {
 }
 
 export default function FilterPanel({ filters, onFilterChange }: FilterPanelProps) {
+  const provinces = useMemo(() => getProvinces(), []);
+  const municipalities = useMemo(
+    () => (filters.province ? getMunicipalities(filters.province) : []),
+    [filters.province]
+  );
+  const barangays = useMemo(
+    () =>
+      filters.province && filters.municipality
+        ? getBarangays(filters.province, filters.municipality)
+        : [],
+    [filters.province, filters.municipality]
+  );
+
   const update = (partial: Partial<FilterState>) => {
     onFilterChange({ ...filters, ...partial });
   };
@@ -39,7 +57,9 @@ export default function FilterPanel({ filters, onFilterChange }: FilterPanelProp
   };
 
   const hasActiveFilters =
+    filters.province !== '' ||
     filters.municipality !== '' ||
+    filters.barangay !== '' ||
     filters.priceMin !== '' ||
     filters.priceMax !== '' ||
     filters.areaMin !== '' ||
@@ -52,7 +72,28 @@ export default function FilterPanel({ filters, onFilterChange }: FilterPanelProp
     'w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30';
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
+      {/* Province */}
+      <div>
+        <label className="mb-1 block text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          Province
+        </label>
+        <select
+          value={filters.province}
+          onChange={(e) =>
+            update({ province: e.target.value, municipality: '', barangay: '' })
+          }
+          className={inputClasses}
+        >
+          <option value="">All Provinces</option>
+          {provinces.map((p) => (
+            <option key={p} value={p}>
+              {p}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {/* Municipality */}
       <div>
         <label className="mb-1 block text-xs font-medium text-muted-foreground uppercase tracking-wide">
@@ -60,13 +101,40 @@ export default function FilterPanel({ filters, onFilterChange }: FilterPanelProp
         </label>
         <select
           value={filters.municipality}
-          onChange={(e) => update({ municipality: e.target.value })}
+          onChange={(e) => update({ municipality: e.target.value, barangay: '' })}
           className={inputClasses}
+          disabled={!filters.province}
         >
-          <option value="">All Municipalities</option>
-          {MUNICIPALITIES.map((m) => (
+          <option value="">
+            {filters.province ? 'All Municipalities' : 'Select province first'}
+          </option>
+          {municipalities.map((m) => (
             <option key={m} value={m}>
               {m}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Barangay */}
+      <div>
+        <label className="mb-1 block text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          Barangay
+        </label>
+        <select
+          value={filters.barangay}
+          onChange={(e) => update({ barangay: e.target.value })}
+          className={inputClasses}
+          disabled={!filters.municipality}
+        >
+          <option value="">
+            {filters.municipality
+              ? 'All Barangays'
+              : 'Select municipality first'}
+          </option>
+          {barangays.map((b) => (
+            <option key={b} value={b}>
+              {b}
             </option>
           ))}
         </select>

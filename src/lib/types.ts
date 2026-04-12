@@ -3,6 +3,7 @@ export interface Listing {
   sellerId: string;
   title: string;
   description: string;
+  province: string;
   municipality: string;
   barangay: string;
   polygon: google.maps.LatLngLiteral[];
