@@ -152,7 +152,8 @@ export default function PolygonDrawer({
     return () => {
       drawingManager.setMap(null);
     };
-  }, [isLoaded, initialPolygon, center, updateArea]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoaded]);
 
   if (!isLoaded) {
     return (
@@ -166,7 +167,7 @@ export default function PolygonDrawer({
   }
 
   return (
-    <div className="relative">
+    <div className="relative h-full">
       <div ref={mapRef} className="h-full min-h-[300px] w-full rounded-lg" />
       <MapWatermark />
 

@@ -5,9 +5,10 @@ import { setOptions, importLibrary } from '@googlemaps/js-api-loader';
 
 interface MapContextType {
   isLoaded: boolean;
+  loadError: boolean;
 }
 
-const MapContext = createContext<MapContextType>({ isLoaded: false });
+const MapContext = createContext<MapContextType>({ isLoaded: false, loadError: false });
 
 export function useMapContext() {
   return useContext(MapContext);
@@ -15,10 +16,14 @@ export function useMapContext() {
 
 export function MapProvider({ children }: { children: ReactNode }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-    if (!apiKey) return;
+    if (!apiKey) {
+      setLoadError(true);
+      return;
+    }
 
     setOptions({
       key: apiKey,
@@ -31,15 +36,16 @@ export function MapProvider({ children }: { children: ReactNode }) {
       importLibrary('drawing'),
       importLibrary('places'),
       importLibrary('marker'),
+      importLibrary('geometry'),
     ]).then(() => {
       setIsLoaded(true);
     }).catch(() => {
-      // API key missing or invalid — stay in unloaded state
+      setLoadError(true);
     });
   }, []);
 
   return (
-    <MapContext.Provider value={{ isLoaded }}>
+    <MapContext.Provider value={{ isLoaded, loadError }}>
       {children}
     </MapContext.Provider>
   );
