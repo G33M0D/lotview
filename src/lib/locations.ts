@@ -8,893 +8,150 @@ export interface Location {
 
 export const LOCATIONS: Location[] = [
   {
-    province: "Iloilo City",
-    municipalities: [
-      {
-        name: "Jaro",
-        barangays: [
-          "Balabago", "Bitoon", "Buhang", "Buntatala", "Camalig",
-          "Cubay", "Dungon", "Dungon A", "Dungon B", "Fajardo",
-          "Javellana", "Lanit", "Lopez Jaena", "Luna", "M.H. Del Pilar",
-          "Magdalo", "Magsaysay", "Mc Arthur", "Quintin Salas", "San Isidro",
-          "Simon Ledesma", "Tabuc Suba", "Tacas", "Taytay Zone I",
-          "Taytay Zone II"
-        ],
-      },
-      {
-        name: "La Paz",
-        barangays: [
-          "Aguinaldo", "Baldoza", "Bantud", "Banuyao", "Bolilao",
-          "Divinagracia", "Don Esteban", "Duran", "Gustilo", "Hinactacan",
-          "Jereos", "Libertad", "Lopez Jaena Norte", "Lopez Jaena Sur",
-          "Luna", "Mabini", "Mansaya", "Navais", "Nabitasan", "Rizal",
-          "San Isidro", "Tabuc Suba"
-        ],
-      },
-      {
-        name: "Mandurriao",
-        barangays: [
-          "Bolilao", "Bakhaw", "Bito-on", "Calumpang", "Dungon A",
-          "Dungon B", "Guzman-Jesena", "Hibao-an Norte", "Hibao-an Sur",
-          "Iloilo City Proper", "Jalandoni Estate", "Malipayon",
-          "Navais", "Oate", "Q. Abeto", "San Rafael", "Seminario",
-          "Tagbac", "Tabucan", "Tap-oc"
-        ],
-      },
-      {
-        name: "Molo",
-        barangays: [
-          "Calumpang", "Cochero", "East Baluarte", "East Timawa",
-          "Habog-Habog", "Infante", "Katilingban", "Molo Boulevard",
-          "North Avanceña", "North Baluarte", "North Fundidor",
-          "North San Jose", "Poblacion", "Railway", "San Antonio",
-          "San Juan", "San Pedro", "South Baluarte", "South Fundidor",
-          "South San Jose", "Tap-oc", "West Habog-Habog"
-        ],
-      },
-      {
-        name: "Arevalo",
-        barangays: [
-          "Asis", "Calaparan", "Dulonan", "Mohon", "San Jose",
-          "Santa Cruz", "Santo Domingo", "Santo Niño Norte",
-          "Santo Niño Sur", "Sooc", "Yulo Drive"
-        ],
-      },
-      {
-        name: "City Proper",
-        barangays: [
-          "Arsenal Aduana", "Bonifacio Tanza", "Concepcion-Montes",
-          "Danao", "Edganzon", "Flores", "General Hughes-Montes",
-          "Gloria", "Hipodromo", "Iznart", "Jalandoni", "Kahirupan",
-          "Mabolo-Delgado", "Ortiz", "Ozamiz", "Rima-Rizal",
-          "Rizal Estanzuela", "San Felix", "San Jose", "Santa Filomena",
-          "Tanza-Esperanza", "Veterans Village"
-        ],
-      },
-      {
-        name: "Lapuz",
-        barangays: [
-          "Alalasan", "Bo. Obrero", "Boulevard", "Caingin",
-          "Jalandoni Estate", "Lapuz Norte", "Lapuz Sur",
-          "Liberty", "Loboc-Lapuz", "Progreso", "Punong",
-          "San Isidro", "Santa Cruz", "Sooc", "Ticud"
-        ],
-      },
-    ],
-  },
-  {
-    province: "Iloilo",
-    municipalities: [
-      {
-        name: "Ajuy",
-        barangays: [
-          "Badiangan", "Baguingin", "Baras", "Bontoc", "Bulanao",
-          "Culasi", "Lanjagan", "Luca", "Malayu-an", "Manduao",
-          "Nasidman", "Pani-an", "Pedada", "Piña", "Poblacion",
-          "Robles", "San Antonio", "Silakat-Nonok", "Tagubanhan", "Tipacla"
-        ],
-      },
-      {
-        name: "Alimodian",
-        barangays: [
-          "Abilay", "Agbobolo", "Bancal", "Ban-ag", "Binalud",
-          "Bugang", "Cabacanan", "Cagay", "Dalid", "Laylayan",
-          "Libo-on", "Liong", "Maalat", "Manasa", "Poblacion",
-          "San Andres", "San Fernando", "Sinamay", "Sulong", "Tarug"
-        ],
-      },
-      {
-        name: "Anilao",
-        barangays: [
-          "Agbatuan", "Badiang", "Balabag", "Balaring", "Bongol",
-          "Butuan", "Camiros", "Magdalena", "Mambog", "Manaol",
-          "Poblacion", "San Carlos", "San Jose", "San Ramon",
-          "Santo Rosario"
-        ],
-      },
-      {
-        name: "Badiangan",
-        barangays: [
-          "Agtuman", "Badiangan", "Bato", "Binolosan", "Cabayogan",
-          "Cadilang", "Calamunan", "Inabasan", "Malublub", "Poblacion",
-          "San Agustin", "San Fernando", "Saravia", "Sulanga", "Tamocol"
-        ],
-      },
-      {
-        name: "Balasan",
-        barangays: [
-          "Aranjuez", "Baras", "Caraycayon", "Cawayanon",
-          "Dapdapan", "Gibon", "Hilwan", "Ipil", "Kinalkalan",
-          "Lawis", "Malapoc", "Poblacion Norte", "Poblacion Sur",
-          "Punong", "Quiasan", "Sagua"
-        ],
-      },
-      {
-        name: "Banate",
-        barangays: [
-          "Bago", "Bagumbayan", "Bantud", "Barotac", "Bularan",
-          "Magdalena", "Managopaya", "Merced", "Poblacion",
-          "San Salvador", "Talotoan", "Zona Sur"
-        ],
-      },
-      {
-        name: "Barotac Nuevo",
-        barangays: [
-          "Acuit", "Agcuyawan", "Amamaros", "Bagumbayan",
-          "Baras", "Bungca", "Cabilauan", "Guintas",
-          "Ilaud", "Lanas", "Langka", "Lawa-an",
-          "Nasaka", "Poblacion", "San Jose", "San Roque",
-          "Santa Cruz", "Sojoton", "Tagbaya", "Tul-ahan"
-        ],
-      },
-      {
-        name: "Barotac Viejo",
-        barangays: [
-          "Burak", "California", "De la Peña", "Del Castillo",
-          "General Luna", "Igang", "Lupa", "Natividad",
-          "Poblacion", "San Fernando", "San Juan",
-          "San Lucas", "San Miguel", "Suso", "Vista Alegre"
-        ],
-      },
-      {
-        name: "Batad",
-        barangays: [
-          "Alapasco", "Alinsolong", "Banban", "Binon-an",
-          "Bolho", "Bugang", "Calauan", "Cawayan",
-          "Nasidman", "Poblacion", "San Antonio", "San Pedro",
-          "Tanao", "Tapi-an"
-        ],
-      },
-      {
-        name: "Bingawan",
-        barangays: [
-          "Agba-o", "Alabidhan", "Bulabog", "Cairohan",
-          "Guinhulaogan", "Inamyungan", "Malitbog",
-          "Ngingi-an", "Poblacion", "Quinaspan", "Tarug",
-          "Tubod"
-        ],
-      },
-      {
-        name: "Cabatuan",
-        barangays: [
-          "Acao", "Ayaman", "Bacan", "Banguit", "Bulay",
-          "Cadoldolan", "Cagay", "Duyan-duyan", "Gaub",
-          "Gines", "Janipaan Central", "Janipaan Olo",
-          "Janipaan Oeste", "Jelicuon Este", "Jelicuon Oeste",
-          "Libo-on", "Mambog", "Manguna", "Pacatin", "Poblacion",
-          "Salong", "Sulanga", "Tabucan", "Taguhangin", "Tigbauan"
-        ],
-      },
-      {
-        name: "Calinog",
-        barangays: [
-          "Agcalaga", "Bato-bato", "Binolbogan", "Cabagiao",
-          "Cahigon", "Dalid", "Datagan", "Garangan", "Igan",
-          "Impalidan", "Ipil", "Jamin-ay", "Lampaya",
-          "Libot", "Lonoy", "Maasin", "Malaguinabot",
-          "Malitbog", "Mandog", "Matinabus", "Moroboro",
-          "Poblacion", "Salocon", "Tabucan", "Tigbanaba"
-        ],
-      },
-      {
-        name: "Carles",
-        barangays: [
-          "Abong", "Asluman", "Bancal", "Barangcalan", "Barosbos",
-          "Binuluangan", "Bito-on", "Buaya", "Cabilao",
-          "Gabi", "Granada", "Guinticgan", "Manlot",
-          "Pantalan", "Poblacion", "Punta", "Santo Niño",
-          "Tarugan", "Tinigban"
-        ],
-      },
-      {
-        name: "Concepcion",
-        barangays: [
-          "Aglosong", "Bacjawan Norte", "Bacjawan Sur",
-          "Bagongon", "Botlog", "Buyo", "Cabalawan",
-          "Dungon", "Igbon", "Jamul-awon", "Lo-ong",
-          "Macalbang", "Magsaysay", "Malangabang", "Pantalan",
-          "Polopina", "Poblacion", "Salvacion", "Taloto",
-          "Tambaliza"
-        ],
-      },
-      {
-        name: "Dingle",
-        barangays: [
-          "Abangay", "Bulay", "Caguyuman", "Calaparan",
-          "Dawis", "Ginalinan", "Jibolo", "Libo-on",
-          "Luce", "Matab-ang", "Matinabus", "Moroboro",
-          "Poblacion", "Potol", "San Jose", "San Matias",
-          "Sinublan", "Tabuc"
-        ],
-      },
-      {
-        name: "Dueñas",
-        barangays: [
-          "Agutayan", "Bagumbayan", "Calao", "Caningay",
-          "Cawilihan", "Daja", "Ermita", "Jaguimit",
-          "Libo-on", "Mojon", "Poblacion", "San Miguel",
-          "San Vicente", "Taminla", "Tiglawa"
-        ],
-      },
-      {
-        name: "Dumangas",
-        barangays: [
-          "Bacay", "Bacong", "Balabag", "Bancal", "Bolo",
-          "Buenaflor", "Calao", "Cali", "Dawis",
-          "Ermita", "Ilaya", "Lacaron", "Pagdugue",
-          "Paloc", "Patlad", "Poblacion", "Pulao",
-          "Rosario", "San Miguel", "Sapao", "Sulangan",
-          "Tabucan", "Tanag", "Tanza"
-        ],
-      },
-      {
-        name: "Estancia",
-        barangays: [
-          "Bayas", "Bayuyan", "Botongon", "Bulaqueña",
-          "Calapdan", "Cano-an", "Daan Banua",
-          "Gogo", "Lonoy", "Lumbia", "Manlot",
-          "Poblacion Zone I", "Poblacion Zone II", "Poblacion Zone III",
-          "San Roque", "Tanza", "Villa Felor"
-        ],
-      },
-      {
-        name: "Guimbal",
-        barangays: [
-          "Bacong", "Bagumbayan", "Balantad-Carlos", "Bulay",
-          "Bulod", "Cabagiao", "Gemat-y", "Igtambo",
-          "Nanga", "Narra-Uno", "Nalundan", "Poblacion",
-          "San Fernando", "Santa Rosa", "Sipitan", "Suka"
-        ],
-      },
-      {
-        name: "Igbaras",
-        barangays: [
-          "Alameda", "Alaguisoc", "Bagumbayan", "Bakhawan",
-          "Bagay", "Buyanon", "Cagay", "Calampitao",
-          "Corugcog", "Igcabugao", "Igtalongon",
-          "Indaluyon", "Jovellar", "Layaan", "Poblacion Norte",
-          "Poblacion Sur", "Passi", "Sulangan", "Tabucan"
-        ],
-      },
-      {
-        name: "Janiuay",
-        barangays: [
-          "Abay", "Agcarope", "Aglobong", "Badiangan",
-          "Bakhaw", "Bolo", "Cabantog", "Cari", "Caridad",
-          "Cawilihan", "Daja Norte", "Daja Sur",
-          "Guadalupe", "Jibolo", "Lanag", "Lico-an",
-          "Locsin", "Maasin", "Mandog", "Pajo", "Pangilihan",
-          "Poblacion", "Quipot", "San Julian", "Siol"
-        ],
-      },
-      {
-        name: "Lambunao",
-        barangays: [
-          "Agdeppa", "Agtatacay", "Alibunan", "Badlan",
-          "Banag", "Binaba-an", "Cabagiao", "Cabunlawan",
-          "Cagay", "Caloy-ahan", "Camambugan", "Capuruhan",
-          "Daanbanwa", "Gines", "Jayubo", "Libas",
-          "Libo-on", "Mabini", "Millantawan", "Misi",
-          "Pandan", "Panuran", "Poblacion Ilaud", "Poblacion Sidya",
-          "Siya", "Tacuyong", "Tagsulip"
-        ],
-      },
-      {
-        name: "Leganes",
-        barangays: [
-          "Bigke", "Buntatala", "Cagamutan Norte",
-          "Cagamutan Sur", "Calaboa", "Camangay",
-          "Dolores", "Gua-an", "Guinobatan",
-          "Nabitasan", "Poblacion", "San Vicente"
-        ],
-      },
-      {
-        name: "Lemery",
-        barangays: [
-          "Agbobolo", "Agalaan", "Anabo", "Cabalaunan",
-          "Camambugan", "Imbang Grande", "Imbang Pequeño",
-          "Layaan", "Naslo", "Poblacion", "Rojas",
-          "San Fernando", "Sinciat"
-        ],
-      },
-      {
-        name: "Leon",
-        barangays: [
-          "Agboy", "Alibayog", "Buenavista", "Bulak Norte",
-          "Bulak Sur", "Cagay", "Camando", "Cawilihan",
-          "Dawis", "Do-og", "Gui-ob", "Ibus", "Inagdangan",
-          "Langka", "Lico-an", "Maliao", "Malublub",
-          "Mina", "Mocol", "Poblacion", "San Pablo",
-          "Santa Cruz", "Tacuyong", "Talacuan"
-        ],
-      },
-      {
-        name: "Lucena",
-        barangays: [
-          "Bita", "Bugnay", "Cabilaoan", "Cagboy",
-          "Daja", "Gua-an", "Ilajas", "Isian",
-          "Lanipga", "Lucena Proper", "Magsaysay",
-          "Nahoy", "Pantalan", "Poblacion"
-        ],
-      },
-      {
-        name: "Maasin",
-        barangays: [
-          "Abay", "Alibunan", "Bagacay", "Baluyan",
-          "Burak", "Cabatangan", "Dagami", "Naslo",
-          "North Poblacion", "Poblacion", "San Angel",
-          "Siol", "Tigbauan"
-        ],
-      },
-      {
-        name: "Miagao",
-        barangays: [
-          "Awang", "Bacolod", "Bagumbayan", "Bakhaw",
-          "Bolho", "Buwang", "Cabalaunan", "Cabangcalan",
-          "Cagay", "Dalije", "Dawis", "Dila-an",
-          "Guibongan", "Igpuro", "Igtuba", "Kirayan Norte",
-          "Kirayan Sur", "Mat-y", "Namocon", "Nasidman",
-          "Nay-nay", "Olango", "Poblacion", "San Fernando",
-          "San Jose", "Sapa", "Tacas", "Tigbauan"
-        ],
-      },
-      {
-        name: "Mina",
-        barangays: [
-          "Abat", "Agmanaphao", "Bangac", "Cabalabaguan",
-          "Capul-an", "Dajay", "Guibuangan", "Janipa-an Este",
-          "Janipa-an Oeste", "Latasan", "Mina Proper",
-          "Naclub", "Poblacion", "Singay", "Talokgangan",
-          "Tipolo", "Tuyungan"
-        ],
-      },
-      {
-        name: "New Lucena",
-        barangays: [
-          "Baclayan", "Calumangan", "General Delgado",
-          "Janipa-an Oeste", "Janipa-an Este", "Mambog",
-          "Occidental", "Poblacion", "Wari-wari"
-        ],
-      },
-      {
-        name: "Oton",
-        barangays: [
-          "Abilay Norte", "Abilay Sur", "Alegre",
-          "Batuan Ilaud", "Batuan Ilaya", "Bita Norte",
-          "Bita Sur", "Botong", "Buray", "Cabanbanan",
-          "Caboloan Norte", "Caboloan Sur", "Camandag",
-          "Galang", "Inalasan", "Mohon", "Poblacion East",
-          "Poblacion North", "Poblacion South", "Poblacion West",
-          "San Antonio", "San Nicolas", "Trapiche", "Tuguisan"
-        ],
-      },
-      {
-        name: "Pavia",
-        barangays: [
-          "Aganan", "Amparo", "Anilao", "Balabag",
-          "Cabugao Norte", "Cabugao Sur", "Jibolo",
-          "Mali-ao", "Pagsanga-an", "Pandac",
-          "Poblacion", "Purok I", "Purok II",
-          "Ungka I", "Ungka II"
-        ],
-      },
-      {
-        name: "Passi City",
-        barangays: [
-          "Agdahon", "Agdayao", "Agtabo", "Agtambo",
-          "Alimono", "Bacuranan", "Bagacay", "Batu",
-          "Bayan", "Bitaogan", "Buenavista", "Cabunga",
-          "Cadilang", "Cairohan", "Dalid", "Gemat-y",
-          "Gemumua-agahon", "Gines Nuevo", "Gines Viejo",
-          "Imbang Pequeño", "Ipil", "Jamul-awon",
-          "Lanot", "Maasin", "Magdungao", "Mambog",
-          "Man-it", "Nangka", "Nueva Obra", "Pari-an",
-          "Pilar", "Poblacion Ilaud", "Poblacion Ilaya",
-          "Punong", "Quinagaringan", "Sablogon",
-          "San Agustin", "San Jose", "San Rafael",
-          "Santa Rita", "Santo Tomas", "Siya", "Sulangan",
-          "Taguhangin", "Tul-ahan"
-        ],
-      },
-      {
-        name: "Pototan",
-        barangays: [
-          "Abangay", "Amamaros", "Bagacay", "Barasan",
-          "Batuan", "Bongco", "Caboloan", "Cadilang",
-          "Cagamutan", "Camandag", "Cari", "Dao",
-          "Dawis", "Don Alejandro", "Gemat-y",
-          "Guibuangan", "Imbang Pequeño",
-          "Iwa", "Jamabalod", "Libo-on", "Maasin",
-          "Nanga", "Pajo", "Palanguia", "Poblacion",
-          "San Roque", "Sulangan", "Tabucan",
-          "Tul-ahan", "Tumcon Ilaud", "Tumcon Ilaya"
-        ],
-      },
-      {
-        name: "San Dionisio",
-        barangays: [
-          "Agdaliran", "Amayong", "Batuan", "Bondulan",
-          "Cabi-angan", "Calagnaan", "Candari",
-          "Codingle", "Cubay", "Cubay Sur",
-          "Himanag", "Naborot", "Nangan", "Nasidman",
-          "Panayran", "Poblacion", "San Nicolas", "Tab-oc"
-        ],
-      },
-      {
-        name: "San Enrique",
-        barangays: [
-          "Bagonawa", "Baja", "Bakhaw", "Batuan",
-          "Buyanon", "Cabiguan", "Cadilang", "Cagamutan",
-          "Catmon", "Cuartero", "Dacal", "Gines",
-          "Hidalgo", "Mapili", "Poblacion Ilaud",
-          "Poblacion Ilaya", "San Jose", "Taban"
-        ],
-      },
-      {
-        name: "San Joaquin",
-        barangays: [
-          "Anilao", "Badiang", "Balabag", "Catmon",
-          "Damires", "Igcocolo", "Igdalaguit", "Igdulaca",
-          "Igpaho", "Lignay", "Malandog", "Nagas",
-          "Nasidman", "Poblacion", "San Fernando",
-          "Sapa", "Tiolas", "Tubog"
-        ],
-      },
-      {
-        name: "San Miguel",
-        barangays: [
-          "Abian", "Cagamutan", "Calagnaan", "Cato-ogan",
-          "Dalipe", "Gines", "Hamod", "Nasidman",
-          "Oyong", "Poblacion", "San Jose", "San Nicolas",
-          "Sinuagan", "Sulangan"
-        ],
-      },
-      {
-        name: "San Rafael",
-        barangays: [
-          "Agutayan", "Aspra", "Baguingin", "Calaigang",
-          "Cali", "Hinay-agan", "Jibolo",
-          "Pagsanga-an", "Poblacion"
-        ],
-      },
-      {
-        name: "Santa Barbara",
-        barangays: [
-          "Agutayan", "Agtambo", "Balabag", "Binabaan",
-          "Bolong Este", "Bolong Oeste", "Buyo", "Cabugao",
-          "Cadilang", "Calomagon", "Dapdapan", "Dawis",
-          "Guintas", "Jaguimit", "Lanag", "Lico-an",
-          "Mambog", "Muguing", "Palaypay", "Pamuringao",
-          "Pandog", "Poblacion", "San Angel", "San Isidro",
-          "Siang", "Sulangan", "Tugas", "Tul-ahan"
-        ],
-      },
-      {
-        name: "Sara",
-        barangays: [
-          "Aguirre", "Aldeguer", "Amaliao", "Bagacay",
-          "Bolo", "Canhawan", "Catadman", "Devera",
-          "Fernan", "Juanico", "Lanipe", "Malapoc",
-          "Muyco", "Nasidman", "Pandac", "Poblacion Ilaud",
-          "Poblacion Ilaya", "Rafanan", "Rizal Norte",
-          "Rizal Sur", "San Luis", "Tanguingui"
-        ],
-      },
-      {
-        name: "Tigbauan",
-        barangays: [
-          "Alaguisoc", "Bagumbayan", "Bakhawan", "Binuluangan",
-          "Bita", "Bugarot", "Buluangan", "Buyu-an",
-          "Cordova Norte", "Cordova Sur", "Igtambo",
-          "Napnapan Norte", "Napnapan Sur", "Pal-agon I",
-          "Pal-agon II", "Parara Norte", "Parara Sur",
-          "Poblacion", "San Rafael", "Sinublan", "Tacas",
-          "Tabucan"
-        ],
-      },
-      {
-        name: "Tubungan",
-        barangays: [
-          "Adgao", "Agtambo", "Alibunan", "Bayog",
-          "Binuluan", "Cadilang", "Cagay", "Igbita",
-          "Igtambo", "Inalasan", "Malaguinabot",
-          "Mantangon", "Nadsadan", "Nagsulang",
-          "Poblacion", "San Jose", "San Vicente", "Sulangan"
-        ],
-      },
-      {
-        name: "Zarraga",
-        barangays: [
-          "Balud", "Dawis", "Gines", "Ilaud", "Jalaud",
-          "Libongcogon", "Malunang", "Palaypay", "Poblacion",
-          "Talaugon", "Tacas", "Tul-ahan", "Tumagboc"
-        ],
-      },
-    ],
-  },
-  {
     province: "Aklan",
     municipalities: [
       {
         name: "Altavas",
         barangays: [
-          "Cabangila", "Cabugao", "Catmon", "Dalipdip",
-          "Gibon", "Linayasan", "Mamba", "Mandong",
-          "Mcombo", "Poblacion", "Quinasay-an", "Rosario",
-          "San Isidro", "San Jose", "Tul-ang"
+          "Cabangila", "Cabugao", "Catmon", "Dalipdip", "Ginictan", "Linayasan", 
+          "Lumaynay", "Lupo", "Man-up", "Odiong", "Poblacion", "Quinasay-an", "Talon", 
+          "Tibiao"
         ],
       },
       {
         name: "Balete",
         barangays: [
-          "Aranas", "Arcangel", "Calizo", "Cortes",
-          "Feliciano", "Fulgencio", "Guanko",
-          "Morales", "Pagatpatan", "Poblacion",
-          "Rizal", "Talisay"
+          "Aranas", "Arcangel", "Calizo", "Cortes", "Feliciano", "Fulgencio", "Guanko", 
+          "Morales", "Oquendo", "Poblacion"
         ],
       },
       {
         name: "Banga",
         barangays: [
-          "Agbanawan", "Bacan", "Cerrudo", "Cupang",
-          "Daja", "Dalagsaan", "Guinbialan",
-          "Kalibo", "Lapnag", "Libas", "Linabuan Norte",
-          "Linabuan Sur", "Mambog", "Poblacion",
-          "Polocate", "Sampaguita", "Sigpit", "Torralba"
+          "Agbanawan", "Bacan", "Badiangan", "Cerrudo", "Cupang", "Daguitan", 
+          "Daja Norte", "Daja Sur", "Dingle", "Jumarap", "Lapnag", "Libas", 
+          "Linabuan Sur", "Mambog", "Mangan", "Muguing", "Pagsanghan", "Palale", 
+          "Poblacion", "Polo", "Polocate", "San Isidro", "Sibalew", "Sigcay", "Taba-ao", 
+          "Tabayon", "Tinapuay", "Torralba", "Ugsod", "Venturanza"
         ],
       },
       {
         name: "Batan",
         barangays: [
-          "Amancio", "Angas", "Bay-ang", "Cabad-an",
-          "Cabayugan", "Cabugan", "Calang", "Lalab",
-          "Lupit", "Magcalon", "Malindog", "Poblacion",
-          "Songcolan", "Tabon"
+          "Ambolong", "Angas", "Bay-ang", "Cabugao", "Caiyang", "Camaligan", "Camanci", 
+          "Ipil", "Lalab", "Lupit", "Magpag-ong", "Magubahay", "Mambuquiao", "Man-up", 
+          "Mandong", "Napti", "Palay", "Poblacion", "Songcolan", "Tabon"
         ],
       },
       {
         name: "Buruanga",
         barangays: [
-          "Alegria", "Bagongbayan", "Balusbos",
-          "Bel-is", "Cabugan", "El Progreso",
-          "Habana", "Katipunan", "Mayapay", "Nazareth",
-          "Panilongan", "Poblacion", "Santander",
-          "Tag-osip", "Tigum"
+          "Alegria", "Bagongbayan", "Balusbos", "Bel-is", "Cabugan", "El Progreso", 
+          "Habana", "Katipunan", "Mayapay", "Nazareth", "Panilongan", "Poblacion", 
+          "Santander", "Tag-osip", "Tigum"
         ],
       },
       {
         name: "Ibajay",
         barangays: [
-          "Agbago", "Aquino", "Asluman", "Bugtongbato",
-          "Colongcolong", "Jalas", "Laguinbanua East",
-          "Laguinbanua West", "Maloco", "Mina-a",
-          "Naisud", "Nalook", "Poblacion", "Polo",
-          "Regador", "Rivera", "San Isidro",
-          "Santa Cruz", "Tagbaya", "Yawan"
+          "Agbago", "Agdugayan", "Antipolo", "Aparicio", "Aquino", "Aslum", "Bagacay", 
+          "Batuan", "Buenavista", "Bugtongbato", "Cabugao", "Capilijan", "Colongcolong", 
+          "Laguinbanua", "Mabusao", "Malindog", "Maloco", "Mina-a", "Monlaque", "Naile", 
+          "Naisud", "Naligusan", "Ondoy", "Poblacion", "Polo", "Regador", "Rivera", 
+          "Rizal", "San Isidro", "San Jose", "Santa Cruz", "Tagbaya", "Tul-ang", "Unat", 
+          "Yawan"
         ],
       },
       {
         name: "Kalibo",
         barangays: [
-          "Andagao", "Bachaw Norte", "Bachaw Sur",
-          "Briones", "Buswang New", "Buswang Old",
-          "Caano", "Cabatangan", "Estancia", "Linabuan Norte",
-          "Linabuan Sur", "Mabilo", "Mobo", "Nalook",
-          "Ochando", "Pala-pala I", "Pala-pala II",
-          "Poblacion", "Pook", "Tigayon", "Tinigao",
-          "Union"
+          "Andagaw", "Bachaw Norte", "Bachaw Sur", "Briones", "Buswang New", 
+          "Buswang Old", "Caano", "Estancia", "Linabuan Norte", "Mabilo", "Mobo", 
+          "Nalook", "Poblacion", "Pook", "Tigayon", "Tinigaw"
         ],
       },
       {
         name: "Lezo",
         barangays: [
-          "Agcawili", "Carugdog", "Ibao", "Mambog",
-          "Mangan", "Poblacion", "Santa Cruz",
-          "Santa Cruz Bigaa", "Silakat-Nonok",
-          "Tayhawan"
+          "Agcawilan", "Bagto", "Bugasongan", "Carugdog", "Cogon", "Ibao", "Mina", 
+          "Poblacion", "Santa Cruz", "Santa Cruz Bigaa", "Silakat-Nonok", "Tayhawan"
         ],
       },
       {
         name: "Libacao",
         barangays: [
-          "Agmalobo", "Alfredo", "Baguijay", "Bonbon",
-          "Calacabian", "Cortes", "Cudian", "Daguitan",
-          "Guba", "Janlud", "Julita", "Lublub",
-          "Manika", "Obo-ob", "Ondoy", "Pampango",
-          "Poblacion", "Rosal", "Sibalew"
+          "Agmailig", "Alfonso XII", "Batobato", "Bonza", "Calacabian", "Calamcan", 
+          "Can-Awan", "Casit-an", "Dalagsa-an", "Guadalupe", "Janlud", "Julita", 
+          "Luctoga", "Magugba", "Manika", "Ogsip", "Ortega", "Oyang", "Pampango", 
+          "Pinonoy", "Poblacion", "Rivera", "Rosal", "Sibalew"
         ],
       },
       {
         name: "Madalag",
         barangays: [
-          "Alaminos", "Alas-as", "Bacyang", "Balactasan",
-          "Cabangahan", "Daguitan", "Guadalupe",
-          "Logon", "Mamba", "Mandog", "Maria Cristina",
-          "Medina", "Mosteiro", "Pang-itan", "Pawa",
-          "Poblacion", "Singay", "Tigum"
+          "Alaminos", "Alas-as", "Bacyang", "Balactasan", "Cabangahan", "Cabilawan", 
+          "Catabana", "Dit-Ana", "Galicia", "Guinatu-an", "Logohon", "Mamba", 
+          "Maria Cristina", "Medina", "Mercedes", "Napnot", "Pang-Itan", "Paningayan", 
+          "Panipiason", "Poblacion", "San Jose", "Singay", "Talangban", "Talimagao", 
+          "Tigbawan"
         ],
       },
       {
         name: "Makato",
         barangays: [
-          "Baybay", "Cabatanga", "Calangcang", "Cayangwan",
-          "Dumga", "Libang", "Mantiguib",
-          "Poblacion", "Songcolan", "Taberna",
-          "Tugas"
+          "Agbalogo", "Aglucay", "Alibagon", "Bagong Barrio", "Baybay", "Cabatanga", 
+          "Cajilo", "Calangcang", "Calimbajan", "Castillo", "Cayangwan", "Dumga", 
+          "Libang", "Mantiguib", "Poblacion", "Tibiawan", "Tina", "Tugas"
         ],
       },
       {
         name: "Malay",
         barangays: [
-          "Argao", "Balabag", "Balusbus", "Cagban",
-          "Caticlan", "Cogon", "Cubay Norte", "Cubay Sur",
-          "Dumlog", "Manoc-Manoc", "Motag", "Naasug",
-          "Nabaoy", "Napaan", "Poblacion", "San Visal",
-          "Yapak"
+          "Argao", "Balabag", "Balusbus", "Cabulihan", "Caticlan", "Cogon", 
+          "Cubay Norte", "Cubay Sur", "Dumlog", "Manoc-Manoc", "Motag", "Naasug", 
+          "Nabaoy", "Napaan", "Poblacion", "San Viray", "Yapak"
         ],
       },
       {
         name: "Malinao",
         barangays: [
-          "Cabayugan", "Cabugao", "Candelaria",
-          "Cogon", "Florete", "Fundacion",
-          "Huron-Huron", "Laguinbanua", "Navitas",
-          "Ogsip", "Poblacion", "Rosario",
-          "Savang", "Tigum"
+          "Banaybanay", "Biga-a", "Bulabud", "Cabayugan", "Capataga", "Cogon", 
+          "Dangcalan", "Kinalangay Nuevo", "Kinalangay Viejo", "Lilo-an", "Malandayon", 
+          "Manhanip", "Navitas", "Osman", "Poblacion", "Rosario", "San Dimas", 
+          "San Ramon", "San Roque", "Sipac", "Sugnod", "Tambuan", "Tigpalas"
         ],
       },
       {
         name: "Nabas",
         barangays: [
-          "Alimbo-Baybay", "Buenafortuna", "Cabugan",
-          "Gibon", "Ibaan", "Malita", "Napti",
-          "Pawa", "Pinamucan", "Poblacion",
-          "Rizal", "Solido", "Tagororoc",
+          "Alimbo-Baybay", "Buenafortuna", "Buenasuerte", "Buenavista", "Gibon", 
+          "Habana", "Laserna", "Libertad", "Magallanes", "Matabana", "Nagustan", "Pawa", 
+          "Pinatuad", "Poblacion", "Rizal", "Solido", "Tagororoc", "Toledo", "Unidos", 
           "Union"
         ],
       },
       {
         name: "New Washington",
         barangays: [
-          "Aclan", "Banguilan", "Candelaria",
-          "Dumaguit", "Fatima", "Guinbaliwan",
-          "Jalas", "Jugas", "Lawa-an", "Mabilo",
-          "Mataphao", "Ochando", "Pinamuk-an",
-          "Poblacion", "Polo", "Puis", "Tambak"
+          "Candelaria", "Cawayan", "Dumaguit", "Fatima", "Guinbaliwan", "Jalas", "Jugas", 
+          "Lawa-an", "Mabilo", "Mataphao", "Ochando", "Pinamuk-an", "Poblacion", "Polo", 
+          "Puis", "Tambak"
         ],
       },
       {
         name: "Numancia",
         barangays: [
-          "Albasan", "Aliputos", "Badio", "Camanci Norte",
-          "Camanci Sur", "Dongon East", "Dongon West",
-          "Jagnaya", "Laguinbanua", "Navitas",
-          "Poblacion", "Puti-an"
+          "Albasan", "Aliputos", "Badio", "Bubog", "Bulwang", "Camanci Norte", 
+          "Camanci Sur", "Dongon East", "Dongon West", "Joyao-joyao", "Laguinbanua East", 
+          "Laguinbanua West", "Marianos", "Navitas", "Poblacion", "Pusiw", "Tabangka"
         ],
       },
       {
         name: "Tangalan",
         barangays: [
-          "Afga", "Baybay", "Dapdap", "Dumatad",
-          "Jawili", "Lacayon", "Napatag",
-          "Panayakan", "Poblacion", "Pudiot",
-          "Santo Niño", "Tagas", "Tamaligan",
-          "Tamokoe", "Tondog", "Vidal"
-        ],
-      },
-    ],
-  },
-  {
-    province: "Capiz",
-    municipalities: [
-      {
-        name: "Cuartero",
-        barangays: [
-          "Agcuyawan", "Balighot", "Bito-on", "Cabugao",
-          "Canapian", "Dolores", "Inzo Arnaldo",
-          "Maninang", "Murio", "Poblacion Ilaud",
-          "Poblacion Ilaya", "Quinabcaban", "San Antonio",
-          "San Juan", "Sinabsaban"
-        ],
-      },
-      {
-        name: "Dao",
-        barangays: [
-          "Agbalo", "Aglalana", "Agrupacion",
-          "Balighot", "Batabat", "Bungsuan",
-          "Cabilogan", "Codingle", "Dawis",
-          "Malonoy", "Manhoy", "Mapulang",
-          "Matagnop", "Nasunogan", "Poblacion Ilaud",
-          "Poblacion Ilaya"
-        ],
-      },
-      {
-        name: "Dumalag",
-        barangays: [
-          "Codingle", "Consolacion", "Daan Sur",
-          "General Delgado", "General Luna",
-          "Mabini", "Malusan", "Nacurvatan",
-          "Poblacion Norte", "Poblacion Sur",
-          "San Agustin", "San Jose", "San Martin",
-          "San Rafael", "Santa Carmen"
-        ],
-      },
-      {
-        name: "Dumarao",
-        barangays: [
-          "Agbatuan", "Agloway", "Alipasiawan",
-          "Astorga", "Bayog", "Bungsuan", "Codingle",
-          "Ermita", "Jagnaya", "Lacaron", "Mambusao",
-          "Maninang", "Ngalan", "Poblacion", "Rizal",
-          "San Jose", "Sibariwan", "Tamulalod",
-          "Taslan", "Villaverde"
-        ],
-      },
-      {
-        name: "Ivisan",
-        barangays: [
-          "Agcawayan", "Agmalobo", "Agustin Navarra",
-          "Balaring", "Basiao", "Cabugao",
-          "Cudian", "Ilaud", "Malocloc Norte",
-          "Malocloc Sur", "Matnog", "Mianay",
-          "Poblacion Norte", "Poblacion Sur",
-          "San Fernando"
-        ],
-      },
-      {
-        name: "Jamindan",
-        barangays: [
-          "Agambulong", "Agbun-od", "Agcagay",
-          "Aglibacao", "Agloloway", "Bato-bato",
-          "Cabugao", "Cudian", "Jagnaya",
-          "Lapaz", "Mianay", "Poblacion",
-          "San Jose", "Siya"
-        ],
-      },
-      {
-        name: "Ma-ayon",
-        barangays: [
-          "Aglimocon", "Alipasiawan", "Banate",
-          "Bayog", "Cabugao", "Carmensita",
-          "Cubay", "Danao", "Duyoc",
-          "Jagnaya", "Nahalinan", "Nasunogan",
-          "Poblacion", "San Jose", "San Miguel",
-          "Tuburan"
-        ],
-      },
-      {
-        name: "Mambusao",
-        barangays: [
-          "Atiplo", "Balat-an", "Balit", "Batiano",
-          "Bating", "Bunga", "Caidquid",
-          "Cogon", "Dawis", "Duran",
-          "Hilwan", "Juanico", "Poblacion Proper",
-          "Poblacion Tabuc", "San Antonio",
-          "San Juan", "San Vicente"
-        ],
-      },
-      {
-        name: "Panay",
-        barangays: [
-          "Amti", "Bag-ong Barrio", "Binangig",
-          "Bonga", "Cabugao Occidental", "Cabugao Oriental",
-          "Cogon", "Daga", "Ilaud",
-          "Jinalinan", "Linabuan", "Navitas",
-          "Pawa", "Pinamihagan", "Poblacion Ilaud",
-          "Poblacion Ilaya", "Poblacion Tabuc",
-          "Tanza"
-        ],
-      },
-      {
-        name: "Panitan",
-        barangays: [
-          "Agbalo", "Agbanawan", "Amaga",
-          "Balit", "Bato-bato", "Cabugao",
-          "Calit", "Candual", "Cogon",
-          "Daan", "Linabuan", "Mambog",
-          "Mianay", "Pasol-o", "Poblacion Ilaud",
-          "Poblacion Ilaya"
-        ],
-      },
-      {
-        name: "Pilar",
-        barangays: [
-          "Binaobao", "Cabugao", "Casanayan",
-          "Dapdap", "Dulangan", "Natividad",
-          "Olotayan", "Poblacion", "San Antonio",
-          "San Nicolas", "San Pedro",
-          "San Ramon", "Santa Fe"
-        ],
-      },
-      {
-        name: "Pontevedra",
-        barangays: [
-          "Bailan", "Barangay I", "Barangay II",
-          "Barangay III", "Binuluangan", "Bitas",
-          "Butuan", "Cabugao", "Intungcan",
-          "Lantangan", "Linampongan", "Mianay",
-          "Natividad", "Pandan", "Poblacion",
-          "Rizal", "San Julian", "Tacas"
-        ],
-      },
-      {
-        name: "President Roxas",
-        barangays: [
-          "Aranguel", "Balit", "Cabugao",
-          "Cubay", "Culasi", "Goce",
-          "Lomboy", "Mianay", "Mongpong",
-          "Poblacion", "Quiajo", "San Juan"
-        ],
-      },
-      {
-        name: "Roxas City",
-        barangays: [
-          "Adlawan", "Bago", "Balijuagan", "Banica",
-          "Bantigue", "Barangay I", "Barangay II",
-          "Barangay III", "Barangay IV", "Barangay V",
-          "Barangay VI", "Barangay VII", "Barangay VIII",
-          "Barangay IX", "Barangay X", "Barangay XI",
-          "Baybay", "Bolo", "Cabugao", "Cogon",
-          "Culasi", "Cagay", "Dayao", "Dinginan",
-          "Dumolog", "Gabu-an", "Inzo Arnaldo Village",
-          "Jumaguicjic", "Lanot", "Lawa-an", "Libas",
-          "Loctugan", "Milibili", "Mongpong",
-          "Olotayan", "Poblacion", "Sibaguan",
-          "Talon", "Tanza", "Tiza"
-        ],
-      },
-      {
-        name: "Sapian",
-        barangays: [
-          "Agcuyawan", "Aspera", "Bilao", "Binungkalan",
-          "Cabugao", "Canapian", "Dulangan",
-          "Hibao-an", "Linabuan", "Poblacion",
-          "San Jose", "Silakat", "Tacas"
-        ],
-      },
-      {
-        name: "Sigma",
-        barangays: [
-          "Acbo", "Amaga", "Bangonbangon",
-          "Cabugao", "Cabangon", "Capuyhan",
-          "Cogon", "Dapdap", "Mianay",
-          "Poblacion Norte", "Poblacion Sur",
-          "Tawog"
-        ],
-      },
-      {
-        name: "Tapaz",
-        barangays: [
-          "Acbo", "Aglinab", "Agluoy", "Agpalali",
-          "Apil", "Artajo", "Binangig",
-          "Cabungahan", "Caritan", "Cudian",
-          "Da-an Sur", "Duran", "Hilwan",
-          "Katipunan", "Lahug", "Libon",
-          "Mabini", "Malitbog", "Mambog",
-          "Nayawan", "Poblacion", "Rizal",
-          "Roosevelt", "Sablig", "San Antonio",
-          "San Fernando", "San Jose", "San Nicolas",
-          "Siya", "Tapaz Proper"
+          "Afga", "Baybay", "Dapdap", "Dumatad", "Jawili", "Lanipga", "Napatag", 
+          "Panayakan", "Poblacion", "Pudiot", "Tagas", "Tamalagon", "Tamokoe", "Tondog", 
+          "Vivo"
         ],
       },
     ],
@@ -903,213 +160,375 @@ export const LOCATIONS: Location[] = [
     province: "Antique",
     municipalities: [
       {
-        name: "Anini-y",
+        name: "Anini-Y",
         barangays: [
-          "Bayo Grande", "Bayo Pequeño", "Butuan",
-          "Casit-an", "Igbangcal", "Magdalena",
-          "Nasuli", "Nato", "Poblacion",
-          "San Francisco", "San Jose", "San Ramon",
-          "San Roque", "Talisayan"
+          "Bayo Grande", "Bayo Pequeño", "Butuan", "Casay", "Casay Viejo", "Iba", 
+          "Igbarabatuan", "Igpalge", "Igtumarom", "Lisub A", "Lisub B", "Mabuyong", 
+          "Magdalena", "Nasuli C", "Nato", "Poblacion", "Sagua", "Salvacion", 
+          "San Francisco", "San Ramon", "San Roque", "Tagaytay", "Talisayan"
         ],
       },
       {
         name: "Barbaza",
         barangays: [
-          "Binanu-an", "Bugo", "Cadiao",
-          "Catungan I", "Catungan II",
-          "Esparagosa", "Ipil", "Laserna",
-          "Malandog", "Nalook", "Paliwan",
-          "Poblacion", "Siguinit", "Talisay"
+          "Baghari", "Bahuyan", "Beri", "Biga-a", "Binangbang", "Binangbang Centro", 
+          "Binanu-an", "Cadiao", "Calapadan", "Capoyuan", "Cubay", "Embrangga-an", 
+          "Esparar", "Gua", "Idao", "Igpalge", "Igtunarum", "Integasan", "Ipil", 
+          "Jinalinan", "Lanas", "Langcaon", "Lisub", "Lombuyan", "Mablad", "Magtulis", 
+          "Marigne", "Mayabay", "Mayos", "Nalusdan", "Narirong", "Palma", "Poblacion", 
+          "San Antonio", "San Ramon", "Soligao", "Tabongtabong", "Tig-Alaran", "Yapo"
         ],
       },
       {
         name: "Belison",
         barangays: [
-          "Aras-asan", "Borocboroc", "Buenavista",
-          "Concepcion", "Delima", "Maradiona",
-          "Mojon", "Nopla", "Poblacion",
-          "Rombang", "Salvacion"
+          "Borocboroc", "Buenavista", "Concepcion", "Delima", "Ipil", "Maradiona", 
+          "Mojon", "Poblacion", "Rombang", "Salvacion", "Sinaja"
         ],
       },
       {
         name: "Bugasong",
         barangays: [
-          "Anilawan", "Aningalan", "Atoybato",
-          "Badiang", "Bagtason", "Camancijan",
-          "Centro Norte", "Centro Sur", "Cubay",
-          "Igbalangao", "Igsoro", "Ilaures",
-          "La Rioja", "Pangpang", "Poblacion",
-          "San Fernando", "Santo Rosario", "Tagudtud",
-          "Zaragoza"
+          "Anilawan", "Arangote", "Bagtason", "Camangahan", "Centro Ilawod (Pob.)", 
+          "Centro Ilaya (Pob.)", "Centro Pojo (Pob.)", "Cubay North", "Cubay South", 
+          "Guija", "Igbalangao", "Igsoro", "Ilaures", "Jinalinan", "Lacayon", "Maray", 
+          "Paliwan", "Pangalcagan", "Sabang East", "Sabang West", "Tagudtud North", 
+          "Tagudtud South", "Talisay", "Tica", "Tono-an", "Yapu", "Zaragoza"
         ],
       },
       {
         name: "Caluya",
         barangays: [
-          "Alegria", "Bacong", "Banago",
-          "Bonbon", "Dawis", "Dionela",
-          "Harigue", "Hinugayan", "Imba",
-          "Masabay", "Poblacion", "Sabang",
-          "Salamento", "Semirara", "Sibato",
-          "Tinogboc"
+          "Alegria", "Bacong", "Banago", "Bonbon", "Dawis", "Dionela", "Harigue", 
+          "Hininga-an", "Imba", "Masanag", "Poblacion", "Sabang", "Salamento", 
+          "Semirara", "Sibato", "Sibay", "Sibolo", "Tinogboc"
         ],
       },
       {
         name: "Culasi",
         barangays: [
-          "Alojipan", "Bagacay", "Balac-balac",
-          "Bulanao", "Capilijan", "Condes",
-          "Flores", "Lipata", "Manaol",
-          "Nauring", "Osorio", "Poblacion",
-          "San Fernando", "San Jose", "Valderama"
-        ],
-      },
-      {
-        name: "Dao",
-        barangays: [
-          "Amiroy", "Badiangan", "Borocboroc",
-          "Buhang", "Cadolonan", "Calapadan",
-          "Ilaures", "Lacaron", "Lusong",
-          "Malonoy", "Manhoy", "Nasuli",
-          "Poblacion", "Quinagaringan", "San Isidro"
+          "Alojipan", "Bagacay", "Balac-balac", "Batbatan Island", "Batonan Norte", 
+          "Batonan Sur", "Bita", "Bitadton Norte", "Bitadton Sur", "Buenavista", "Buhi", 
+          "Camancijan", "Caridad", "Carit-an", "Centro Norte (Pob.)", "Centro Poblacion", 
+          "Centro Sur (Pob.)", "Condes", "Esperanza", "Fe", "Flores", "Jalandoni", 
+          "Janlagasi", "Lamputong", "Lipata", "Magsaysay", "Malacañang", 
+          "Malalison Island", "Maniguin", "Naba", "Osorio", "Paningayan", "Salde", 
+          "San Antonio", "San Gregorio", "San Juan", "San Luis", "San Pascual", 
+          "San Vicente", "Simbola", "Tigbobolo", "Tinabusan", "Tomao", "Valderama"
         ],
       },
       {
         name: "Hamtic",
         barangays: [
-          "Apdo", "Asluman", "Banawon",
-          "Biga", "Botbot", "Buhang",
-          "Calacja", "Carbajal", "Dangcalan",
-          "Dol-og", "General Fullon", "Ilo-ilo",
-          "Magtulis", "Mapatag", "Nalook",
-          "Pajo", "Piape I", "Piape II",
-          "Piape III", "Poblacion", "Talisay"
+          "Apdo", "Asluman", "Banawon", "Bia-an", "Bongbongan I-II", "Bongbongan III", 
+          "Botbot", "Budbudan", "Buhang", "Calacja I", "Calacja II", "Calala", 
+          "Cantulan", "Caridad", "Caromangay", "Casalngan", "Dangcalan", "Del Pilar", 
+          "Fabrica", "Funda", "General Fullon", "Gov. Evelio B. Javier", "Guintas", 
+          "Igbical", "Igbucagay", "Inabasan", "Ingwan-Batangan", "La Paz", "Linaban", 
+          "Malandog", "Mapatag", "Masanag", "Nalihawan", "Pamandayan", "Pasu-Jungao", 
+          "Piape I", "Piape II", "Piape III", "Pili 1, 2, 3", "Poblacion 1", 
+          "Poblacion 2", "Poblacion 3", "Poblacion 4", "Poblacion 5", "Pu-ao", "Suloc", 
+          "Villavert-Jimenez"
         ],
       },
       {
-        name: "Laua-an",
+        name: "Laua-An",
         barangays: [
-          "Bagacay", "Banban", "Capoyuan",
-          "Casit-an", "Guia", "Intao",
-          "Lanas", "Latabon", "Lawa-an",
-          "Libertad", "Lindero", "Lipe-ahan",
-          "Luan", "Lugban", "Mananao",
-          "Nucaan", "Pandanan", "Poblacion"
+          "Bagongbayan", "Banban", "Bongbongan", "Cabariwan", "Cadajug", "Canituan", 
+          "Capnayan", "Casit-an", "Guiamon", "Guinbanga-an", "Guisijan", "Igtadiao", 
+          "Intao", "Jaguikican", "Jinalinan", "Lactudan", "Latazon", "Laua-an", "Leon", 
+          "Liberato", "Lindero", "Liya-liya", "Lugta", "Lupa-an", "Magyapo", "Maria", 
+          "Mauno", "Maybunga", "Necesito", "Oloc", "Omlot", "Pandanan", "Paningayan", 
+          "Pascuala", "Poblacion", "San Ramon", "Santiago", "Tibacan", "Tigunhao", 
+          "Virginia"
         ],
       },
       {
         name: "Libertad",
         barangays: [
-          "Barangcalan", "Baranggay 1", "Baranggay 2",
-          "Baranggay 3", "Bulanao", "Corocog",
-          "Cubay", "Igcabugao", "Iguirindon",
-          "La Paz", "Maramig", "Pajo",
-          "Panganiban", "Poblacion", "San Roque",
-          "Taboc"
+          "Barusbus", "Bulanao", "Centro Este (Pob.)", "Centro Weste (Pob.)", "Codiong", 
+          "Cubay", "Igcagay", "Inyawan", "Lindero", "Maramig", "Pajo", "Panangkilon", 
+          "Paz", "Pucio", "San Roque", "Taboc", "Tinigbas", "Tinindugan", "Union"
         ],
       },
       {
         name: "Pandan",
         barangays: [
-          "Bagumbayan", "Barangay 1", "Barangay 2",
-          "Barangay 3", "Barangay 4", "Barangay 5",
-          "Bulanao", "Cabugao", "Duyong",
-          "Guia", "Idiacacan", "Jinalinan",
-          "Mag-aba", "Nauring", "Patria",
-          "Poblacion", "San Andres", "Sta. Cruz",
-          "Talisay", "Tingib"
+          "Aracay", "Badiangan", "Bagumbayan", "Baybay", "Botbot", "Buang", "Cabugao", 
+          "Candari", "Carmen", "Centro Norte (Pob.)", "Centro Sur (Pob.)", "Dionela", 
+          "Dumrog", "Duyong", "Fragante", "Guia", "Idiacacan", "Jinalinan", 
+          "Luhod-Bayang", "Maadios", "Mag-aba", "Napuid", "Nauring", "Patria", 
+          "Perfecta", "San Andres", "San Joaquin", "Santa Ana", "Santa Cruz", "Santa Fe", 
+          "Santo Rosario", "Talisay", "Tingib", "Zaldivar"
         ],
       },
       {
         name: "Patnongon",
         barangays: [
-          "Acao", "Aracay", "Badiangan",
-          "Cabugao", "Catmon", "Igbolo",
-          "Igcococ", "La Rioja", "Lambayagan",
-          "Maalat", "Mabini", "Malandog",
-          "Natividad", "Pandanan", "Poblacion",
-          "San Jose", "Sto. Rosario"
+          "Alvañiz", "Amparo", "Apgahan", "Aureliana", "Badiangan", 
+          "Bernaldo A. Julagting", "Carit-an", "Cuyapiao", "Gella", "Igbarawan", 
+          "Igbobon", "Igburi", "La Rioja", "Mabasa", "Macarina", "Magarang", "Magsaysay", 
+          "Padang", "Pandanan", "Patlabawon", "Poblacion", "Quezon", "Salaguiawan", 
+          "Samalague", "San Rafael", "Tamayoc", "Tigbalogo", "Tobias Fornier", 
+          "Villa Crespo", "Villa Cruz", "Villa Elio", "Villa Flores", "Villa Laua-an", 
+          "Villa Sal", "Villa Salomon", "Vista Alegre"
         ],
       },
       {
-        name: "San Jose de Buenavista",
+        name: "San Jose",
         barangays: [
-          "Atabay", "Badiang", "Barangay 1",
-          "Barangay 2", "Barangay 3", "Barangay 4",
-          "Barangay 5", "Barangay 6", "Barangay 7",
-          "Barangay 8", "Bayo Grande", "Bayo Pequeño",
-          "Cansadan", "Camambugan", "Funda-Dalipe",
-          "Gracia", "Igbonglo", "Ipil",
-          "Maybato Norte", "Maybato Sur", "Mojon",
-          "Pangalcagan", "Phob", "Poblacion",
-          "San Angel", "San Fernando", "San Pedro",
-          "Santo Rosario", "Supa", "Tobias Fornier"
+          "Atabay", "Badiang", "Barangay 1 (Pob.)", "Barangay 2 (Pob.)", 
+          "Barangay 3 (Pob.)", "Barangay 4 (Pob.)", "Barangay 5 (Pob.)", 
+          "Barangay 6 (Pob.)", "Barangay 7 (Pob.)", "Barangay 8 (Pob.)", "Bariri", 
+          "Bugarot", "Cansadan", "Durog", "Funda-Dalipe", "Igbonglo", "Inabasan", 
+          "Madrangca", "Magcalon", "Malaiba", "Maybato Norte", "Maybato Sur", "Mojon", 
+          "Pantao", "San Angel", "San Fernando", "San Pedro", "Supa"
         ],
       },
       {
         name: "San Remigio",
         barangays: [
-          "Agbuñag", "Agliam", "Agtatacay",
-          "Ambilay", "Bariri", "Burias",
-          "Cabalawan", "Cabanbanan", "Cadiao",
-          "Gata", "Igbical", "Igbugo",
-          "La Union", "Mataywanac", "Panganiban",
-          "Poblacion", "Rosario"
+          "Agricula", "Alegria", "Aningalan", "Atabay", "Bagumbayan", "Baladjay", 
+          "Banbanan", "Barangbang", "Bawang", "Bugo", "Bulan-bulan", "Cabiawan", 
+          "Cabunga-an", "Cadolonan", "Carawisan I", "Carawisan II", "Carmelo I", 
+          "Carmelo II", "General Fullon", "General Luna", "Iguirindon", "Insubuan", 
+          "La Union", "Lapak", "Lumpatan", "Magdalena", "Maragubdub", "Nagbangi I", 
+          "Nagbangi II", "Nasuli", "Orquia", "Osorio I", "Osorio II", "Panpanan I", 
+          "Panpanan II", "Poblacion", "Ramon Magsaysay", "Rizal", "San Rafael", 
+          "Sinundolan", "Sumaray", "Trinidad", "Tubudan", "Vilvar", "Walker"
         ],
       },
       {
         name: "Sebaste",
         barangays: [
-          "Abiera", "Aguila", "Alegre",
-          "Buenavista", "Bulalacao", "Idio",
-          "Nagustan", "Poblacion"
+          "Abiera", "Aguila", "Alegre", "Aras-Asan", "Bacalan", "Callan", "Idio", 
+          "Nauhon", "P. Javier", "Poblacion"
         ],
       },
       {
         name: "Sibalom",
         barangays: [
-          "Alangan", "Biga", "Bongbongan I",
-          "Bongbongan II", "Bongsod", "Bugang",
-          "Cabanbanan", "Cadoldolan", "Catungan",
-          "Cubay", "Egaña", "Esperanza",
-          "Guisijan", "Igbalogo", "Igdalaguit",
-          "Inabasan", "Lacaron", "Mablad",
-          "Milabog", "Nasuli", "Pajo",
-          "Pantao", "Pasong", "Poblacion",
-          "San Fernando", "Solong", "Villafuerte"
+          "Alangan", "Bari", "Biga-a", "Bongbongan I", "Bongbongan II", "Bongsod", 
+          "Bontol", "Bugnay", "Bulalacao", "Cabanbanan", "Cabariuan", "Cabladan", 
+          "Cadoldolan", "Calo-oy", "Calog", "Catmon", "Catungan I", "Catungan II", 
+          "Catungan III", "Catungan IV", "Cubay-Napultan", "Cubay-Sermon", 
+          "District I (Pob.)", "District II (Pob.)", "District III (Pob.)", 
+          "District IV (Pob.)", "Egaña", "Esperanza I", "Esperanza II", "Esperanza III", 
+          "Igcococ", "Igdagmay", "Igdalaquit", "Iglanot", "Igpanolong", "Igparas", 
+          "Igsuming", "Ilabas", "Imparayan", "Inabasan", "Indag-an", "Initan", 
+          "Insarayan", "Lacaron", "Lagdo", "Lambayagan", "Luna", "Luyang", "Maasin", 
+          "Mabini", "Millamena", "Mojon", "Nagdayao", "Nazareth", "Odiong", "Olaga", 
+          "Pangpang", "Panlagangan", "Pantao", "Pasong", "Pis-Anan", "Rombang", 
+          "Salvacion", "San Juan", "Sido", "Solong", "Tabongtabong", "Tig-Ohot", 
+          "Tigbalua I", "Tigbalua II", "Tordesillas", "Tulatula", "Valentin Grasparil", 
+          "Villafont", "Villahermosa", "Villar"
         ],
       },
       {
         name: "Tibiao",
         barangays: [
-          "Alegre", "Aningalan", "Atabay",
-          "Bugang", "Catmon", "Esparagosa",
-          "Importante", "Malabor", "Poblacion",
-          "San Isidro", "Seguinit", "Tagubanhan",
-          "Tina"
+          "Alegre", "Amar", "Bandoja", "Castillo", "Esparagoza", "Importante", "La Paz", 
+          "Malabor", "Martinez", "Natividad", "Pitac", "Poblacion", "Salazar", 
+          "San Francisco Norte", "San Francisco Sur", "San Isidro", "Santa Ana", 
+          "Santa Justa", "Santo Rosario", "Tigbaboy", "Tuno"
         ],
       },
       {
         name: "Tobias Fornier",
         barangays: [
-          "Abaca", "Aras-asan", "Ardemil",
-          "Asluman", "Barangay I", "Barangay II",
-          "Barangay III", "Dalipe", "Fatima",
-          "Igbucagay", "Ipil", "Lublub",
-          "Magdalena", "Magsaysay", "Nasuli",
-          "Poblacion", "San Francisco", "San Jose",
-          "Tuno", "Vilvar"
+          "Abaca", "Aras-Asan", "Arobo", "Atabay", "Atiotes", "Bagumbayan", "Balloscas", 
+          "Balud", "Barasanan A", "Barasanan B", "Barasanan C", "Bariri", "Camandagan", 
+          "Cato-ogan", "Danawan", "Diclum", "Fatima", "Gamad", "Igbalogo", "Igbangcal-A", 
+          "Igbangcal-B", "Igbangcal-C", "Igcabuad", "Igcadac", "Igcado", "Igcalawagan", 
+          "Igcapuyas", "Igcasicad", "Igdalaguit", "Igdanlog", "Igdurarog", "Igtugas", 
+          "Lawigan", "Lindero", "Manaling", "Masayo", "Nagsubuan", "Nasuli-A", "Opsan", 
+          "Paciencia", "Poblacion Norte", "Poblacion Sur", "Portillo", "Quezon", 
+          "Salamague", "Santo Tomas", "Tacbuyan", "Tene", "Villaflor", "Ysulat"
         ],
       },
       {
         name: "Valderrama",
         barangays: [
-          "Afonangon", "Amiroy", "Balingasag",
-          "Buluangan", "Busog", "Candelaria",
-          "Igcocolo", "Igdagmay", "Mabini",
-          "Pandanan", "Paningayan", "Poblacion",
-          "San Agustin", "Tagudtud", "Tuno",
-          "Ubos"
+          "Alon", "Bakiang", "Binanogan", "Borocboroc", "Bugnay", "Buluangan I", 
+          "Buluangan II", "Bunsod", "Busog", "Cananghan", "Canipayan", "Cansilayan", 
+          "Culyat", "Iglinab", "Igmasandig", "Lublub", "Manlacbo", "Pandanan", 
+          "San Agustin", "Takas (Pob.)", "Tigmamale", "Ubos (Pob.)"
+        ],
+      },
+    ],
+  },
+  {
+    province: "Capiz",
+    municipalities: [
+      {
+        name: "City of Roxas",
+        barangays: [
+          "Adlawan", "Bago", "Balijuagan", "Banica", "Barra", "Bato", "Baybay", "Bolo", 
+          "Cabugao", "Cagay", "Cogon", "Culajao", "Culasi", "Dayao", "Dinginan", 
+          "Dumolog", "Gabu-an", "Inzo Arnaldo Village", "Jumaguicjic", "Lanot", 
+          "Lawa-an", "Libas", "Liong", "Loctugan", "Lonoy", "Milibili", "Mongpong", 
+          "Olotayan", "Poblacion I", "Poblacion II", "Poblacion III", "Poblacion IV", 
+          "Poblacion IX", "Poblacion V", "Poblacion VI", "Poblacion VII", 
+          "Poblacion VIII", "Poblacion X", "Poblacion XI", "Punta Cogon", "Punta Tabuc", 
+          "San Jose", "Sibaguan", "Talon", "Tanque", "Tanza", "Tiza"
+        ],
+      },
+      {
+        name: "Cuartero",
+        barangays: [
+          "Agcabugao", "Agdahon", "Agnaga", "Angub", "Balingasag", "Bito-on Ilawod", 
+          "Bito-on Ilaya", "Bun-od", "Carataya", "Lunayan", "Mahabang Sapa", 
+          "Mahunodhunod", "Maindang", "Mainit", "Malagab-i", "Nagba", "Poblacion Ilawod", 
+          "Poblacion Ilaya", "Poblacion Takas", "Puti-an", "San Antonio", "Sinabsaban"
+        ],
+      },
+      {
+        name: "Dao",
+        barangays: [
+          "Aganan", "Agtambi", "Agtanguay", "Balucuan", "Bita", "Centro", "Daplas", 
+          "Duyoc", "Ilas Sur", "Lacaron", "Malonoy", "Manhoy", "Mapulang Bato", 
+          "Matagnop", "Nasunogan", "Poblacion Ilawod", "Poblacion Ilaya", "Quinabcaban", 
+          "Quinayuya", "San Agustin"
+        ],
+      },
+      {
+        name: "Dumalag",
+        barangays: [
+          "Concepcion", "Consolacion", "Dolores", "Duran", "Poblacion", "San Agustin", 
+          "San Jose", "San Martin", "San Miguel", "San Rafael", "San Roque", 
+          "Santa Carmen", "Santa Cruz", "Santa Monica", "Santa Rita", "Santa Teresa", 
+          "Santo Angel", "Santo Niño", "Santo Rosario"
+        ],
+      },
+      {
+        name: "Dumarao",
+        barangays: [
+          "Agbatuan", "Aglalana", "Aglanot", "Agsirab", "Alipasiawan", "Astorga", 
+          "Bayog", "Bungsuan", "Calapawan", "Codingle", "Cubi", "Dacuton", "Dangula", 
+          "Gibato", "Guinotos", "Jambad", "Janguslob", "Lawaan", "Malonoy", "Nagsulang", 
+          "Ongol Ilawod", "Ongol Ilaya", "Poblacion Ilawod", "Poblacion Ilaya", 
+          "Sagrada Familia", "Salcedo", "San Juan", "Sibariwan", "Tamulalod", "Taslan", 
+          "Tina", "Tinaytayan", "Traciano"
+        ],
+      },
+      {
+        name: "Ivisan",
+        barangays: [
+          "Agmalobo", "Agustin Navarra", "Balaring", "Basiao", "Cabugao", "Cudian", 
+          "Ilaya-Ivisan", "Malocloc Norte", "Malocloc Sur", "Matnog", "Mianay", "Ondoy", 
+          "Poblacion Norte", "Poblacion Sur", "Santa Cruz"
+        ],
+      },
+      {
+        name: "Jamindan",
+        barangays: [
+          "Agambulong", "Agbun-od", "Agcagay", "Aglibacao", "Agloloway", "Bayebaye", 
+          "Caridad", "Esperanza", "Fe", "Ganzon", "Guintas", "Igang", "Jaena Norte", 
+          "Jaena Sur", "Jagnaya", "Lapaz", "Linambasan", "Lucero", "Maantol", "Masgrau", 
+          "Milan", "Molet", "Pangabat", "Pangabuan", "Pasol-o", "Poblacion", "San Jose", 
+          "San Juan", "San Vicente", "Santo Rosario"
+        ],
+      },
+      {
+        name: "Ma-Ayon",
+        barangays: [
+          "Aglimocon", "Alasaging", "Alayunan", "Balighot", "Batabat", "Bongbongan", 
+          "Cabungahan", "Canapian", "Carataya", "Duluan", "East Villaflores", 
+          "Fernandez", "Guinbi-alan", "Indayagan", "Jebaca", "Maalan", "Manayupit", 
+          "New Guia", "Old Guia", "Palaguian", "Parallan", "Piña", "Poblacion Ilawod", 
+          "Poblacion Ilaya", "Poblacion Tabuc", "Quevedo", "Quinabonglan", "Quinat-uyan", 
+          "Salgan", "Tapulang", "Tuburan", "West Villaflores"
+        ],
+      },
+      {
+        name: "Mambusao",
+        barangays: [
+          "Atiplo", "Balat-an", "Balit", "Batiano", "Bating", "Bato Bato", "Baye", 
+          "Bergante", "Bula", "Bunga", "Bungsi", "Burias", "Caidquid", "Cala-agus", 
+          "Libo-o", "Manibad", "Maralag", "Najus-an", "Pangpang Norte", "Pangpang Sur", 
+          "Pinay", "Poblacion Proper", "Poblacion Tabuc", "Sinondojan", "Tugas", 
+          "Tumalalud"
+        ],
+      },
+      {
+        name: "Panay",
+        barangays: [
+          "Agbalo", "Agbanban", "Agojo", "Anhawon", "Bagacay", "Bago Chiquito", 
+          "Bago Grande", "Bahit", "Bantique", "Bato", "Binangig", "Binantuan", "Bonga", 
+          "Buntod", "Butacal", "Cabugao Este", "Cabugao Oeste", "Calapawan", "Calitan", 
+          "Candual", "Cogon", "Daga", "Ilamnay", "Jamul-awon", "Lanipga", "Lat-Asan", 
+          "Libon", "Linao", "Linateran", "Lomboy", "Lus-Onan", "Magubilan", "Navitas", 
+          "Pawa", "Pili", "Poblacion Ilawod", "Poblacion Ilaya", "Poblacion Tabuc", 
+          "Talasa", "Tanza Norte", "Tanza Sur", "Tico"
+        ],
+      },
+      {
+        name: "Panitan",
+        barangays: [
+          "Agbabadiang", "Agkilo", "Agloway", "Ambilay", "Bahit", "Balatucan", 
+          "Banga-an", "Cabangahan", "Cabugao", "Cadio", "Cala-an", "Capagao", "Cogon", 
+          "Conciencia", "Ensenagan", "Intampilan", "Pasugue", "Poblacion Ilawod", 
+          "Poblacion Ilaya", "Quios", "Salocon", "Tabuc Norte", "Tabuc Sur", "Timpas", 
+          "Tincupon", "Tinigban"
+        ],
+      },
+      {
+        name: "Pilar",
+        barangays: [
+          "Balogo", "Binaobawan", "Blasco", "Casanayan", "Cayus", "Dayhagan", "Dulangan", 
+          "Monteflor", "Natividad", "Olalo", "Poblacion", "Rosario", "San Antonio", 
+          "San Blas", "San Esteban", "San Fernando", "San Nicolas", "San Pedro", 
+          "San Ramon", "San Silvestre", "Santa Fe", "Sinamongan", "Tabun-acan", "Yating"
+        ],
+      },
+      {
+        name: "Pontevedra",
+        barangays: [
+          "Agbanog", "Agdalipe", "Ameligan", "Bailan", "Banate", "Bantigue", 
+          "Binuntucan", "Cabugao", "Gabuc", "Guba", "Hipona", "Ilawod (Pob.)", 
+          "Ilaya (Pob.)", "Intungcan", "Jolongajog", "Lantangan", "Linampongan", 
+          "Malag-it", "Manapao", "Rizal", "San Pedro", "Solo", "Sublangon", "Tabuc", 
+          "Tacas", "Yatingan"
+        ],
+      },
+      {
+        name: "President Roxas",
+        barangays: [
+          "Aranguel", "Badiangon", "Bayuyan", "Cabugcabug", "Carmencita", "Cubay", 
+          "Culilang", "Goce", "Hanglid", "Ibaca", "Madulano", "Manoling", "Marita", 
+          "Pandan", "Pantalan Cabugcabug", "Pinamihagan", "Poblacion", "Pondol", 
+          "Quiajo", "Sangkal", "Santo Niño", "Vizcaya"
+        ],
+      },
+      {
+        name: "Sapi-An",
+        barangays: [
+          "Agsilab", "Agtatacay Norte", "Agtatacay Sur", "Bilao", "Damayan", "Dapdapan", 
+          "Lonoy", "Majanlud", "Maninang", "Poblacion"
+        ],
+      },
+      {
+        name: "Sigma",
+        barangays: [
+          "Acbo", "Amaga", "Balucuan", "Bangonbangon", "Capuyhan", "Cogon", "Dayhagon", 
+          "Guintas", "Malapad Cogon", "Mangoso", "Mansacul", "Matangcong", "Matinabus", 
+          "Mianay", "Oyong", "Pagbunitan", "Parian", "Pinamalatican", "Poblacion Norte", 
+          "Poblacion Sur", "Tawog"
+        ],
+      },
+      {
+        name: "Tapaz",
+        barangays: [
+          "Abangay", "Acuña", "Agcococ", "Aglinab", "Aglupacan", "Agpalali", "Apero", 
+          "Artuz", "Bag-Ong Barrio", "Bato-bato", "Buri", "Camburanan", "Candelaria", 
+          "Carida", "Cristina", "Da-an Banwa", "Da-an Norte", "Da-an Sur", "Garcia", 
+          "Gebio-an", "Hilwan", "Initan", "Katipunan", "Lagdungan", "Lahug", "Libertad", 
+          "Mabini", "Maliao", "Malitbog", "Minan", "Nayawan", "Poblacion", "Rizal Norte", 
+          "Rizal Sur", "Roosevelt", "Roxas", "Salong", "San Antonio", "San Francisco", 
+          "San Jose", "San Julian", "San Miguel Ilawod", "San Miguel Ilaya", 
+          "San Nicolas", "San Pedro", "San Roque", "San Vicente", "Santa Ana", 
+          "Santa Petronila", "Senonod", "Siya", "Switch", "Tabon", "Tacayan", "Taft", 
+          "Taganghin", "Taslan", "Wright"
         ],
       },
     ],
@@ -1120,58 +539,632 @@ export const LOCATIONS: Location[] = [
       {
         name: "Buenavista",
         barangays: [
-          "Agsanayan", "Avila", "Bacjao", "Banban",
-          "Buenavista Proper", "Calaya", "Cansilayan",
-          "Dalusan", "Getulinan", "Mclain",
-          "Montilla", "Naquilian", "Nueva Valencia",
-          "Oldadok", "Poblacion", "Rizal",
-          "San Fernando", "San Isidro", "San Miguel",
-          "San Nicolas", "San Pedro", "Santa Rosa",
-          "Sawang", "Supang", "Tacay",
-          "Taminla", "Tasil"
+          "Agsanayan", "Avila", "Bacjao", "Banban", "Cansilayan", "Dagsa-an", "Daragan", 
+          "East Valencia", "Getulio", "Mabini", "Magsaysay", "Mclain", "Montpiller", 
+          "Navalas", "Nazaret", "New Poblacion", "Old Poblacion", "Piña", "Rizal", 
+          "Salvacion", "San Fernando", "San Isidro", "San Miguel", "San Nicolas", 
+          "San Pedro", "San Roque", "Santo Rosario", "Sawang", "Supang", "Tacay", 
+          "Taminla", "Tanag", "Tastasan", "Tinadtaran", "Umilig", "Zaldivar"
         ],
       },
       {
         name: "Jordan",
         barangays: [
-          "Alaguisoc", "Balcon Melliza", "Bugnay",
-          "Buluangan", "Espinosa", "Hoskyn",
-          "Lawi", "Morobuan", "Poblacion",
-          "Rizal", "San Miguel", "San Nicolas",
-          "Sapal", "Sinapsapan", "Tamborong"
+          "Alaguisoc", "Balcon Maravilla", "Balcon Melliza", "Bugnay", "Buluangan", 
+          "Espinosa", "Hoskyn", "Lawi", "Morobuan", "Poblacion", "Rizal", "San Miguel", 
+          "Santa Teresa", "Sinapsapan"
         ],
       },
       {
         name: "Nueva Valencia",
         barangays: [
-          "Cabalagnan", "Calaya", "Canhawan",
-          "Dolores", "Guisi", "Igang",
-          "Igdarapdap", "La Paz", "Lanipe",
-          "Lucmayan", "Magamay", "Napandong",
-          "Oracon Norte", "Oracon Sur", "Pandaraonan",
-          "Poblacion", "Salvacion", "San Antonio",
-          "San Isidro", "San Miguel", "Santo Domingo",
-          "Sto. Niño", "Tando"
+          "Cabalagnan", "Calaya", "Canhawan", "Concordia Sur", "Dolores", "Guiwanon", 
+          "Igang", "Igdarapdap", "La Paz", "Lanipe", "Lucmayan", "Magamay", "Napandong", 
+          "Oracon Sur", "Pandaraonan", "Panobolon", "Poblacion", "Salvacion", 
+          "San Antonio", "San Roque", "Santo Domingo", "Tando"
         ],
       },
       {
         name: "San Lorenzo",
         barangays: [
-          "Aguilar", "Cabano", "Cabungahan",
-          "Constancia", "Gaban", "Igcawayan",
-          "M. Chavez", "San Enrique", "Sapal",
-          "Sebaste", "Suclaran", "Tamandato",
-          "Poblacion"
+          "Aguilar", "Cabano", "Cabungahan", "Constancia", "Gaban", "Igcawayan", 
+          "M. Chavez", "San Enrique", "Sapal", "Sebario", "Suclaran", "Tamborong"
         ],
       },
       {
         name: "Sibunag",
         barangays: [
-          "Alegria", "Ayangan", "Bubog",
-          "Concordia", "Dasal", "Inampologan",
-          "Maabay", "Millan", "Oracon",
-          "Poblacion", "Sabang", "San Isidro",
+          "Alegria", "Ayangan", "Bubog", "Concordia Norte", "Dasal", "Inampologan", 
+          "Maabay", "Millan", "Oracon Norte", "Ravina", "Sabang", "San Isidro", 
           "Sebaste", "Tanglad"
+        ],
+      },
+    ],
+  },
+  {
+    province: "Iloilo",
+    municipalities: [
+      {
+        name: "Ajuy",
+        barangays: [
+          "Adcadarao", "Agbobolo", "Badiangan", "Barrido", "Bato Biasong", "Bay-ang", 
+          "Bucana Bunglas", "Central", "Culasi", "Lanjagan", "Luca", "Malayu-an", 
+          "Mangorocoro", "Nasidman", "Pantalan Nabaye", "Pantalan Navarro", "Pedada", 
+          "Pili", "Pinantan Diel", "Pinantan Elizalde", "Pinay Espinosa", "Poblacion", 
+          "Progreso", "Puente Bunglas", "Punta Buri", "Rojas", "San Antonio", 
+          "Santo Rosario", "Silagon", "Tagubanhan", "Taguhangin", "Tanduyan", "Tipacla", 
+          "Tubogan"
+        ],
+      },
+      {
+        name: "Alimodian",
+        barangays: [
+          "Abang-abang", "Agsing", "Atabay", "Ba-ong", "Bagsakan", "Baguingin-Lanot", 
+          "Bagumbayan-Ilajas", "Balabago", "Ban-ag", "Bancal", "Binalud", "Bugang", 
+          "Buhay", "Bulod", "Cabacanan Proper", "Cabacanan Rizal", "Cagay", "Coline", 
+          "Coline-Dalag", "Cunsad", "Cuyad", "Dalid", "Dao", "Gines", "Ginomoy", 
+          "Ingwan", "Laylayan", "Lico", "Luan-luan", "Malamboy-Bondolan", "Malamhay", 
+          "Mambawi", "Manasa", "Manduyog", "Pajo", "Pianda-an Norte", "Pianda-an Sur", 
+          "Poblacion", "Punong", "Quinaspan", "Sinamay", "Sulong", "Taban-Manguining", 
+          "Tabug", "Tarug", "Tugaslon", "Ubodan", "Ugbo", "Ulay-Bugang", "Ulay-Hinablan", 
+          "Umingan"
+        ],
+      },
+      {
+        name: "Anilao",
+        barangays: [
+          "Agbatuan", "Badiang", "Balabag", "Balunos", "Cag-an", "Camiros", "Dangula-an", 
+          "Guipis", "Manganese", "Medina", "Mostro", "Palaypay", "Pantalan", "Poblacion", 
+          "Sambag Culob", "San Carlos", "San Juan Crisostomo", "Santa Rita", 
+          "Santo Rosario", "Serallo", "Vista Alegre"
+        ],
+      },
+      {
+        name: "Badiangan",
+        barangays: [
+          "Agusipan", "Astorga", "Bingauan", "Bita-oyan", "Botong", "Budiaue", 
+          "Cabanga-an", "Cabayogan", "Calansanan", "Catubig", "Guinawahan", "Ilongbukid", 
+          "Indorohan", "Iniligan", "Latawan", "Linayuan", "Mainguit", "Malublub", 
+          "Manaolan", "Mapili Grande", "Mapili Sanjo", "Odiongan", "Poblacion", 
+          "San Julian", "Sariri", "Sianon", "Sinuagan", "Talaba", "Tamocol", "Teneclan", 
+          "Tina"
+        ],
+      },
+      {
+        name: "Balasan",
+        barangays: [
+          "Aranjuez", "Bacolod", "Balanti-an", "Batuan", "Cabalic", "Camambugan", 
+          "Dolores", "Gimamanay", "Ipil", "Kinalkalan", "Lawis", "Malapoc", 
+          "Mamhut Norte", "Mamhut Sur", "Maya", "Pani-an", "Poblacion Norte", 
+          "Poblacion Sur", "Quiasan", "Salong", "Salvacion", "Tingui-an", "Zaragosa"
+        ],
+      },
+      {
+        name: "Banate",
+        barangays: [
+          "Alacaygan", "Bariga", "Belen", "Bobon", "Bularan", "Carmelo", "De La Paz", 
+          "Dugwakan", "Fuentes*", "Juanico", "Libertad", "Magdalo", "Managopaya", 
+          "Merced", "Poblacion", "San Salvador", "Talokgangan", "Zona Sur"
+        ],
+      },
+      {
+        name: "Barotac Nuevo",
+        barangays: [
+          "Acuit", "Agcuyawan Calsada", "Agcuyawan Pulo", "Bagongbong", "Baras", 
+          "Bungca", "Cabilauan", "Cruz", "Guintas", "Igbong", "Ilaud Poblacion", 
+          "Ilaya Poblacion", "Jalaud", "Lagubang", "Lanas", "Lico-an", "Linao", "Monpon", 
+          "Palaciawan", "Patag", "Salihid", "So-ol", "Sohoton", "Tabuc-Suba", "Tabucan", 
+          "Talisay", "Tinorian", "Tiwi", "Tubungan"
+        ],
+      },
+      {
+        name: "Barotac Viejo",
+        barangays: [
+          "Bugnay", "California", "De la Peña", "Del Pilar", "General Luna", 
+          "La Fortuna", "Lipata", "Natividad", "Nueva Invencion", "Nueva Sevilla", 
+          "Poblacion", "Puerto Princesa", "Rizal", "San Antonio", "San Fernando", 
+          "San Francisco", "San Geronimo", "San Juan", "San Lucas", "San Miguel", 
+          "San Roque", "Santiago", "Santo Domingo", "Santo Tomas", "Ugasan", 
+          "Vista Alegre"
+        ],
+      },
+      {
+        name: "Batad",
+        barangays: [
+          "Alapasco", "Alinsolong", "Banban", "Batad Viejo", "Binon-an", "Bolhog", 
+          "Bulak Norte", "Bulak Sur", "Cabagohan", "Calangag", "Caw-i", "Drancalan", 
+          "Embarcadero", "Hamod", "Malico", "Nangka", "Pasayan", "Poblacion", 
+          "Quiazan Florete", "Quiazan Lopez", "Salong", "Santa Ana", "Tanao", "Tapi-an"
+        ],
+      },
+      {
+        name: "Bingawan",
+        barangays: [
+          "Agba-o", "Alabidhan", "Bulabog", "Cairohan", "Guinhulacan", "Inamyungan", 
+          "Malitbog Ilawod", "Malitbog Ilaya", "Ngingi-an", "Poblacion", "Quinangyana", 
+          "Quinar-Upan", "Tapacon", "Tubod"
+        ],
+      },
+      {
+        name: "Cabatuan",
+        barangays: [
+          "Acao", "Amerang", "Amurao", "Anuang", "Ayaman", "Ayong", "Bacan", "Balabag", 
+          "Baluyan", "Banguit", "Bulay", "Cadoldolan", "Cagban", "Calawagan", "Calayo", 
+          "Duyanduyan", "Gaub", "Gines Interior", "Gines Patag", "Guibuangan Tigbauan", 
+          "Inabasan", "Inaca", "Inaladan", "Ingas", "Ito Norte", "Ito Sur", 
+          "Janipaan Central", "Janipaan Este", "Janipaan Oeste", "Janipaan Olo", 
+          "Jelicuon Lusaya", "Jelicuon Montinola", "Lag-an", "Leong", "Lutac", "Manguna", 
+          "Maraguit", "Morubuan", "Pacatin", "Pagotpot", "Pamul-Ogan", 
+          "Pamuringao Garrido", "Pamuringao Proper", "Pungtod", "Puyas", "Salacay", 
+          "Sulanga", "Tabucan", "Tacdangan", "Talanghauan", "Tigbauan Road", "Tinio-an", 
+          "Tiring", "Tupol Central", "Tupol Este", "Tupol Oeste", "Tuy-an", 
+          "Zone I Pob.", "Zone II Pob.", "Zone III Pob.", "Zone IV Pob.", "Zone IX Pob.", 
+          "Zone V Pob.", "Zone VI Pob.", "Zone VII Pob.", "Zone VIII Pob.", 
+          "Zone X Pob.", "Zone XI Pob."
+        ],
+      },
+      {
+        name: "Calinog",
+        barangays: [
+          "Agcalaga", "Aglibacao", "Aglonok", "Alibunan", "Badlan Grande", 
+          "Badlan Pequeño", "Badu", "Baje San Julian", "Balaticon", "Banban Grande", 
+          "Banban Pequeño", "Barrio Calinog", "Binolosan Grande", "Binolosan Pequeño", 
+          "Cabagiao", "Cabugao", "Cahigon", "Camalongo", "Canabajan", "Caratagan", 
+          "Carvasana", "Dalid", "Datagan", "Gama Grande", "Gama Pequeño", "Garangan", 
+          "Guinbonyugan", "Guiso", "Hilwan", "Impalidan", "Ipil", "Jamin-ay", "Lampaya", 
+          "Libot", "Lonoy", "Malag-it", "Malaguinabot", "Malapawe", "Malitbog Centro", 
+          "Mambiranan", "Manaripay", "Marandig", "Masaroy", "Maspasan", "Nalbugan", 
+          "Owak", "Poblacion Centro", "Poblacion Delgado", "Poblacion Ilaya", 
+          "Poblacion Rizal Ilaud", "San Nicolas", "Simsiman", "Supanga", "Tabucan", 
+          "Tahing", "Tibiao", "Tigbayog", "Toyungan", "Ulayan"
+        ],
+      },
+      {
+        name: "Carles",
+        barangays: [
+          "Abong", "Alipata", "Asluman", "Bancal", "Barangcalan", "Barosbos", 
+          "Binuluangan", "Bito-on", "Bolo", "Buaya", "Buenavista", "Cabilao Grande", 
+          "Cabilao Pequeño", "Cabuguana", "Cawayan", "Dayhagan", "Gabi", "Granada", 
+          "Guinticgan", "Isla De Cana", "Lantangan", "Manlot", "Nalumsan", "Pantalan", 
+          "Poblacion", "Punta", "Punta Batuanan", "San Fernando", "Tabugon", 
+          "Talingting", "Tarong", "Tinigban", "Tupaz"
+        ],
+      },
+      {
+        name: "City of Passi",
+        barangays: [
+          "Agdahon", "Agdayao", "Aglalana", "Agtabo", "Agtambo", "Alimono", "Arac", 
+          "Ayuyan", "Bacuranan", "Bagacay", "Batu", "Bayan", "Bitaogan", "Buenavista", 
+          "Buyo", "Cabunga", "Cadilang", "Cairohan", "Dalicanan", "Gegachac", "Gemat-y", 
+          "Gemumua-agahon", "Gines Viejo", "Imbang Grande", "Jaguimitan", "Libo-o", 
+          "Maasin", "Magdungao", "Malag-it Grande", "Malag-it Pequeño", 
+          "Mambiranan Grande", "Mambiranan Pequeño", "Man-it", "Mantulang", "Mulapula", 
+          "Nueva Union", "Pagaypay", "Pangi", "Poblacion Ilawod", "Poblacion Ilaya", 
+          "Punong", "Quinagaringan Grande", "Quinagaringan Pequeño", "Sablogon", 
+          "Salngan", "Santo Tomas", "Sarapan", "Tagubong", "Talongonan", "Tubod", 
+          "Tuburan"
+        ],
+      },
+      {
+        name: "Concepcion",
+        barangays: [
+          "Aglosong", "Agnaga", "Bacjawan Norte", "Bacjawan Sur", "Bagongon", "Batiti", 
+          "Botlog", "Calamigan", "Dungon", "Igbon", "Jamul-Awon", "Lo-ong", "Macalbang", 
+          "Macatunao", "Malangabang", "Maliogliog", "Nipa", "Niño", "Plandico", 
+          "Poblacion", "Polopina", "Salvacion", "Talotu-an", "Tambaliza", "Tamis-ac"
+        ],
+      },
+      {
+        name: "Dingle",
+        barangays: [
+          "Abangay", "Agsalanan", "Agtatacay", "Alegria", "Bongloy", "Buenavista", 
+          "Caguyuman", "Calicuang", "Camambugan", "Dawis", "Ginalinan Nuevo", 
+          "Ginalinan Viejo", "Gutao", "Ilajas", "Libo-o", "Licu-an", "Lincud", 
+          "Matangharon", "Moroboro", "Namatay", "Nazuni", "Pandan", "Poblacion", 
+          "Potolan", "San Jose", "San Matias", "Siniba-an", "Tabugon", "Tambunac", 
+          "Tanghawan", "Tiguib", "Tinocuan", "Tulatula-an"
+        ],
+      },
+      {
+        name: "Dueñas",
+        barangays: [
+          "Agutayan", "Angare", "Anjawan", "Baac", "Bagongbong", "Balangigan", 
+          "Balingasag", "Banugan", "Batuan", "Bita", "Buenavista", "Bugtongan", 
+          "Cabudian", "Calaca-an", "Calang", "Calawinan", "Capaycapay", "Capuling", 
+          "Catig", "Dila-an", "Fundacion", "Inadlawan", "Jagdong", "Jaguimit", "Lacadon", 
+          "Luag", "Malusgod", "Maribuyong", "Minanga", "Monpon", "Navalas", "Pader", 
+          "Pandan", "Poblacion A", "Poblacion B", "Poblacion C", "Poblacion D", 
+          "Ponong Grande", "Ponong Pequeño", "Purog", "Romblon", "San Isidro", 
+          "Santo Niño", "Sawe", "Taminla", "Tinocuan", "Tipolo"
+        ],
+      },
+      {
+        name: "Dumangas",
+        barangays: [
+          "Aurora-del Pilar (Pob.)", "Bacay", "Bacong", "Balabag", "Balud", "Bantud", 
+          "Bantud Fabrica", "Baras", "Barasan", "Basa-Mabini Bonifacio (Pob.)", 
+          "Bolilao", "Buenaflor Embarkadero (Pob.)", "Burgos-Regidor (Pob.)", "Calao", 
+          "Cali", "Cansilayan", "Capaliz", "Cayos", "Compayan", "Dacutan", "Ermita", 
+          "Ilaya 1st", "Ilaya 2nd", "Ilaya 3rd", "Jardin", "Lacturan", 
+          "Lopez Jaena - Rizal (Pob.)", "Managuit", "Maquina", "Nanding Lopez", 
+          "Pagdugue", "Paloc Bigque", "Paloc Sool", "Patlad", "Pd Monfort North", 
+          "Pd Monfort South", "Pulao", "Rosario", "Sapao", "Sulangan", "Tabucan", 
+          "Talusan", "Tambobo", "Tamboilan", "Victorias"
+        ],
+      },
+      {
+        name: "Estancia",
+        barangays: [
+          "Bayas", "Bayuyan", "Botongon", "Bulaqueña", "Calapdan", "Cano-an", 
+          "Daan Banua", "Daculan", "Gogo", "Jolog", "Loguingot", "Lonoy", "Lumbia", 
+          "Malbog", "Manipulon", "Pa-on", "Poblacion Zone 1", "Poblacion Zone II", 
+          "Poblacion Zone III", "San Roque", "Santa Ana", "Tabu-an", "Tacbuyan", "Tanza", 
+          "Villa Pani-an"
+        ],
+      },
+      {
+        name: "Guimbal",
+        barangays: [
+          "Anono-o", "Bacong", "Bagumbayan Pob.", "Balantad-Carlos Fruto (Pob.)", 
+          "Baras", "Binanua-an", "Bongol San Miguel", "Bongol San Vicente", "Bulad", 
+          "Buluangan", "Burgos-Gengos (Pob.)", "Cabasi", "Cabubugan", "Calampitao", 
+          "Camangahan", "Generosa-Cristobal Colon (Pob.)", "Gerona-Gimeno (Pob.)", 
+          "Girado-Magsaysay (Pob.)", "Gotera (Pob.)", "Igcocolo", "Iyasan", 
+          "Libo-on Gonzales (Pob.)", "Lubacan", "Nahapay", "Nalundan", "Nanga", 
+          "Nito-an Lupsag", "Particion", "Pescadores (Pob.)", "Rizal-Tuguisan (Pob.)", 
+          "Santa Rosa-Laguna", "Sipitan-Badiang", "Torreblanca-Blumentritt (Pob.)"
+        ],
+      },
+      {
+        name: "Igbaras",
+        barangays: [
+          "Alameda", "Amorogtong", "Anilawan", "Bagacay", "Bagacayan", "Bagay", 
+          "Balibagan", "Barangay 1 Poblacion", "Barangay 2 Poblacion", 
+          "Barangay 3 Poblacion", "Barangay 4 Poblacion", "Barangay 5 Poblacion", 
+          "Barangay 6 Poblacion", "Barasan", "Binanua-an", "Boclod", "Buenavista", 
+          "Buga", "Bugnay", "Calampitao", "Cale", "Catiringan", "Corucuan", "Igcabugao", 
+          "Igpigus", "Igtalongon", "Indaluyon", "Jovellar", "Kinagdan", "Lab-on", 
+          "Lacay Dol-Dol", "Lumangan", "Lutungan", "Mantangon", "Mulangan", "Pasong", 
+          "Passi", "Pinaopawan", "Riro-an", "San Ambrosio", "Santa Barbara", "Signe", 
+          "Tabiac", "Talayatay", "Taytay", "Tigbanaba"
+        ],
+      },
+      {
+        name: "Janiuay",
+        barangays: [
+          "Abangay", "Agcarope", "Aglobong", "Aguingay", "Anhawan", 
+          "Aquino Nobleza East (Pob.)", "Aquino Nobleza West (Pob.)", "Atimonan", 
+          "Balanac", "Barasalon", "Bongol", "Cabantog", "Calmay", "Canawili", 
+          "Canawillian", "Capt. A. Tirador (Pob.)", "Caranas", "Caraudan", "Carigangan", 
+          "Concepcion Pob.", "Crispin Salazar North (Pob.)", 
+          "Crispin Salazar South (Pob.)", "Cunsad", "Dabong", "Damires", "Damo-ong", 
+          "Danao", "Don T. Lutero Center (Pob.)", "Don T. Lutero East (Pob.)", 
+          "Don T. Lutero West Pob.", "Gines", "Golgota (Pob.)", "Guadalupe", "Jibolo", 
+          "Kuyot", "Locsin (Pob.)", "Madong", "Manacabac", "Mangil", "Matag-ub", 
+          "Monte-Magapa", "Pangilihan", "Panuran", "Pararinga", "Patong-patong", 
+          "Quipot", "R. Armada (Pob.)", "S. M. Villa (Pob.)", "San Julian (Pob.)", 
+          "San Pedro (Pob.)", "Santa Rita (Pob.)", "Santo Tomas", "Sarawag", "Tambal", 
+          "Tamu-an", "Tiringanan", "Tolarucan", "Tuburan", "Ubian", "Yabon"
+        ],
+      },
+      {
+        name: "Lambunao",
+        barangays: [
+          "Agsirab", "Agtuman", "Alugmawa", "Badiangan", "Balagiao", "Banban", "Bansag", 
+          "Bayuco", "Binaba-an Armada", "Binaba-an Labayno", "Binaba-an Limoso", 
+          "Binaba-an Portigo", "Binaba-an Tirador", "Bogongbong", "Bonbon", "Bontoc", 
+          "Buri", "Burirao", "Buwang", "Cabatangan", "Cabugao", "Cabunlawan", 
+          "Caguisanan", "Caloy-Ahan", "Caninguan", "Capangyan", "Cayan Este", 
+          "Cayan Oeste", "Corot-on", "Coto", "Cubay", "Cunarum", "Daanbanwa", "Gines", 
+          "Hipgos", "Jayubo", "Jorog", "Lanot Grande", "Lanot Pequeño", "Legayada", 
+          "Lumanay", "Madarag", "Magbato", "Maite Grande", "Maite Pequeño", "Malag-it", 
+          "Manaulan", "Maribong", "Marong", "Misi", "Natividad", "Pajo", "Pandan", 
+          "Panuran", "Pasig", "Patag", "Poblacion Ilawod", "Poblacion Ilaya", "Poong", 
+          "Pughanan", "Pungsod", "Quiling", "Sagcup", "San Gregorio", "Sibacungan", 
+          "Sibaguan", "Simsiman", "Supoc", "Tampucao", "Tranghawan", "Tubungan", 
+          "Tuburan", "Walang"
+        ],
+      },
+      {
+        name: "Leganes",
+        barangays: [
+          "Bigke", "Buntatala", "Cagamutan Norte", "Cagamutan Sur", "Calaboa", 
+          "Camangay", "Cari Mayor", "Cari Minor", "Gua-an", "Guihaman", "Guinobatan", 
+          "Guintas", "Lapayon", "M.V. Hechanova", "Nabitasan", "Napnud", "Poblacion", 
+          "San Vicente"
+        ],
+      },
+      {
+        name: "Lemery",
+        barangays: [
+          "Agpipili", "Alcantara", "Almeñana", "Anabo", "Bankal", "Buenavista", 
+          "Cabantohan", "Capiñahan", "Dalipe", "Dapdapan", "Gerongan", "Imbaulan", 
+          "Layogbato", "Marapal", "Milan", "Nagsulang", "Nasapahan", "Omio", "Pacuan", 
+          "Poblacion NW Zone", "Poblacion SE Zone", "Pontoc", "San Antonio", "San Diego", 
+          "San Jose Moto", "Sepanton", "Sincua", "Tabunan", "Tugas", "Velasco", "Yawyawan"
+        ],
+      },
+      {
+        name: "Leon",
+        barangays: [
+          "Agboy Norte", "Agboy Sur", "Agta", "Ambulong", "Anonang", "Apian", "Avanzada", 
+          "Awis", "Ayabang", "Ayubo", "Bacolod", "Baje", "Banagan", "Barangbang", 
+          "Barasan", "Bayag Norte", "Bayag Sur", "Binolbog", "Biri Norte", "Biri Sur", 
+          "Bobon", "Bucari", "Buenavista", "Buga", "Bulad", "Bulwang", "Cabolo-an", 
+          "Cabunga-an", "Cabutongan", "Cagay", "Camandag", "Camando", "Cananaman", 
+          "Capt. Fernando", "Carara-an", "Carolina", "Cawilihan", "Coyugan Norte", 
+          "Coyugan Sur", "Danao", "Dorog", "Dusacan", "Gines", "Gumboc", "Igcadios", 
+          "Ingay", "Isian Norte", "Isian Victoria", "Jamog Gines", "Lampaya", "Lanag", 
+          "Lang-og", "Ligtos", "Lonoc", "Magcapay", "Maliao", "Malublub", "Manampunay", 
+          "Marirong", "Mina", "Mocol", "Nagbangi", "Nalbang", "Odong-odong", "Oluangan", 
+          "Omambong", "Paga", "Pandan", "Panginman", "Paoy", "Pepe", "Poblacion", 
+          "Salngan", "Samlague", "Siol Norte", "Siol Sur", "Tacuyong Norte", 
+          "Tacuyong Sur", "Tagsing", "Talacuan", "Ticuan", "Tina-an Norte", 
+          "Tina-an Sur", "Tu-og", "Tunguan"
+        ],
+      },
+      {
+        name: "Maasin",
+        barangays: [
+          "AGROCEL Pob.", "Abay", "Abilay", "Amerang", "Bagacay East", "Bagacay West", 
+          "Bolo", "Bug-ot", "Bulay", "Buntalan", "Burak", "Cabangcalan", "Cabatac", 
+          "Caigon", "Cananghan", "Canawili", "DELCAR Pob.", "Dagami", "Daja", "Dalusan", 
+          "Inabasan", "Layog", "Linab", "Liñagan Calsada", "Liñagan Tacas", "MARI Pob.", 
+          "Magsaysay", "Mandog", "Miapa", "Nagba", "Nasaka", "Naslo-Bucao", "Nasuli", 
+          "Panalian", "Piandaan East", "Piandaan West", "Pispis", "Punong", "Santa Rita", 
+          "Sinubsuban", "Siwalo", "Subog", "THTP Pob.", "Tigbauan", "Trangka", "Tubang", 
+          "Tulahong", "Tuy-an East", "Tuy-an West", "Ubian"
+        ],
+      },
+      {
+        name: "Miagao",
+        barangays: [
+          "Agdum", "Aguiauan", "Alimodias", "Awang", "Bacauan", "Bacolod", "Bagumbayan", 
+          "Banbanan", "Banga", "Bangladan", "Banuyao", "Baraclayan", "Bariri", 
+          "Baybay Norte (Pob.)", "Baybay Sur (Pob.)", "Belen", "Bolho (Pob.)", 
+          "Bolocaue", "Buenavista Norte", "Buenavista Sur", "Bugtong Lumangan", 
+          "Bugtong Naulid", "Cabalaunan", "Cabangcalan", "Cabunotan", "Cadoldolan", 
+          "Cagbang", "Caitib", "Calagtangan", "Calampitao", "Cavite", "Cawayanan", 
+          "Cubay", "Cubay Ubos", "Dalije", "Damilisan", "Dawog", "Diday", "Dingle", 
+          "Durog", "Frantilla", "Fundacion", "Gines", "Guibongan", "Igbita", "Igbugo", 
+          "Igcabidio", "Igcabito-on", "Igcatambor", "Igdalaquit", "Igdulaca", "Igpajo", 
+          "Igpandan", "Igpuro", "Igpuro-Bariri", "Igsoligue", "Igtuba", "Ilog-ilog", 
+          "Indag-an", "Kirayan Norte", "Kirayan Sur", "Kirayan Tacas", "La Consolacion", 
+          "Lacadon", "Lanutan", "Lumangan", "Mabayan", "Maduyo", "Malagyan", "Mambatad", 
+          "Maninila", "Maricolcol", "Maringyan", "Mat-y (Pob.)", "Matalngon", "Naclub", 
+          "Nam-o Norte", "Nam-o Sur", "Narat-an", "Narorogan", "Naulid", "Olango", 
+          "Ongyod", "Onop", "Oya-oy", "Oyungan", "Palaca", "Paro-on", "Potrido", 
+          "Pudpud", "Pungtod Monteclaro", "Pungtod Naulid", "Sag-on", "San Fernando", 
+          "San Jose", "San Rafael", "Sapa", "Saring", "Sibucao", "Taal", "Tabunacan", 
+          "Tacas (Pob.)", "Tambong", "Tan-agan", "Tatoy", "Ticdalan", "Tig-Apog-Apog", 
+          "Tig-amaga", "Tigbagacay", "Tiglawa", "Tigmalapad", "Tigmarabo", "To-og", 
+          "Tugura-ao", "Tumagboc", "Ubos Ilawod (Pob.)", "Ubos Ilaya (Pob.)", "Valencia", 
+          "Wayang"
+        ],
+      },
+      {
+        name: "Mina",
+        barangays: [
+          "Abat", "Agmanaphao", "Amiroy", "Badiangan", "Bangac", "Cabalabaguan", 
+          "Capul-an", "Dala", "Guibuangan", "Janipa-an East", "Janipa-an West", 
+          "Mina East (Pob.)", "Mina West (Pob.)", "Nasirum", "Naumuan", "Singay", 
+          "Talibong Grande", "Talibong Pequeño", "Tipolo", "Tolarucan", "Tumay", "Yugot"
+        ],
+      },
+      {
+        name: "New Lucena",
+        barangays: [
+          "Baclayan", "Badiang", "Balabag", "Bilidan", "Bita-og Gaja", "Bololacao", 
+          "Burot", "Cabilauan", "Cabugao", "Cagban", "Calumbuyan", "Damires", "Dawis", 
+          "General Delgado", "Guinobatan", "Janipa-an Oeste", "Jelicuon Este", 
+          "Jelicuon Oeste", "Pasil", "Poblacion", "Wari-wari"
+        ],
+      },
+      {
+        name: "Oton",
+        barangays: [
+          "Abilay Norte", "Abilay Sur", "Alegre", "Batuan Ilaud", "Batuan Ilaya", 
+          "Bita Norte", "Bita Sur", "Botong", "Buray", "Cabanbanan", "Caboloan Norte", 
+          "Caboloan Sur", "Cadinglian", "Cagbang", "Calam-isan", "Galang", "Lambuyao", 
+          "Mambog", "Pakiad", "Poblacion East", "Poblacion North", "Poblacion South", 
+          "Poblacion West", "Polo Maestra Bita", "Rizal", "Salngan", "Sambaludan", 
+          "San Antonio", "San Nicolas", "Santa Clara", "Santa Monica", "Santa Rita", 
+          "Tagbac Norte", "Tagbac Sur", "Trapiche", "Tuburan", "Turog-Turog"
+        ],
+      },
+      {
+        name: "Pavia",
+        barangays: [
+          "Aganan", "Amparo", "Anilao", "Balabag", "Cabugao Norte", "Cabugao Sur", 
+          "Jibao-an", "Mali-ao", "Pagsanga-an", "Pal-agon", "Pandac", "Purok I (Pob.)", 
+          "Purok II (Pob.)", "Purok III (Pob.)", "Purok IV (Pob.)", "Tigum", "Ungka I", 
+          "Ungka II"
+        ],
+      },
+      {
+        name: "Pototan",
+        barangays: [
+          "Abangay", "Amamaros", "Bagacay", "Barasan", "Batuan", "Bongco", 
+          "Cahaguichican", "Callan", "Cansilayan", "Casalsagan", "Cato-ogan", "Cau-ayan", 
+          "Culob", "Danao", "Dapitan", "Dawis", "Dongsol", "Fernando Parcon Ward (Pob.)", 
+          "Fundacion", "Guibuangan", "Guinacas", "Igang", "Intaluan", "Iwa Ilaud", 
+          "Iwa Ilaya", "Jamabalud", "Jebioc", "Lay-Ahan", "Lopez Jaena Ward (Pob.)", 
+          "Lumbo", "Macatol", "Malusgod", "Nabitasan", "Naga", "Nanga", "Naslo", "Pajo", 
+          "Palanguia", "Pitogo", "Polot-an", "Primitivo Ledesma Ward (Pob.)", "Purog", 
+          "Rumbang", "San Jose Ward (Pob.)", "Sinuagan", "Tuburan", "Tumcon Ilaud", 
+          "Tumcon Ilaya", "Ubang", "Zarrague"
+        ],
+      },
+      {
+        name: "San Dionisio",
+        barangays: [
+          "Agdaliran", "Amayong", "Bagacay", "Batuan", "Bondulan", "Boroñgon", "Canas", 
+          "Capinang", "Cubay", "Cudionan", "Dugman", "Hacienda Conchita", "Madanlog", 
+          "Mandu-awak", "Moto", "Naborot", "Nipa", "Odiongan", "Pangi", "Pase", 
+          "Poblacion", "San Nicolas", "Santol", "Siempreviva", "Sua", "Talo-ato", 
+          "Tamangi", "Tiabas", "Tuble"
+        ],
+      },
+      {
+        name: "San Enrique",
+        barangays: [
+          "Abaca", "Asisig", "Bantayan", "Braulan", "Cabugao Nuevo", "Cabugao Viejo", 
+          "Camiri", "Catan-Agan", "Compo", "Cubay", "Dacal", "Dumiles", "Garita", 
+          "Gines Nuevo", "Imbang Pequeño", "Imbesad-an", "Iprog", "Lip-ac", "Madarag", 
+          "Mapili", "Paga", "Palje", "Poblacion Ilawod", "Poblacion Ilaya", "Quinolpan", 
+          "Rumagayray", "San Antonio", "Tambunac"
+        ],
+      },
+      {
+        name: "San Joaquin",
+        barangays: [
+          "Amboyu-an", "Andres Bonifacio", "Antalon", "Bad-as", "Bagumbayan", "Balabago", 
+          "Baybay", "Bayunan", "Bolbogan", "Bonga", "Bucaya", "Bulho", "Cadluman", 
+          "Cadoldolan", "Camaba-an", "Camia", "Cata-an", "Crossing Dapuyan", "Cubay", 
+          "Cumarascas", "Dacdacanan", "Danawan", "Doldol", "Dongoc", "Escalantera", 
+          "Ginot-an", "Guibongan Bayunan", "Huna", "Igbaje", "Igbangcal", "Igbinangon", 
+          "Igburi", "Igcabutong", "Igcadlum", "Igcaphang", "Igcaratong", "Igcondao", 
+          "Igcores", "Igdagmay", "Igdomingding", "Iglilico", "Igpayong", "Jawod", 
+          "Langca", "Languanan", "Lawigan", "Lomboy", "Lomboyan", "Lopez Vito", 
+          "Mabini Norte", "Mabini Sur", "Manhara", "Maninila", "Masagud", "Matambog", 
+          "Mayunoc", "Montinola", "Nadsadan", "Nagquirisan", "Nagsipit", "New Gumawan", 
+          "Panatan", "Pitogo", "Purok 1 (Pob.)", "Purok 2 (Pob.)", "Purok 3 (Pob.)", 
+          "Purok 4 (Pob.)", "Purok 5 (Pob.)", "Qui-anan", "Roma", "San Luis", 
+          "San Mateo Norte", "San Mateo Sur", "Santa Rita", "Santiago", "Sinogbuhan", 
+          "Siwaragan", "Talagutac", "Tapikan", "Taslan", "Tiglawa", "Tiolas", "To-og", 
+          "Torocadan", "Ulay"
+        ],
+      },
+      {
+        name: "San Miguel",
+        barangays: [
+          "Bgy. 1 Pob.", "Bgy. 10", "Bgy. 11 Pob.", "Bgy. 12 Pob.", "Bgy. 13 Pob.", 
+          "Bgy. 14 Pob.", "Bgy. 15 Pob.", "Bgy. 16 Pob.", "Bgy. 2 Pob.", "Bgy. 3 Pob.", 
+          "Bgy. 4 Pob.", "Bgy. 5 Pob.", "Bgy. 6 Pob.", "Bgy. 7 Pob.", "Bgy. 8 Pob.", 
+          "Bgy. 9 Pob.", "Consolacion", "Igtambo", "San Antonio", "San Jose", 
+          "Santa Cruz", "Santa Teresa", "Santo Angel", "Santo Niño"
+        ],
+      },
+      {
+        name: "San Rafael",
+        barangays: [
+          "Aripdip", "Bagacay", "Calaigang", "Ilongbukid", "Poblacion", "Poscolon", 
+          "San Andres", "San Dionisio", "San Florentino"
+        ],
+      },
+      {
+        name: "Santa Barbara",
+        barangays: [
+          "Agusipan", "Agutayan", "Bagumbayan", "Balabag", "Balibagan Este", 
+          "Balibagan Oeste", "Ban-ag", "Bantay", "Barangay Zone I (Pob.)", 
+          "Barangay Zone II (Pob.)", "Barangay Zone III (Pob.)", 
+          "Barangay Zone IV (Pob.)", "Barangay Zone V (Pob.)", "Barangay Zone VI (Pob.)", 
+          "Barasan Este", "Barasan Oeste", "Binangkilan", "Bitaog-Taytay", "Bolong Este", 
+          "Bolong Oeste", "Buayahon", "Buyo", "Cabugao Norte", "Cabugao Sur", 
+          "Cadagmayan Norte", "Cadagmayan Sur", "Cafe", "Calaboa Este", "Calaboa Oeste", 
+          "Camambugan", "Canipayan", "Conaynay", "Daga", "Dalid", "Duyanduyan", 
+          "Gen. Martin T. Delgado", "Guno", "Inangayan", "Jibao-an", "Lacadon", "Lanag", 
+          "Lupa", "Magancina", "Malawog", "Mambuyo", "Manhayang", "Miraga-Guibuangan", 
+          "Nasugban", "Omambog", "Pal-Agon", "Pungsod", "San Sebastian", "Sangcate", 
+          "Tagsing", "Talanghauan", "Talongadian", "Tigtig", "Tuburan", "Tugas", "Tungay"
+        ],
+      },
+      {
+        name: "Sara",
+        barangays: [
+          "Aguirre", "Aldeguer", "Alibayog", "Anoring", "Apelo", "Apologista", "Aposaga", 
+          "Arante", "Ardemil", "Aspera", "Aswe-Pabriaga", "Bagaygay", "Bakabak", 
+          "Batitao", "Bato", "Castor", "Crespo", "Del Castillo", "Devera", "Domingo", 
+          "Ferraris", "Gildore", "Improgo", "Juaneza", "Labigan", "Lanciola", "Latawan", 
+          "Malapaya", "Muyco", "Padios", "Pasig", "Poblacion Ilawod", "Poblacion Ilaya", 
+          "Poblacion Market", "Posadas", "Preciosa", "Salcedo", "San Luis", "Tady", 
+          "Tentay", "Villahermosa", "Zerrudo"
+        ],
+      },
+      {
+        name: "Tigbauan",
+        barangays: [
+          "Alupidian", "Atabayan", "Bagacay", "Baguingin", "Bagumbayan", "Bangkal", 
+          "Bantud", "Barangay 1 (Pob.)", "Barangay 2 (Pob.)", "Barangay 3 (Pob.)", 
+          "Barangay 4 (Pob.)", "Barangay 5 (Pob.)", "Barangay 6 (Pob.)", 
+          "Barangay 7 (Pob.)", "Barangay 8 (Pob.)", "Barangay 9 (Pob.)", "Barosong", 
+          "Barroc", "Bayuco", "Binaliuan Mayor", "Binaliuan Menor", "Bitas", 
+          "Buenavista", "Bugasongan", "Buyu-an", "Canabuan", "Cansilayan", 
+          "Cordova Norte", "Cordova Sur", "Danao", "Dapdap", "Dorong-an", "Guisian", 
+          "Isauan", "Isian", "Jamog", "Lanag", "Linobayan", "Lubog", "Nagba", "Namocon", 
+          "Napnapan Norte", "Napnapan Sur", "Olo Barroc", "Parara Norte", "Parara Sur", 
+          "San Rafael", "Sermon", "Sipitan", "Supa", "Tan Pael", "Taro"
+        ],
+      },
+      {
+        name: "Tubungan",
+        barangays: [
+          "Adgao", "Ago", "Ambarihon", "Ayubo", "Bacan", "Badiang", "Bagunanay", 
+          "Balicua", "Bantayanan", "Batga", "Bato", "Bikil", "Boloc", "Bondoc", "Borong", 
+          "Buenavista", "Cadabdab", "Daga-ay", "Desposorio", "Igdampog Norte", 
+          "Igdampog Sur", "Igpaho", "Igtuble", "Ingay", "Isauan", "Jolason", "Jona", 
+          "La-ag", "Lanag Norte", "Lanag Sur", "Male", "Mayang", "Molina", "Morcillas", 
+          "Nagba", "Navillan", "Pinamacalan", "San Jose", "Sibucauan", "Singon", "Tabat", 
+          "Tagpu-an", "Talento", "Teniente Benito", "Victoria", "Zone I (Pob.)", 
+          "Zone II (Pob.)", "Zone III (Pob.)"
+        ],
+      },
+      {
+        name: "Zarraga",
+        barangays: [
+          "Balud I", "Balud II", "Balud Lilo-an", "Dawis Centro", "Dawis Norte", 
+          "Dawis Sur", "Gines", "Ilawod Poblacion", "Ilaya Poblacion", 
+          "Inagdangan Centro", "Inagdangan Norte", "Inagdangan Sur", "Jalaud Norte", 
+          "Jalaud Sur", "Libongcogon", "Malunang", "Pajo", "Sambag", "Sigangao", 
+          "Talauguis", "Talibong", "Tubigan", "Tuburan", "Tuburan Sulbod"
+        ],
+      },
+    ],
+  },
+  {
+    province: "Iloilo City",
+    municipalities: [
+      {
+        name: "City of Iloilo",
+        barangays: [
+          "Abeto Mirasol Taft South", "Aguinaldo", "Airport", "Alalasan Lapuz", 
+          "Arguelles", "Arsenal Aduana", "Bakhaw", "Balabago", "Balantang", "Baldoza", 
+          "Bantud", "Banuyao", "Baybay Tanza", "Benedicto", "Bito-on", "Bolilao", 
+          "Bonifacio", "Bonifacio Tanza", "Buhang", "Buhang Taft North", "Buntatala", 
+          "Burgos-Mabini-Plaza", "Caingin", "Calahunan", "Calaparan", "Calubihan", 
+          "Calumpang", "Camalig", "Cochero", "Compania", "Concepcion-Montes", "Cuartero", 
+          "Cubay", "Danao", "Delgado-Jalandoni-Bagumbayan", "Democracia", "Desamparados", 
+          "Divinagracia", "Don Esteban-Lapuz", "Dulonan", "Dungon", "Dungon A", 
+          "Dungon B", "East Baluarte", "East Timawa", "Edganzon", "El 98 Castilla", 
+          "Fajardo", "Flores", "General Hughes-Montes", "Gloria", "Gustilo", 
+          "Guzman-Jesena", "Habog-habog Salvacion", "Hibao-an Norte", "Hibao-an Sur", 
+          "Hinactacan", "Hipodromo", "Inday", "Infante", "Ingore", 
+          "Jalandoni Estate-Lapuz", "Jalandoni-Wilson", "Javellana", "Jereos", 
+          "Kahirupan", "Kasingkasing", "Katilingban", "Kauswagan", "Laguda", "Lanit", 
+          "Lapuz Norte", "Lapuz Sur", "Legaspi dela Rama", "Liberation", 
+          "Libertad, Santa Isabel", "Libertad-Lapuz", "Loboc-Lapuz", "Lopez Jaena", 
+          "Lopez Jaena Norte", "Lopez Jaena Sur", "Luna", "Luna", "M. V. Hechanova", 
+          "Mabolo-Delgado", "Macarthur", "Magdalo", "Magsaysay", "Magsaysay Village", 
+          "Malipayon-Delgado", "Mansaya-Lapuz", "Marcelo H. del Pilar", "Maria Clara", 
+          "Maria Cristina", "Mohon", "Molo Boulevard", "Monica Blumentritt", "Montinola", 
+          "Muelle Loney-Montes", "Nabitasan", "Navais", "Nonoy", "North Avanceña", 
+          "North Baluarte", "North Fundidor", "North San Jose", "Obrero-Lapuz", "Ortiz", 
+          "Osmeña", "Our Lady Of Fatima", "Our Lady Of Lourdes", "Oñate de Leon", 
+          "PHHC Block 17", "PHHC Block 22 NHA", "Pale Benedicto Rizal", "Poblacion Molo", 
+          "President Roxas", "Progreso-Lapuz", "Punong-Lapuz", "Quezon", "Quintin Salas", 
+          "Railway", "Rima-Rizal", "Rizal", "Rizal Estanzuela", "Rizal Ibarra", 
+          "Rizal Palapala I", "Rizal Palapala II", "Roxas Village", "Sambag", 
+          "Sampaguita", "San Agustin", "San Antonio", "San Felix", "San Isidro", 
+          "San Isidro", "San Jose", "San Jose", "San Jose", "San Juan", "San Nicolas", 
+          "San Pedro", "San Pedro", "San Rafael", "San Roque", "San Vicente", 
+          "Santa Cruz", "Santa Filomena", "Santa Rosa", "Santo Domingo", 
+          "Santo Niño Norte", "Santo Niño Sur", "Santo Rosario-Duran", "Seminario", 
+          "Simon Ledesma", "Sinikway", "So-oc", "South Baluarte", "South Fundidor", 
+          "South San Jose", "Taal", "Tabuc Suba", "Tabuc Suba", "Tabucan", "Tacas", 
+          "Tagbac", "Tanza-Esperanza", "Tap-oc", "Taytay Zone II", "Ticud", 
+          "Timawa Tanza I", "Timawa Tanza II", "Ungka", "Veterans Village", 
+          "Villa Anita", "West Habog-habog", "West Timawa", "Yulo Drive", "Yulo-Arroyo", 
+          "Zamora-Melliza"
         ],
       },
     ],
