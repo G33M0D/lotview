@@ -47,17 +47,21 @@ export default function FavoriteButton({ listingId }: FavoriteButtonProps) {
       setTimeout(() => setIsAnimating(false), 300);
 
       if (isFavorited) {
-        await supabase
+        const { error } = await supabase
           .from('favorites')
           .delete()
           .eq('user_id', user.id)
           .eq('listing_id', listingId);
-        setIsFavorited(false);
+        if (!error) {
+          setIsFavorited(false);
+        }
       } else {
-        await supabase
+        const { error } = await supabase
           .from('favorites')
           .insert({ user_id: user.id, listing_id: listingId });
-        setIsFavorited(true);
+        if (!error) {
+          setIsFavorited(true);
+        }
       }
 
       setIsLoading(false);

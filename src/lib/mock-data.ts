@@ -8,8 +8,8 @@ export const MOCK_LISTINGS: Listing[] = [
     description:
       'Flat, ready-to-build residential lot in a quiet subdivision in Brgy. Dungon-A, Jaro. Walking distance to Jaro Cathedral, schools, and wet market. Perfect for OFW families looking to build their dream home close to city conveniences. Concrete road frontage with existing perimeter fence on two sides.',
     province: 'Iloilo City',
-    municipality: 'Jaro',
-    barangay: 'Dungon-A',
+    municipality: 'City of Iloilo',
+    barangay: 'Dungon A',
     polygon: [
       { lat: 10.71987, lng: 122.56243 },
       { lat: 10.71987, lng: 122.56257 },
@@ -159,7 +159,7 @@ export const MOCK_LISTINGS: Listing[] = [
     description:
       'Rare residential lot just 200 meters from the shoreline in Brgy. Baybay, Roxas City. Gentle sea breeze, sandy soil, and coconut-lined surroundings. Walk to the famous Baybay Beach seafood strip. Ideal for a vacation home or rental property catering to local tourism. Title is clean and ready for transfer.',
     province: 'Capiz',
-    municipality: 'Roxas City',
+    municipality: 'City of Roxas',
     barangay: 'Baybay',
     polygon: [
       { lat: 11.58526, lng: 122.75124 },

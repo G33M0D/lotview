@@ -7,16 +7,22 @@ import BrowseMap from '@/components/BrowseMap';
 import LotCard from '@/components/LotCard';
 import FilterPanel, { FilterState, DEFAULT_FILTERS } from '@/components/FilterPanel';
 import { MOCK_LISTINGS } from '@/lib/mock-data';
+import { fetchListings } from '@/lib/data';
 import { Listing } from '@/lib/types';
 
 export default function BrowsePage() {
+  const [allListings, setAllListings] = useState<Listing[]>(MOCK_LISTINGS);
   const [filters, setFilters] = useState<FilterState>({ ...DEFAULT_FILTERS });
   const [selectedListingId, setSelectedListingId] = useState<string | null>(null);
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const listContainerRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    fetchListings().then(setAllListings);
+  }, []);
+
   const filteredListings = useMemo(() => {
-    return MOCK_LISTINGS.filter((listing) => {
+    return allListings.filter((listing) => {
       // Province filter
       if (filters.province && listing.province !== filters.province) {
         return false;
@@ -107,7 +113,7 @@ export default function BrowsePage() {
             <span className="text-xs text-muted-foreground">
               Showing{' '}
               <span className="font-semibold text-foreground">{filteredListings.length}</span> of{' '}
-              <span className="font-semibold text-foreground">{MOCK_LISTINGS.length}</span> lots
+              <span className="font-semibold text-foreground">{allListings.length}</span> lots
             </span>
           </div>
 

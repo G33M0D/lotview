@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
-import { MOCK_LISTINGS } from '@/lib/mock-data';
+import { fetchListings as fetchAllListings } from '@/lib/data';
 import { formatPrice, formatArea, getStatusLabel } from '@/lib/utils';
 import type { Listing } from '@/lib/types';
 
@@ -15,22 +15,10 @@ export default function AdminListings() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchListings() {
-      try {
-        const { data } = await supabase
-          .from('listings')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        setListings(data && data.length > 0 ? data : MOCK_LISTINGS);
-      } catch {
-        setListings(MOCK_LISTINGS);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchListings();
-  }, [supabase]);
+    fetchAllListings()
+      .then(setListings)
+      .finally(() => setLoading(false));
+  }, []);
 
   async function handleDelete(id: string) {
     try {
@@ -143,9 +131,9 @@ export default function AdminListings() {
                   <td className="px-4 py-3">
                     <div className="flex items-center justify-end gap-2">
                       <Link
-                        href={`/admin/listings/edit/${listing.id}`}
+                        href={`/listings/${listing.id}`}
                         className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                        title="Edit"
+                        title="View listing"
                       >
                         <Pencil className="h-4 w-4" />
                       </Link>

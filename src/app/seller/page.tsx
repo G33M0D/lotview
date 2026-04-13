@@ -1,4 +1,4 @@
 import { redirect } from 'next/navigation';
-export default function SellerDashboardRedirect() {
+export default function SellerRedirect() {
   redirect('/admin');
 }

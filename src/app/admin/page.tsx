@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
 import { MOCK_LISTINGS, MOCK_INQUIRIES } from '@/lib/mock-data';
+import { fetchListings, fetchInquiries } from '@/lib/data';
 import { formatPrice, getStatusLabel } from '@/lib/utils';
 import type { Listing, Inquiry } from '@/lib/types';
 
@@ -41,23 +42,21 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        // Try Supabase first, fall back to mock data
-        const { data: listings } = await supabase
-          .from('listings')
-          .select('*');
-        const { data: inquiries } = await supabase
-          .from('inquiries')
-          .select('*')
-          .order('created_at', { ascending: false })
-          .limit(5);
-        const { count: userCount } = await supabase
-          .from('profiles')
-          .select('*', { count: 'exact', head: true });
+        const [listingData, inquiryData] = await Promise.all([
+          fetchListings(),
+          fetchInquiries(),
+        ]);
 
-        const listingData: Listing[] =
-          listings && listings.length > 0 ? listings : MOCK_LISTINGS;
-        const inquiryData: Inquiry[] =
-          inquiries && inquiries.length > 0 ? inquiries : MOCK_INQUIRIES;
+        // Get user count from Supabase (separate since it's not in data.ts)
+        let userCount = 0;
+        try {
+          const { count } = await supabase
+            .from('profiles')
+            .select('*', { count: 'exact', head: true });
+          userCount = count ?? 0;
+        } catch {
+          // ignore
+        }
 
         setStats({
           totalListings: listingData.length,
@@ -65,7 +64,7 @@ export default function AdminDashboard() {
             .length,
           totalInquiries: inquiryData.length,
           newInquiries: inquiryData.filter((i) => i.status === 'new').length,
-          registeredUsers: userCount ?? 0,
+          registeredUsers: userCount,
         });
 
         const enriched = inquiryData.slice(0, 5).map((inq) => {

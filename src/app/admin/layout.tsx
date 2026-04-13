@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -9,6 +9,8 @@ import {
   MessageSquare,
   Users,
   ArrowLeft,
+  Menu,
+  X,
 } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
 
@@ -27,12 +29,18 @@ export default function AdminLayout({
   const { user, isAdmin, isLoading } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (!isLoading && (!user || !isAdmin)) {
       router.replace('/login');
     }
   }, [user, isAdmin, isLoading, router]);
+
+  // Close sidebar on route change (mobile)
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [pathname]);
 
   if (isLoading) {
     return (
@@ -48,9 +56,21 @@ export default function AdminLayout({
 
   return (
     <div className="flex h-screen bg-background">
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="flex w-64 flex-col bg-[#111318] text-white">
-        <div className="border-b border-white/10 p-4">
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[#111318] text-white transition-transform duration-200 md:static md:translate-x-0 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="flex items-center justify-between border-b border-white/10 p-4">
           <Link
             href="/"
             className="flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
@@ -58,6 +78,12 @@ export default function AdminLayout({
             <ArrowLeft className="h-4 w-4" />
             Back to Site
           </Link>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="rounded-lg p-1.5 text-white/60 hover:text-white md:hidden"
+          >
+            <X className="h-5 w-5" />
+          </button>
         </div>
 
         <div className="px-4 py-5">
@@ -95,9 +121,22 @@ export default function AdminLayout({
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto">
-        <div className="p-6 lg:p-8">{children}</div>
-      </main>
+      <div className="flex flex-1 flex-col overflow-hidden">
+        {/* Mobile header */}
+        <header className="flex items-center gap-3 border-b border-border bg-card px-4 py-3 md:hidden">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+          <h1 className="text-sm font-semibold text-foreground">LotView Admin</h1>
+        </header>
+
+        <main className="flex-1 overflow-auto">
+          <div className="p-6 lg:p-8">{children}</div>
+        </main>
+      </div>
     </div>
   );
 }

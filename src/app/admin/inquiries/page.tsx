@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
 import { MOCK_INQUIRIES, MOCK_LISTINGS } from '@/lib/mock-data';
+import { fetchInquiries as fetchAllInquiries, fetchListings as fetchAllListings } from '@/lib/data';
 import { getStatusLabel } from '@/lib/utils';
 import type { Inquiry, Listing } from '@/lib/types';
 
@@ -16,20 +17,12 @@ export default function AdminInquiries() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchInquiries() {
+    async function loadInquiries() {
       try {
-        const { data: inqData } = await supabase
-          .from('inquiries')
-          .select('*')
-          .order('created_at', { ascending: false });
-        const { data: listData } = await supabase
-          .from('listings')
-          .select('id, title');
-
-        const rawInquiries: Inquiry[] =
-          inqData && inqData.length > 0 ? inqData : MOCK_INQUIRIES;
-        const rawListings: Pick<Listing, 'id' | 'title'>[] =
-          listData && listData.length > 0 ? listData : MOCK_LISTINGS;
+        const [rawInquiries, rawListings] = await Promise.all([
+          fetchAllInquiries(),
+          fetchAllListings(),
+        ]);
 
         const enriched = rawInquiries.map((inq) => {
           const listing = rawListings.find((l) => l.id === inq.listingId);
@@ -46,8 +39,8 @@ export default function AdminInquiries() {
         setLoading(false);
       }
     }
-    fetchInquiries();
-  }, [supabase]);
+    loadInquiries();
+  }, []);
 
   async function updateStatus(id: string, status: Inquiry['status']) {
     try {

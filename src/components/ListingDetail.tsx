@@ -24,6 +24,8 @@ import {
   Building2,
 } from 'lucide-react';
 import { Listing, Inquiry } from '@/lib/types';
+import { submitInquiry } from '@/lib/data';
+import { useAuth } from '@/components/AuthProvider';
 import { CURRENCIES } from '@/lib/constants';
 import {
   formatPrice,
@@ -54,10 +56,13 @@ interface ListingDetailProps {
 }
 
 export default function ListingDetail({ listing }: ListingDetailProps) {
+  const { user } = useAuth();
   const [showCurrencies, setShowCurrencies] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
   const [copied, setCopied] = useState(false);
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
+  const [inquiryError, setInquiryError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
   const [inquiry, setInquiry] = useState<Omit<Inquiry, 'id' | 'listingId' | 'status' | 'createdAt'>>({
     buyerName: '',
     buyerPhone: '',
@@ -88,8 +93,27 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
     setTimeout(() => setCopied(false), 2000);
   }
 
-  function handleSubmitInquiry(e: React.FormEvent) {
+  async function handleSubmitInquiry(e: React.FormEvent) {
     e.preventDefault();
+    setSubmitting(true);
+    setInquiryError(null);
+
+    const result = await submitInquiry({
+      listingId: listing.id,
+      buyerName: inquiry.buyerName,
+      buyerPhone: inquiry.buyerPhone,
+      buyerEmail: inquiry.buyerEmail,
+      message: inquiry.message,
+      userId: user?.id,
+    });
+
+    setSubmitting(false);
+
+    if (result.error) {
+      setInquiryError(result.error);
+      return;
+    }
+
     setInquirySubmitted(true);
     setInquiry({ buyerName: '', buyerPhone: '', buyerEmail: '', message: '' });
     setTimeout(() => setInquirySubmitted(false), 5000);
@@ -418,6 +442,11 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
           </div>
         ) : (
           <form onSubmit={handleSubmitInquiry} className="space-y-4">
+            {inquiryError && (
+              <div className="rounded-lg bg-red-50 p-4 text-sm text-red-700">
+                Failed to send inquiry: {inquiryError}
+              </div>
+            )}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
@@ -486,10 +515,11 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
             </div>
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors shadow-sm"
+              disabled={submitting}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send className="w-4 h-4" />
-              Send Inquiry
+              {submitting ? 'Sending...' : 'Send Inquiry'}
             </button>
           </form>
         )}
