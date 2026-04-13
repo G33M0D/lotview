@@ -61,7 +61,7 @@ export default function BrowsePage() {
 
       return true;
     });
-  }, [filters]);
+  }, [filters, allListings]);
 
   const handleSelectListing = useCallback((listing: Listing) => {
     setSelectedListingId(listing.id);
