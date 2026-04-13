@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { useMapContext } from './MapProvider';
+import { useAuth } from '@/components/AuthProvider';
+import MapWatermark from '@/components/MapWatermark';
 import { Listing } from '@/lib/types';
 import { STATUS_COLORS, LOT_DETAIL_ZOOM } from '@/lib/constants';
 
@@ -19,6 +21,7 @@ interface LotDetailMapProps {
 
 export default function LotDetailMap({ listing, nearbyPlaces }: LotDetailMapProps) {
   const { isLoaded } = useMapContext();
+  const { user } = useAuth();
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
 
@@ -36,17 +39,32 @@ export default function LotDetailMap({ listing, nearbyPlaces }: LotDetailMapProp
     });
     mapInstanceRef.current = map;
 
-    // Draw lot polygon
+    // Draw lot polygon or blurred circle depending on auth state
     if (listing.polygon && listing.polygon.length >= 3) {
-      new google.maps.Polygon({
-        paths: listing.polygon,
-        strokeColor: statusColor,
-        strokeOpacity: 0.9,
-        strokeWeight: 3,
-        fillColor: statusColor,
-        fillOpacity: 0.2,
-        map,
-      });
+      if (user) {
+        // Logged-in: show exact polygon
+        new google.maps.Polygon({
+          paths: listing.polygon,
+          strokeColor: statusColor,
+          strokeOpacity: 0.9,
+          strokeWeight: 3,
+          fillColor: statusColor,
+          fillOpacity: 0.2,
+          map,
+        });
+      } else {
+        // Anonymous: show blurred circle at center
+        new google.maps.Circle({
+          center: listing.center,
+          radius: 100,
+          strokeColor: statusColor,
+          strokeOpacity: 0.5,
+          strokeWeight: 4,
+          fillColor: statusColor,
+          fillOpacity: 0.5,
+          map,
+        });
+      }
     }
 
     // Add lot label at center
@@ -94,15 +112,28 @@ export default function LotDetailMap({ listing, nearbyPlaces }: LotDetailMapProp
         infoWindow.open(map, marker);
       });
     });
-  }, [isLoaded, listing, nearbyPlaces]);
+  }, [isLoaded, listing, nearbyPlaces, user]);
 
   if (!isLoaded) {
     return (
-      <div className="flex h-[400px] w-full items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100 text-sm text-gray-500">
-        Loading map...
+      <div className="relative h-[400px] w-full">
+        <div className="flex h-[400px] w-full items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100 text-sm text-gray-500">
+          Loading map...
+        </div>
+        <MapWatermark />
       </div>
     );
   }
 
-  return <div ref={mapRef} className="h-[400px] w-full rounded-lg" />;
+  return (
+    <div className="relative h-[400px] w-full">
+      <div ref={mapRef} className="h-[400px] w-full rounded-lg" />
+      <MapWatermark />
+      {!user && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 rounded-lg bg-black/70 px-4 py-2 text-center text-sm text-white pointer-events-auto">
+          <a href="/login" className="underline font-medium">Sign in</a> to see exact lot boundaries
+        </div>
+      )}
+    </div>
+  );
 }

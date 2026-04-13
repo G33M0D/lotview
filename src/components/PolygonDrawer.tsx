@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { Trash2, LocateFixed } from 'lucide-react';
 import * as turf from '@turf/turf';
 import { useMapContext } from './MapProvider';
+import MapWatermark from '@/components/MapWatermark';
 import { PANAY_CENTER } from '@/lib/constants';
 
 interface PolygonDrawerProps {
@@ -155,8 +156,11 @@ export default function PolygonDrawer({
 
   if (!isLoaded) {
     return (
-      <div className="flex h-[400px] w-full items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100 text-sm text-gray-500">
-        Loading map...
+      <div className="relative h-[400px] w-full">
+        <div className="flex h-[400px] w-full items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100 text-sm text-gray-500">
+          Loading map...
+        </div>
+        <MapWatermark />
       </div>
     );
   }
@@ -164,6 +168,7 @@ export default function PolygonDrawer({
   return (
     <div className="relative">
       <div ref={mapRef} className="h-[400px] w-full rounded-lg" />
+      <MapWatermark />
 
       {/* Controls overlay */}
       <div className="absolute bottom-4 left-4 flex gap-2">
