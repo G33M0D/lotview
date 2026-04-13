@@ -156,8 +156,8 @@ export default function PolygonDrawer({
 
   if (!isLoaded) {
     return (
-      <div className="relative h-[400px] w-full">
-        <div className="flex h-[400px] w-full items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100 text-sm text-gray-500">
+      <div className="relative h-full min-h-[300px] w-full">
+        <div className="flex h-full min-h-[300px] w-full items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100 text-sm text-gray-500">
           Loading map...
         </div>
         <MapWatermark />
@@ -167,7 +167,7 @@ export default function PolygonDrawer({
 
   return (
     <div className="relative">
-      <div ref={mapRef} className="h-[400px] w-full rounded-lg" />
+      <div ref={mapRef} className="h-full min-h-[300px] w-full rounded-lg" />
       <MapWatermark />
 
       {/* Controls overlay */}

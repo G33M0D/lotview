@@ -29,8 +29,12 @@ export function MapProvider({ children }: { children: ReactNode }) {
     Promise.all([
       importLibrary('maps'),
       importLibrary('drawing'),
+      importLibrary('places'),
+      importLibrary('marker'),
     ]).then(() => {
       setIsLoaded(true);
+    }).catch(() => {
+      // API key missing or invalid — stay in unloaded state
     });
   }, []);
 
