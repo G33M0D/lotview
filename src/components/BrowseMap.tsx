@@ -15,7 +15,7 @@ interface BrowseMapProps {
 }
 
 export default function BrowseMap({ listings, onSelectListing }: BrowseMapProps) {
-  const { isLoaded } = useMapContext();
+  const { isLoaded, loadError } = useMapContext();
   const { user } = useAuth();
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
@@ -148,7 +148,9 @@ export default function BrowseMap({ listings, onSelectListing }: BrowseMapProps)
       <div className="relative h-full min-h-[300px] w-full">
         <div className="flex h-full min-h-[300px] w-full flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100">
           <MapPin className="mb-2 h-10 w-10 text-gray-400" />
-          <p className="text-sm text-gray-500">Google Maps &mdash; Set API key to enable</p>
+          <p className="text-sm text-gray-500">
+            {loadError ? 'Failed to load Google Maps — check API key' : 'Loading map...'}
+          </p>
         </div>
         <MapWatermark />
       </div>

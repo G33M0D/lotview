@@ -18,7 +18,7 @@ export default function PolygonDrawer({
   onChange,
   center,
 }: PolygonDrawerProps) {
-  const { isLoaded } = useMapContext();
+  const { isLoaded, loadError } = useMapContext();
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
   const drawingManagerRef = useRef<google.maps.drawing.DrawingManager | null>(null);
@@ -159,7 +159,7 @@ export default function PolygonDrawer({
     return (
       <div className="relative h-full min-h-[300px] w-full">
         <div className="flex h-full min-h-[300px] w-full items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100 text-sm text-gray-500">
-          Loading map...
+          {loadError ? 'Failed to load Google Maps — check API key' : 'Loading map...'}
         </div>
         <MapWatermark />
       </div>
