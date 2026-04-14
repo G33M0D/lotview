@@ -99,9 +99,9 @@ export default function BrowsePage() {
       </section>
 
       {/* Main browse layout */}
-      <div className="flex flex-col md:flex-row" style={{ height: 'calc(100vh - 12rem)' }}>
+      <div className="flex flex-col-reverse md:flex-row" style={{ height: 'calc(100vh - 12rem)' }}>
         {/* Sidebar: filters + listing cards */}
-        <div className="flex h-[40vh] flex-col border-b border-border md:h-full md:w-2/5 md:border-b-0 md:border-r">
+        <div className="flex h-[50vh] flex-col border-t border-border md:h-full md:w-2/5 md:border-t-0 md:border-r">
           {/* Filter section */}
           <div className="border-b border-border p-4">
             <FilterPanel filters={filters} onFilterChange={setFilters} />
@@ -147,7 +147,7 @@ export default function BrowsePage() {
         </div>
 
         {/* Map */}
-        <div className="h-[60vh] flex-1 md:h-full">
+        <div className="h-[50vh] flex-1 md:h-full">
           <BrowseMap
             listings={filteredListings}
             onSelectListing={handleSelectListing}
