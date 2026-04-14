@@ -12,9 +12,10 @@ import { formatPrice, formatArea, getStatusLabel } from '@/lib/utils';
 interface BrowseMapProps {
   listings: Listing[];
   onSelectListing?: (listing: Listing) => void;
+  geocodeQuery?: string;
 }
 
-export default function BrowseMap({ listings, onSelectListing }: BrowseMapProps) {
+export default function BrowseMap({ listings, onSelectListing, geocodeQuery }: BrowseMapProps) {
   const { isLoaded, loadError } = useMapContext();
   const { user } = useAuth();
   const mapRef = useRef<HTMLDivElement>(null);
@@ -142,6 +143,34 @@ export default function BrowseMap({ listings, onSelectListing }: BrowseMapProps)
       clearPolygons();
     };
   }, [isLoaded, listings, onSelectListing, clearPolygons, user]);
+
+  // Geocode filter location and zoom map
+  useEffect(() => {
+    if (!isLoaded || !mapInstanceRef.current || !geocodeQuery) return;
+    const map = mapInstanceRef.current;
+
+    const autocompleteService = new google.maps.places.AutocompleteService();
+    const placesService = new google.maps.places.PlacesService(map);
+
+    autocompleteService.getPlacePredictions(
+      { input: geocodeQuery, componentRestrictions: { country: 'ph' }, types: ['geocode'] },
+      (predictions, status) => {
+        if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions?.length) return;
+        placesService.getDetails(
+          { placeId: predictions[0].place_id, fields: ['geometry'] },
+          (place, detailStatus) => {
+            if (detailStatus !== google.maps.places.PlacesServiceStatus.OK || !place?.geometry) return;
+            if (place.geometry.viewport) {
+              map.fitBounds(place.geometry.viewport);
+            } else if (place.geometry.location) {
+              map.setCenter({ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() });
+              map.setZoom(14);
+            }
+          }
+        );
+      }
+    );
+  }, [isLoaded, geocodeQuery]);
 
   if (!isLoaded) {
     return (

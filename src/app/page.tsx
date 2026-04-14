@@ -63,6 +63,15 @@ export default function BrowsePage() {
     });
   }, [filters, allListings]);
 
+  // Build geocode query from filter location selections
+  const geocodeQuery = useMemo(() => {
+    const parts: string[] = [];
+    if (filters.barangay) parts.push(filters.barangay);
+    if (filters.municipality) parts.push(filters.municipality);
+    if (filters.province) parts.push(filters.province);
+    return parts.length > 0 ? parts.join(', ') : '';
+  }, [filters.province, filters.municipality, filters.barangay]);
+
   const handleSelectListing = useCallback((listing: Listing) => {
     setSelectedListingId(listing.id);
 
@@ -151,6 +160,7 @@ export default function BrowsePage() {
           <BrowseMap
             listings={filteredListings}
             onSelectListing={handleSelectListing}
+            geocodeQuery={geocodeQuery}
           />
         </div>
       </div>
