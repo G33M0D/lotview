@@ -608,15 +608,13 @@ function DrawMode({
       <p className="text-sm text-muted-foreground">
         For irregular lots, draw the exact boundary on the map. Click to add points, then close the shape.
       </p>
-      <MapProvider>
-        <div className="relative h-[350px] md:h-[450px] overflow-hidden rounded-lg border border-border">
-          <PolygonDrawer
-            initialPolygon={form.polygon}
-            onChange={(coords) => updateField('polygon', coords)}
-            center={form.pinLocation ?? undefined}
-          />
-        </div>
-      </MapProvider>
+      <div className="relative h-[350px] md:h-[450px] overflow-hidden rounded-lg border border-border">
+        <PolygonDrawer
+          initialPolygon={form.polygon}
+          onChange={(coords) => updateField('polygon', coords)}
+          center={form.pinLocation ?? undefined}
+        />
+      </div>
       {areaSqm > 0 && (
         <div className="rounded-lg bg-muted px-4 py-3">
           <p className="text-lg font-semibold text-foreground">
