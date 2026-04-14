@@ -23,6 +23,7 @@ export default function PolygonDrawer({
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
   const drawingManagerRef = useRef<google.maps.drawing.DrawingManager | null>(null);
   const polygonRef = useRef<google.maps.Polygon | null>(null);
+  const initRef = useRef(false);
   const [areaSqm, setAreaSqm] = useState<number | null>(
     initialPolygon ? computeArea(initialPolygon) : null
   );
@@ -31,6 +32,7 @@ export default function PolygonDrawer({
     (coords: google.maps.LatLngLiteral[]) => {
       if (coords.length < 3) {
         setAreaSqm(null);
+        onChange([]);
         return;
       }
       const area = computeArea(coords);
@@ -47,8 +49,6 @@ export default function PolygonDrawer({
     }
     setAreaSqm(null);
     onChange([]);
-
-    // Re-enable drawing mode
     if (drawingManagerRef.current) {
       drawingManagerRef.current.setDrawingMode(
         google.maps.drawing.OverlayType.POLYGON
@@ -57,100 +57,100 @@ export default function PolygonDrawer({
   }, [onChange]);
 
   const handleLocate = useCallback(() => {
-    if (!mapInstanceRef.current) return;
-    if (!navigator.geolocation) return;
-
+    if (!mapInstanceRef.current || !navigator.geolocation) return;
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
+        const pos = { lat: position.coords.latitude, lng: position.coords.longitude };
         mapInstanceRef.current?.setCenter(pos);
         mapInstanceRef.current?.setZoom(18);
       },
-      () => {
-        // Geolocation failed — stay on current view
-      }
+      () => { /* ignore */ }
     );
   }, []);
 
   useEffect(() => {
-    if (!isLoaded || !mapRef.current) return;
+    if (!isLoaded || !mapRef.current || initRef.current) return;
 
-    const mapCenter = center ?? PANAY_CENTER;
-    const initialZoom = initialPolygon ? 17 : 14;
+    // Small delay to ensure container has final dimensions after mount/toggle
+    const timer = setTimeout(() => {
+      if (!mapRef.current || initRef.current) return;
+      initRef.current = true;
 
-    const map = new google.maps.Map(mapRef.current, {
-      center: initialPolygon
-        ? getCentroid(initialPolygon)
-        : mapCenter,
-      zoom: initialZoom,
-      mapTypeId: 'hybrid',
-      mapTypeControl: true,
-      streetViewControl: false,
-    });
-    mapInstanceRef.current = map;
-
-    // Set up DrawingManager
-    const drawingManager = new google.maps.drawing.DrawingManager({
-      drawingMode: initialPolygon
-        ? null
-        : google.maps.drawing.OverlayType.POLYGON,
-      drawingControl: true,
-      drawingControlOptions: {
-        position: google.maps.ControlPosition.TOP_CENTER,
-        drawingModes: [google.maps.drawing.OverlayType.POLYGON],
-      },
-      polygonOptions: {
-        fillColor: '#22c55e',
-        fillOpacity: 0.3,
-        strokeColor: '#22c55e',
-        strokeWeight: 2,
-        editable: true,
-        draggable: true,
-      },
-    });
-    drawingManager.setMap(map);
-    drawingManagerRef.current = drawingManager;
-
-    // If initialPolygon provided, render it
-    if (initialPolygon && initialPolygon.length >= 3) {
-      const polygon = new google.maps.Polygon({
-        paths: initialPolygon,
-        fillColor: '#22c55e',
-        fillOpacity: 0.3,
-        strokeColor: '#22c55e',
-        strokeWeight: 2,
-        editable: true,
-        draggable: true,
-        map,
+      const mapCenter = center ?? PANAY_CENTER;
+      const map = new google.maps.Map(mapRef.current, {
+        center: initialPolygon && initialPolygon.length >= 3
+          ? getCentroid(initialPolygon)
+          : mapCenter,
+        zoom: initialPolygon ? 17 : 14,
+        mapTypeId: 'hybrid',
+        mapTypeControl: true,
+        streetViewControl: false,
       });
-      polygonRef.current = polygon;
-      attachPolygonListeners(polygon, updateArea);
-    }
+      mapInstanceRef.current = map;
 
-    // Listen for new polygon drawn
-    drawingManager.addListener(
-      'polygoncomplete',
-      (polygon: google.maps.Polygon) => {
-        // Remove any existing polygon
-        if (polygonRef.current) {
-          polygonRef.current.setMap(null);
-        }
+      const drawingManager = new google.maps.drawing.DrawingManager({
+        drawingMode: initialPolygon
+          ? null
+          : google.maps.drawing.OverlayType.POLYGON,
+        drawingControl: true,
+        drawingControlOptions: {
+          position: google.maps.ControlPosition.TOP_CENTER,
+          drawingModes: [google.maps.drawing.OverlayType.POLYGON],
+        },
+        polygonOptions: {
+          fillColor: '#22c55e',
+          fillOpacity: 0.3,
+          strokeColor: '#22c55e',
+          strokeWeight: 2,
+          editable: true,
+          draggable: true,
+        },
+      });
+      drawingManager.setMap(map);
+      drawingManagerRef.current = drawingManager;
+
+      if (initialPolygon && initialPolygon.length >= 3) {
+        const polygon = new google.maps.Polygon({
+          paths: initialPolygon,
+          fillColor: '#22c55e',
+          fillOpacity: 0.3,
+          strokeColor: '#22c55e',
+          strokeWeight: 2,
+          editable: true,
+          draggable: true,
+          map,
+        });
         polygonRef.current = polygon;
-
-        // Disable drawing mode after polygon is complete
-        drawingManager.setDrawingMode(null);
-
-        const coords = getPolygonCoords(polygon);
-        updateArea(coords);
         attachPolygonListeners(polygon, updateArea);
       }
-    );
+
+      drawingManager.addListener(
+        'polygoncomplete',
+        (polygon: google.maps.Polygon) => {
+          if (polygonRef.current) {
+            polygonRef.current.setMap(null);
+          }
+          polygonRef.current = polygon;
+          drawingManager.setDrawingMode(null);
+          const coords = getPolygonCoords(polygon);
+          updateArea(coords);
+          attachPolygonListeners(polygon, updateArea);
+        }
+      );
+    }, 150);
 
     return () => {
-      drawingManager.setMap(null);
+      clearTimeout(timer);
+      if (drawingManagerRef.current) {
+        drawingManagerRef.current.setMap(null);
+        drawingManagerRef.current = null;
+      }
+      if (polygonRef.current) {
+        polygonRef.current.setMap(null);
+        polygonRef.current = null;
+      }
+      mapInstanceRef.current = null;
+      initRef.current = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded]);
@@ -171,7 +171,6 @@ export default function PolygonDrawer({
       <div ref={mapRef} className="h-full min-h-[300px] w-full rounded-lg" />
       <MapWatermark />
 
-      {/* Controls overlay */}
       <div className="absolute bottom-4 left-4 flex gap-2">
         <button
           type="button"
@@ -191,7 +190,6 @@ export default function PolygonDrawer({
         </button>
       </div>
 
-      {/* Area display */}
       {areaSqm !== null && (
         <div className="absolute top-4 right-4 rounded-md bg-white px-3 py-2 text-sm font-medium shadow-md">
           Area: {areaSqm.toLocaleString()} sqm
@@ -206,10 +204,7 @@ export default function PolygonDrawer({
   );
 }
 
-/** Extract coordinates from a google.maps.Polygon */
-function getPolygonCoords(
-  polygon: google.maps.Polygon
-): google.maps.LatLngLiteral[] {
+function getPolygonCoords(polygon: google.maps.Polygon): google.maps.LatLngLiteral[] {
   const path = polygon.getPath();
   const coords: google.maps.LatLngLiteral[] = [];
   for (let i = 0; i < path.getLength(); i++) {
@@ -219,41 +214,27 @@ function getPolygonCoords(
   return coords;
 }
 
-/** Compute area in sqm using turf.js */
 function computeArea(coords: google.maps.LatLngLiteral[]): number {
   if (coords.length < 3) return 0;
   const ring = coords.map((c) => [c.lng, c.lat]);
-  // Close the ring
   ring.push([coords[0].lng, coords[0].lat]);
   const polygon = turf.polygon([ring]);
   return Math.round(turf.area(polygon));
 }
 
-/** Get centroid of a set of coordinates */
-function getCentroid(
-  coords: google.maps.LatLngLiteral[]
-): google.maps.LatLngLiteral {
+function getCentroid(coords: google.maps.LatLngLiteral[]): google.maps.LatLngLiteral {
   const sumLat = coords.reduce((sum, c) => sum + c.lat, 0);
   const sumLng = coords.reduce((sum, c) => sum + c.lng, 0);
   return { lat: sumLat / coords.length, lng: sumLng / coords.length };
 }
 
-/** Attach edit/drag listeners to update area on polygon changes */
 function attachPolygonListeners(
   polygon: google.maps.Polygon,
   onUpdate: (coords: google.maps.LatLngLiteral[]) => void
 ) {
   const path = polygon.getPath();
-  google.maps.event.addListener(path, 'set_at', () => {
-    onUpdate(getPolygonCoords(polygon));
-  });
-  google.maps.event.addListener(path, 'insert_at', () => {
-    onUpdate(getPolygonCoords(polygon));
-  });
-  google.maps.event.addListener(path, 'remove_at', () => {
-    onUpdate(getPolygonCoords(polygon));
-  });
-  polygon.addListener('dragend', () => {
-    onUpdate(getPolygonCoords(polygon));
-  });
+  google.maps.event.addListener(path, 'set_at', () => onUpdate(getPolygonCoords(polygon)));
+  google.maps.event.addListener(path, 'insert_at', () => onUpdate(getPolygonCoords(polygon)));
+  google.maps.event.addListener(path, 'remove_at', () => onUpdate(getPolygonCoords(polygon)));
+  polygon.addListener('dragend', () => onUpdate(getPolygonCoords(polygon)));
 }
