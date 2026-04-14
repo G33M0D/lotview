@@ -299,19 +299,30 @@ function LocationStep({
 
   const geocodeAndCenter = useCallback((address: string, zoom: number = 14) => {
     if (!isLoaded || !mapInstanceRef.current) return;
-    const geocoder = new google.maps.Geocoder();
-    // Try with region bias for Philippines
-    geocoder.geocode({ address, region: 'ph' }, (results, status) => {
-      if (status === 'OK' && results && results[0]?.geometry?.location) {
-        const loc = results[0].geometry.location;
-        const pos = { lat: loc.lat(), lng: loc.lng() };
-        const map = mapInstanceRef.current;
-        if (map) {
-          map.setCenter(pos);
+    const map = mapInstanceRef.current;
+
+    // Try Places text search first (better for Philippine barangays)
+    const service = new google.maps.places.PlacesService(map);
+    service.textSearch(
+      { query: address, region: 'ph' },
+      (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK && results && results[0]?.geometry?.location) {
+          const loc = results[0].geometry.location;
+          map.setCenter({ lat: loc.lat(), lng: loc.lng() });
           map.setZoom(zoom);
+          return;
         }
+        // Fallback to Geocoder
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ address, region: 'ph' }, (geoResults, geoStatus) => {
+          if (geoStatus === 'OK' && geoResults && geoResults[0]?.geometry?.location) {
+            const loc = geoResults[0].geometry.location;
+            map.setCenter({ lat: loc.lat(), lng: loc.lng() });
+            map.setZoom(zoom);
+          }
+        });
       }
-    });
+    );
   }, [isLoaded]);
 
   const handleLocate = () => {
