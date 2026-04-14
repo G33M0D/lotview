@@ -300,27 +300,47 @@ function LocationStep({
   const geocodeAndCenter = useCallback((address: string, zoom: number = 14) => {
     if (!isLoaded || !mapInstanceRef.current) return;
     const map = mapInstanceRef.current;
+    const geocoder = new google.maps.Geocoder();
 
-    // Try Places text search first (better for Philippine barangays)
-    const service = new google.maps.places.PlacesService(map);
-    service.textSearch(
-      { query: address, region: 'ph' },
+    // Try Geocoder first with country restriction (best for PH subdivisions)
+    geocoder.geocode(
+      { address, componentRestrictions: { country: 'PH' }, region: 'PH' },
       (results, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK && results && results[0]?.geometry?.location) {
-          const loc = results[0].geometry.location;
-          map.setCenter({ lat: loc.lat(), lng: loc.lng() });
-          map.setZoom(zoom);
-          return;
-        }
-        // Fallback to Geocoder
-        const geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ address, region: 'ph' }, (geoResults, geoStatus) => {
-          if (geoStatus === 'OK' && geoResults && geoResults[0]?.geometry?.location) {
-            const loc = geoResults[0].geometry.location;
-            map.setCenter({ lat: loc.lat(), lng: loc.lng() });
+        if (status === 'OK' && results && results[0]) {
+          const result = results[0];
+          // Use viewport bounds if available (covers the whole barangay area)
+          if (result.geometry.viewport) {
+            map.fitBounds(result.geometry.viewport);
+          } else {
+            map.setCenter({ lat: result.geometry.location.lat(), lng: result.geometry.location.lng() });
             map.setZoom(zoom);
           }
-        });
+          return;
+        }
+
+        // Fallback: findPlaceFromQuery with PH bounding box bias
+        const service = new google.maps.places.PlacesService(map);
+        service.findPlaceFromQuery(
+          {
+            query: address,
+            fields: ['geometry'],
+            locationBias: new google.maps.LatLngBounds(
+              { lat: 4.5, lng: 116.5 },   // SW Philippines
+              { lat: 21.2, lng: 127.0 }    // NE Philippines
+            ),
+          },
+          (placeResults, placeStatus) => {
+            if (placeStatus === google.maps.places.PlacesServiceStatus.OK && placeResults && placeResults[0]?.geometry?.location) {
+              const loc = placeResults[0].geometry.location;
+              if (placeResults[0].geometry.viewport) {
+                map.fitBounds(placeResults[0].geometry.viewport);
+              } else {
+                map.setCenter({ lat: loc.lat(), lng: loc.lng() });
+                map.setZoom(zoom);
+              }
+            }
+          }
+        );
       }
     );
   }, [isLoaded]);
@@ -415,7 +435,7 @@ function LocationStep({
               updateField('municipality', muni);
               updateField('barangay', '');
               if (muni && form.province) {
-                geocodeAndCenter(`${muni}, ${form.province}, Philippines`, 13);
+                geocodeAndCenter(`${muni}, ${form.province}`, 13);
               }
             }}
             disabled={!form.province}
@@ -435,7 +455,7 @@ function LocationStep({
               const brgy = e.target.value;
               updateField('barangay', brgy);
               if (brgy && form.municipality && form.province) {
-                geocodeAndCenter(`Barangay ${brgy}, ${form.municipality}, ${form.province}, Philippines`, 16);
+                geocodeAndCenter(`${brgy}, ${form.municipality}, ${form.province}`, 16);
               }
             }}
             disabled={!form.municipality}
