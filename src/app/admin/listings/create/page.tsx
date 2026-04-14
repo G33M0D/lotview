@@ -297,20 +297,19 @@ function LocationStep({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded]);
 
-  const geocodeAndCenter = useCallback((address: string) => {
+  const geocodeAndCenter = useCallback((address: string, zoom: number = 14) => {
     if (!isLoaded || !mapInstanceRef.current) return;
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address }, (results, status) => {
+    // Try with region bias for Philippines
+    geocoder.geocode({ address, region: 'ph' }, (results, status) => {
       if (status === 'OK' && results && results[0]?.geometry?.location) {
         const loc = results[0].geometry.location;
         const pos = { lat: loc.lat(), lng: loc.lng() };
         const map = mapInstanceRef.current;
         if (map) {
           map.setCenter(pos);
-          map.setZoom(16);
+          map.setZoom(zoom);
         }
-        // Don't auto-place pin — let user tap the exact spot
-        // But show them the right area
       }
     });
   }, [isLoaded]);
@@ -405,7 +404,7 @@ function LocationStep({
               updateField('municipality', muni);
               updateField('barangay', '');
               if (muni && form.province) {
-                geocodeAndCenter(`${muni}, ${form.province}, Philippines`);
+                geocodeAndCenter(`${muni}, ${form.province}, Philippines`, 13);
               }
             }}
             disabled={!form.province}
@@ -425,7 +424,7 @@ function LocationStep({
               const brgy = e.target.value;
               updateField('barangay', brgy);
               if (brgy && form.municipality && form.province) {
-                geocodeAndCenter(`${brgy}, ${form.municipality}, ${form.province}, Philippines`);
+                geocodeAndCenter(`Barangay ${brgy}, ${form.municipality}, ${form.province}, Philippines`, 16);
               }
             }}
             disabled={!form.municipality}
