@@ -300,47 +300,33 @@ function LocationStep({
   const geocodeAndCenter = useCallback((address: string, zoom: number = 14) => {
     if (!isLoaded || !mapInstanceRef.current) return;
     const map = mapInstanceRef.current;
-    const geocoder = new google.maps.Geocoder();
 
-    // Try Geocoder first with country restriction (best for PH subdivisions)
-    geocoder.geocode(
-      { address, componentRestrictions: { country: 'PH' }, region: 'PH' },
-      (results, status) => {
-        if (status === 'OK' && results && results[0]) {
-          const result = results[0];
-          // Use viewport bounds if available (covers the whole barangay area)
-          if (result.geometry.viewport) {
-            map.fitBounds(result.geometry.viewport);
-          } else {
-            map.setCenter({ lat: result.geometry.location.lat(), lng: result.geometry.location.lng() });
-            map.setZoom(zoom);
-          }
-          return;
-        }
+    // Use the Places Autocomplete Service to search — same engine as Google Maps search bar
+    const autocompleteService = new google.maps.places.AutocompleteService();
+    const placesService = new google.maps.places.PlacesService(map);
 
-        // Fallback: findPlaceFromQuery with PH bounding box bias
-        const service = new google.maps.places.PlacesService(map);
-        service.findPlaceFromQuery(
-          {
-            query: address,
-            fields: ['geometry'],
-            locationBias: new google.maps.LatLngBounds(
-              { lat: 4.5, lng: 116.5 },   // SW Philippines
-              { lat: 21.2, lng: 127.0 }    // NE Philippines
-            ),
-          },
-          (placeResults, placeStatus) => {
-            if (placeStatus === google.maps.places.PlacesServiceStatus.OK && placeResults && placeResults[0]?.geometry?.location) {
-              const loc = placeResults[0].geometry.location;
-              if (placeResults[0].geometry.viewport) {
-                map.fitBounds(placeResults[0].geometry.viewport);
-              } else {
-                map.setCenter({ lat: loc.lat(), lng: loc.lng() });
-                map.setZoom(zoom);
+    autocompleteService.getPlacePredictions(
+      {
+        input: address,
+        componentRestrictions: { country: 'ph' },
+      },
+      (predictions, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK && predictions && predictions[0]) {
+          // Get details for the first prediction
+          placesService.getDetails(
+            { placeId: predictions[0].place_id, fields: ['geometry'] },
+            (place, detailStatus) => {
+              if (detailStatus === google.maps.places.PlacesServiceStatus.OK && place?.geometry) {
+                if (place.geometry.viewport) {
+                  map.fitBounds(place.geometry.viewport);
+                } else if (place.geometry.location) {
+                  map.setCenter({ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() });
+                  map.setZoom(zoom);
+                }
               }
             }
-          }
-        );
+          );
+        }
       }
     );
   }, [isLoaded]);
