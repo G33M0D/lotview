@@ -298,34 +298,48 @@ function LocationStep({
   }, [isLoaded]);
 
   const geocodeAndCenter = useCallback((address: string, zoom: number = 14) => {
-    if (!isLoaded || !mapInstanceRef.current) return;
+    console.log('[LotView Debug] geocodeAndCenter called:', { address, zoom, isLoaded, hasMap: !!mapInstanceRef.current });
+    if (!isLoaded || !mapInstanceRef.current) {
+      console.log('[LotView Debug] EARLY RETURN: isLoaded=', isLoaded, 'map=', !!mapInstanceRef.current);
+      return;
+    }
     const map = mapInstanceRef.current;
 
-    // Use the Places Autocomplete Service to search — same engine as Google Maps search bar
+    // Use the Places Autocomplete Service — same engine as Google Maps search bar
     const autocompleteService = new google.maps.places.AutocompleteService();
     const placesService = new google.maps.places.PlacesService(map);
 
+    console.log('[LotView Debug] Calling getPlacePredictions with:', address);
     autocompleteService.getPlacePredictions(
       {
         input: address,
         componentRestrictions: { country: 'ph' },
       },
       (predictions, status) => {
+        console.log('[LotView Debug] Autocomplete status:', status, 'predictions:', predictions?.length ?? 0);
+        if (predictions) {
+          predictions.forEach((p, i) => console.log(`[LotView Debug]   [${i}]`, p.description));
+        }
         if (status === google.maps.places.PlacesServiceStatus.OK && predictions && predictions[0]) {
-          // Get details for the first prediction
+          console.log('[LotView Debug] Getting details for:', predictions[0].description, predictions[0].place_id);
           placesService.getDetails(
             { placeId: predictions[0].place_id, fields: ['geometry'] },
             (place, detailStatus) => {
+              console.log('[LotView Debug] getDetails status:', detailStatus, 'has geometry:', !!place?.geometry);
               if (detailStatus === google.maps.places.PlacesServiceStatus.OK && place?.geometry) {
                 if (place.geometry.viewport) {
+                  console.log('[LotView Debug] fitBounds to viewport');
                   map.fitBounds(place.geometry.viewport);
                 } else if (place.geometry.location) {
+                  console.log('[LotView Debug] setCenter to:', place.geometry.location.lat(), place.geometry.location.lng());
                   map.setCenter({ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() });
                   map.setZoom(zoom);
                 }
               }
             }
           );
+        } else {
+          console.log('[LotView Debug] ALL METHODS FAILED for:', address);
         }
       }
     );
