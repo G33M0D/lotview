@@ -297,6 +297,24 @@ function LocationStep({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded]);
 
+  const geocodeAndCenter = useCallback((address: string) => {
+    if (!isLoaded || !mapInstanceRef.current) return;
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address }, (results, status) => {
+      if (status === 'OK' && results && results[0]?.geometry?.location) {
+        const loc = results[0].geometry.location;
+        const pos = { lat: loc.lat(), lng: loc.lng() };
+        const map = mapInstanceRef.current;
+        if (map) {
+          map.setCenter(pos);
+          map.setZoom(16);
+        }
+        // Don't auto-place pin — let user tap the exact spot
+        // But show them the right area
+      }
+    });
+  }, [isLoaded]);
+
   const handleLocate = () => {
     if (!navigator.geolocation || !mapInstanceRef.current) return;
     navigator.geolocation.getCurrentPosition(
@@ -383,8 +401,12 @@ function LocationStep({
           <select
             value={form.municipality}
             onChange={(e) => {
-              updateField('municipality', e.target.value);
+              const muni = e.target.value;
+              updateField('municipality', muni);
               updateField('barangay', '');
+              if (muni && form.province) {
+                geocodeAndCenter(`${muni}, ${form.province}, Philippines`);
+              }
             }}
             disabled={!form.province}
             className={selectClass}
@@ -399,7 +421,13 @@ function LocationStep({
           <label className={labelClass}>Barangay</label>
           <select
             value={form.barangay}
-            onChange={(e) => updateField('barangay', e.target.value)}
+            onChange={(e) => {
+              const brgy = e.target.value;
+              updateField('barangay', brgy);
+              if (brgy && form.municipality && form.province) {
+                geocodeAndCenter(`${brgy}, ${form.municipality}, ${form.province}, Philippines`);
+              }
+            }}
             disabled={!form.municipality}
             className={selectClass}
           >
