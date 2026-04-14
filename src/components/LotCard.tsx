@@ -24,11 +24,20 @@ export default function LotCard({ listing, selected }: LotCardProps) {
           : 'border-border hover:border-primary/40'
       }`}
     >
-      {/* Thumbnail placeholder */}
-      <div className="relative h-36 w-full overflow-hidden rounded-t-xl bg-gradient-to-br from-primary-light/30 to-primary/40">
-        <div className="flex h-full items-center justify-center">
-          <MapPin className="h-10 w-10 text-primary/50" />
-        </div>
+      {/* Map thumbnail */}
+      <div className="relative h-36 w-full overflow-hidden rounded-t-xl bg-muted">
+        {listing.center && listing.center.lat !== 0 ? (
+          <img
+            src={`https://maps.googleapis.com/maps/api/staticmap?center=${listing.center.lat},${listing.center.lng}&zoom=16&size=400x200&maptype=satellite&markers=color:green%7C${listing.center.lat},${listing.center.lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+            alt={`Map of ${listing.title}`}
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary-light/30 to-primary/40">
+            <MapPin className="h-10 w-10 text-primary/50" />
+          </div>
+        )}
         {/* Favorite button */}
         <div className="absolute top-2 left-2 z-10">
           <FavoriteButton listingId={listing.id} />
