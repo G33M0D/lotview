@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Plus, Pencil, Trash2 } from 'lucide-react';
+import { Plus, Eye, Trash2 } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
 import { fetchListings as fetchAllListings } from '@/lib/data';
-import { formatPrice, formatArea, getStatusLabel } from '@/lib/utils';
+import { formatPrice, getStatusLabel } from '@/lib/utils';
 import type { Listing } from '@/lib/types';
 
 export default function AdminListings() {
@@ -22,10 +22,14 @@ export default function AdminListings() {
 
   async function handleDelete(id: string) {
     try {
-      await supabase.from('listings').delete().eq('id', id);
-      setListings((prev) => prev.filter((l) => l.id !== id));
+      const { error } = await supabase.from('listings').delete().eq('id', id);
+      if (error) {
+        alert('Failed to delete listing: ' + error.message);
+      } else {
+        setListings((prev) => prev.filter((l) => l.id !== id));
+      }
     } catch {
-      // If Supabase fails (e.g. mock data), just remove locally
+      // Mock data: remove locally
       setListings((prev) => prev.filter((l) => l.id !== id));
     }
     setDeleteId(null);
@@ -135,7 +139,7 @@ export default function AdminListings() {
                         className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                         title="View listing"
                       >
-                        <Pencil className="h-4 w-4" />
+                        <Eye className="h-4 w-4" />
                       </Link>
                       <button
                         onClick={() => setDeleteId(listing.id)}

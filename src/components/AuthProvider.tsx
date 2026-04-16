@@ -23,21 +23,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const isAdmin = user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
+    async function loadSession(session: Session | null) {
+      if (session?.user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', session.user.id)
+          .single();
+        // Set all state together so components see consistent user + role
+        setSession(session);
+        setUser(session.user);
+        setIsAdmin(profile?.role === 'admin');
+      } else {
+        setSession(null);
+        setUser(null);
+        setIsAdmin(false);
+      }
       setIsLoading(false);
+    }
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      loadSession(session);
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        setIsLoading(false);
+        loadSession(session);
       }
     );
 

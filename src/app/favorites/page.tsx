@@ -6,6 +6,7 @@ import { Heart } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
 import LotCard from '@/components/LotCard';
 import { MOCK_LISTINGS } from '@/lib/mock-data';
+import { mapDbToListing } from '@/lib/data';
 import type { Listing } from '@/lib/types';
 
 export default function FavoritesPage() {
@@ -16,7 +17,7 @@ export default function FavoritesPage() {
   useEffect(() => {
     if (authLoading) return;
     if (!user) {
-      setIsLoading(false);
+      Promise.resolve().then(() => setIsLoading(false));
       return;
     }
 
@@ -40,7 +41,7 @@ export default function FavoritesPage() {
         .select('*')
         .in('id', favIds);
 
-      const foundListings: Listing[] = dbListings ?? [];
+      const foundListings: Listing[] = (dbListings ?? []).map(mapDbToListing);
       const foundIds = new Set(foundListings.map((l) => l.id));
 
       // Fill in any missing IDs from mock data

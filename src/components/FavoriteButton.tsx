@@ -17,7 +17,11 @@ export default function FavoriteButton({ listingId }: FavoriteButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      // Reset handled via .then below to avoid sync setState in effect
+      Promise.resolve().then(() => setIsFavorited(false));
+      return;
+    }
 
     supabase
       .from('favorites')
@@ -25,9 +29,7 @@ export default function FavoriteButton({ listingId }: FavoriteButtonProps) {
       .eq('user_id', user.id)
       .eq('listing_id', listingId)
       .then(({ data }) => {
-        if (data && data.length > 0) {
-          setIsFavorited(true);
-        }
+        setIsFavorited(data != null && data.length > 0);
       });
   }, [user, listingId, supabase]);
 

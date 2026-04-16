@@ -83,11 +83,9 @@ export default function BrowsePage() {
   }, []);
 
   // Clear selection when filters change and selected listing is no longer visible
-  useEffect(() => {
-    if (selectedListingId && !filteredListings.find((l) => l.id === selectedListingId)) {
-      setSelectedListingId(null);
-    }
-  }, [filteredListings, selectedListingId]);
+  if (selectedListingId && !filteredListings.find((l) => l.id === selectedListingId)) {
+    setSelectedListingId(null);
+  }
 
   return (
     <MapProvider>

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MapPin, Menu, X, LayoutDashboard, GitCompare, LogIn, ChevronDown, Heart, Shield, LogOut, User } from "lucide-react";
+import { MapPin, Menu, X, LayoutDashboard, GitCompare, LogIn, ChevronDown, Heart, Shield, LogOut } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
 
 export default function Navbar() {

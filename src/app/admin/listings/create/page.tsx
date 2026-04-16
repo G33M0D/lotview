@@ -211,16 +211,6 @@ function LocationStep({
     [updateField],
   );
 
-  const placePin = useCallback(
-    (pos: google.maps.LatLngLiteral) => {
-      updateField('pinLocation', pos);
-      if (markerRef.current) {
-        markerRef.current.position = pos;
-      }
-    },
-    [updateField],
-  );
-
   // Init map
   useEffect(() => {
     if (!isLoaded || !mapRef.current || mapInstanceRef.current) return;
@@ -519,7 +509,6 @@ function DimensionsMode({
       });
       mapInstanceRef.current = map;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded, form.pinLocation]);
 
   // Update polygon overlay
@@ -942,7 +931,7 @@ function ProgressBar({ currentStep }: { currentStep: number }) {
    ═══════════════════════════════════════════════════════════════ */
 
 function CreateListingWizard() {
-  const { supabase, user } = useAuth();
+  const { supabase } = useAuth();
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormData>(initialForm);

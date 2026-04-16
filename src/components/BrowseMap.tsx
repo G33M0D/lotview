@@ -133,10 +133,15 @@ export default function BrowseMap({ listings, onSelectListing, geocodeQuery }: B
 
     if (listings.length > 0) {
       const bounds = new google.maps.LatLngBounds();
+      let hasPoints = false;
       listings.forEach((listing) => {
+        if (!listing.polygon || listing.polygon.length < 3) return;
         listing.polygon.forEach((point) => bounds.extend(point));
+        hasPoints = true;
       });
-      map.fitBounds(bounds, 50); // 50px padding
+      if (hasPoints) {
+        map.fitBounds(bounds, 50); // 50px padding
+      }
     }
 
     return () => {

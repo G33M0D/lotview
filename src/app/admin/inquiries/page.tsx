@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
 import { MOCK_INQUIRIES, MOCK_LISTINGS } from '@/lib/mock-data';
 import { fetchInquiries as fetchAllInquiries, fetchListings as fetchAllListings } from '@/lib/data';
-import { getStatusLabel } from '@/lib/utils';
-import type { Inquiry, Listing } from '@/lib/types';
+import type { Inquiry } from '@/lib/types';
 
 export default function AdminInquiries() {
   const { supabase } = useAuth();
@@ -44,9 +43,13 @@ export default function AdminInquiries() {
 
   async function updateStatus(id: string, status: Inquiry['status']) {
     try {
-      await supabase.from('inquiries').update({ status }).eq('id', id);
+      const { error } = await supabase.from('inquiries').update({ status }).eq('id', id);
+      if (error) {
+        alert('Failed to update status: ' + error.message);
+        return;
+      }
     } catch {
-      // Supabase may fail for mock data — update locally anyway
+      // Mock data: update locally
     }
     setInquiries((prev) =>
       prev.map((inq) => (inq.id === id ? { ...inq, status } : inq)),
@@ -119,9 +122,8 @@ export default function AdminInquiries() {
             </thead>
             <tbody>
               {inquiries.map((inq) => (
-                <>
+                <Fragment key={inq.id}>
                   <tr
-                    key={inq.id}
                     className="cursor-pointer border-b border-border last:border-b-0 hover:bg-muted/50"
                     onClick={() =>
                       setExpandedId(expandedId === inq.id ? null : inq.id)
@@ -182,10 +184,7 @@ export default function AdminInquiries() {
                     </td>
                   </tr>
                   {expandedId === inq.id && (
-                    <tr
-                      key={`${inq.id}-expanded`}
-                      className="border-b border-border"
-                    >
+                    <tr className="border-b border-border">
                       <td colSpan={7} className="bg-muted/30 px-6 py-4">
                         <div className="space-y-2">
                           <p className="text-sm font-medium text-foreground">
@@ -202,7 +201,7 @@ export default function AdminInquiries() {
                       </td>
                     </tr>
                   )}
-                </>
+                </Fragment>
               ))}
               {inquiries.length === 0 && (
                 <tr>

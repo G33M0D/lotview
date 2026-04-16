@@ -21,7 +21,7 @@ export function MapProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
     if (!apiKey) {
-      setLoadError(true);
+      Promise.resolve().then(() => setLoadError(true));
       return;
     }
 

@@ -39,7 +39,9 @@ export default function AdminLayout({
 
   // Close sidebar on route change (mobile)
   useEffect(() => {
-    setSidebarOpen(false);
+    return () => {
+      setSidebarOpen(false);
+    };
   }, [pathname]);
 
   if (isLoading) {

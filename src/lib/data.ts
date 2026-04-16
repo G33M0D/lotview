@@ -3,10 +3,10 @@ import { MOCK_LISTINGS, MOCK_INQUIRIES } from '@/lib/mock-data';
 import { Listing, Inquiry } from '@/lib/types';
 
 // Map Supabase snake_case row to camelCase Listing
-function mapDbToListing(row: Record<string, unknown>): Listing {
+export function mapDbToListing(row: Record<string, unknown>): Listing {
   return {
     id: row.id as string,
-    sellerId: (row.seller_id as string) ?? '',
+    sellerId: row.seller_id as string ?? '',
     title: row.title as string,
     description: (row.description as string) ?? '',
     province: row.province as string,
@@ -45,15 +45,15 @@ function mapDbToInquiry(row: Record<string, unknown>): Inquiry {
   };
 }
 
-// Fetch all listings: Supabase first, merge with mock
+// Fetch all listings: Supabase first, fall back to mock if empty
 export async function fetchListings(): Promise<Listing[]> {
   try {
     const supabase = createClient();
     const { data, error } = await supabase.from('listings').select('*');
     if (error) throw error;
     const dbListings = (data ?? []).map(mapDbToListing);
-    // Merge: Supabase listings + mock listings (mock as demo fallback)
-    return [...dbListings, ...MOCK_LISTINGS];
+    // Only show mock data when no real listings exist
+    return dbListings.length > 0 ? dbListings : [...MOCK_LISTINGS];
   } catch {
     return [...MOCK_LISTINGS];
   }

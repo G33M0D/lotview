@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { MOCK_LISTINGS } from '@/lib/mock-data';
-import { formatPrice, formatArea, areaToBasketballCourts, getStatusColor, getStatusLabel } from '@/lib/utils';
+import { fetchListings } from '@/lib/data';
+import { formatPrice, getStatusColor, getStatusLabel } from '@/lib/utils';
 import { BASKETBALL_COURT_SQM } from '@/lib/constants';
 import type { Listing } from '@/lib/types';
 import {
@@ -111,17 +111,29 @@ const COMPARE_FIELDS: CompareField[] = [
 ];
 
 export default function ComparePage() {
-  const [selectedIds, setSelectedIds] = useState<string[]>([
-    MOCK_LISTINGS[0].id,
-    MOCK_LISTINGS[1].id,
-  ]);
+  const [allListings, setAllListings] = useState<Listing[]>([]);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [selectorOpen, setSelectorOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchListings().then((listings) => {
+      setAllListings(listings);
+      // Pre-select first two if available
+      if (listings.length >= 2) {
+        setSelectedIds([listings[0].id, listings[1].id]);
+      } else if (listings.length === 1) {
+        setSelectedIds([listings[0].id]);
+      }
+      setLoading(false);
+    });
+  }, []);
 
   const selectedLots = selectedIds
-    .map((id) => MOCK_LISTINGS.find((l) => l.id === id))
+    .map((id) => allListings.find((l) => l.id === id))
     .filter((l): l is Listing => l != null);
 
-  const availableToAdd = MOCK_LISTINGS.filter((l) => !selectedIds.includes(l.id));
+  const availableToAdd = allListings.filter((l) => !selectedIds.includes(l.id));
 
   function removeLot(id: string) {
     setSelectedIds((prev) => prev.filter((i) => i !== id));
@@ -160,7 +172,11 @@ export default function ComparePage() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {selectedLots.length === 0 ? (
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          </div>
+        ) : selectedLots.length === 0 ? (
           <div className="text-center py-20">
             <Scale className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
             <p className="text-muted-foreground text-lg mb-4">No lots selected for comparison</p>

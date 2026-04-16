@@ -14,8 +14,8 @@ import {
 import { useAuth } from '@/components/AuthProvider';
 import { MOCK_LISTINGS, MOCK_INQUIRIES } from '@/lib/mock-data';
 import { fetchListings, fetchInquiries } from '@/lib/data';
-import { formatPrice, getStatusLabel } from '@/lib/utils';
-import type { Listing, Inquiry } from '@/lib/types';
+import { getStatusLabel } from '@/lib/utils';
+import type { Inquiry } from '@/lib/types';
 
 interface DashboardStats {
   totalListings: number;

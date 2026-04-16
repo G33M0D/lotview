@@ -4,7 +4,9 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const code = searchParams.get('code');
-  const next = searchParams.get('next') ?? '/';
+  const rawNext = searchParams.get('next') ?? '/';
+  // Prevent open redirect: only allow relative paths
+  const next = rawNext.startsWith('/') && !rawNext.startsWith('//') ? rawNext : '/';
   const redirectUrl = new URL(next, request.url);
   const response = NextResponse.redirect(redirectUrl);
 
