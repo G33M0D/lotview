@@ -1,267 +1,211 @@
 # LotView Platform — Project Proposal
 
+**Prepared for:** Flord Nicson J. Calawag
 **Prepared by:** GM Agreda
 **Date:** 2026-04-19
 **Live Demo:** https://lotview.xmodx.com
 
 ---
 
-## 1. Executive Summary
+## Hi Nicson
 
-LotView is a modern land listing platform purpose-built for Panay (Iloilo, Aklan, Capiz, Antique, Guimaras) with polygon-overlayed satellite maps, OFW-friendly features, and admin-only listing management. The MVP is already live and running on free-tier infrastructure.
+I built a working demo of LotView specifically for your Panay/Antique land listings. It's already live at **https://lotview.xmodx.com** — take a few minutes to click around: browse the map, search by barangay, open a listing.
 
-This document outlines the completed work, future feature roadmap, hosting costs as traffic grows, and payment terms for both the initial build and post-launch support.
+This proposal keeps things lean. I built the MVP at no cost to you. What follows covers only what you'd pay going forward — and only the features you actually want.
 
 ---
 
-## 2. What's Already Built (MVP — Delivered)
+## 1. What's Already Built (Yours to Use, Free)
 
-### Buyer Experience
-- Interactive satellite map with lot polygons drawn to real-world scale
-- Cascading location filter: Province → Municipality → Barangay (3,389 official PSGC barangays)
-- Side-by-side lot comparison (up to 3 lots)
-- Currency converter for OFW buyers (USD, AED, SGD, EUR, GBP, JPY, KRW, HKD, SAR)
-- Document availability checklist (Title, Tax Dec, Lot Plan, Survey, Deed)
-- Share via link, QR code, Web Share API
-- Inquiry form saved directly to database
-- Save favorite lots (requires registration)
-- Responsive on laptop, tablet, and mobile
+The working demo already has:
 
-### Seller/Admin Experience
-- 3-step listing creation wizard (Location → Lot Size → Details)
-- Google Places address search with auto-zoom to location
-- Pin + Dimensions mode (enter frontage × depth, rectangle auto-draws)
-- Draw Custom Shape mode for irregular lots
-- Admin dashboard: listings CRUD, inquiries, registered users
-- Admin-only listing management (only you can publish)
-
-### Security & Trust
-- Google SSO + email/password registration
-- Watermarked maps: "PROPERTY OF AGREDA CONTACT 09182624068 • [user email]"
-- Polygon details hidden for anonymous users (requires sign-in to see exact boundaries)
+- Interactive satellite map with lot polygons drawn to scale
+- Search by Province → Municipality → Barangay (all 3,389 official PSGC barangays — including Tibiao, Culasi, and the rest of Antique)
+- Currency converter for overseas buyers (USD, AED, SGD, EUR, and more — important for OFW family buying back home)
+- Lot comparison (up to 3 lots side-by-side)
+- Share via link or QR code
+- Document checklist (Title, Tax Dec, Lot Plan, etc.)
+- Admin panel where only you can post listings
+- Google/email sign-in for buyers to save favorites
+- Watermarked maps that say **"PROPERTY OF AGREDA CONTACT 09182624068"** with the viewer's email — stops competitors from stealing your listings
+- Hidden exact boundaries for anonymous visitors — they have to sign in to see the real polygon
 - Cloudflare DDoS protection
-- HTTPS/SSL via Cloudflare edge
-- Custom domain: lotview.xmodx.com
+- Runs on your own domain: lotview.xmodx.com
 
-### Infrastructure
-- Frontend: Next.js 16 on Vercel
-- Database: Supabase Postgres
-- Maps: Google Maps JavaScript API
-- CDN + Security: Cloudflare
-- All running on free tiers
+All the infrastructure is free-tier right now. You can start using this **today** with zero monthly cost.
 
 ---
 
-## 3. Future Features Roadmap
+## 2. Optional Next Steps (Only If You Want Them)
 
-### Phase 2 — Critical (First Priority Post-Launch)
+Pick only what helps your business. Each is a separate menu item.
 
-| Feature | Description | Effort |
-|---------|-------------|--------|
-| Email notifications | Admin gets instant email when a buyer submits an inquiry | 1 day |
-| Photo upload gallery | Upload lot photos to Supabase Storage, show on listing detail | 2-4 days |
-| PDF brochure export | Generate printable one-page brochure per lot | 1-3 days |
-| Sketch map upload | Upload scanned lot plan, overlay on map | 1 day |
-| SEO optimization | Meta tags, sitemap, Open Graph, structured data for Google ranking | 1-2 days |
-| Analytics | Google Analytics / Vercel Analytics integration | 1 day |
+| Feature | Why You'd Want It | Cost | Timeline |
+|---------|-------------------|------|----------|
+| **Email notifications** | Get an email the moment someone inquires about a lot — you reply faster, win more deals | ₱5,000 | 1–2 days |
+| **Photo upload** | Upload real photos per lot (right now it shows satellite only). Huge for OFW buyers who can't visit | ₱12,000 | 3 days |
+| **PDF brochure export** | One-click printable flyer per lot — for walk-in clients or Facebook posts | ₱8,000 | 2 days |
+| **Sketch map upload** | Upload the tax dec sketch or lot plan, overlay it on the real map so buyers see exactly what you're selling | ₱6,000 | 1 day |
+| **SEO for Google** | Get your listings to show up when people Google "lot for sale Tibiao" or "Antique land" | ₱10,000 | 2 days |
+| **Google Analytics** | See how many people view each lot, where they're from, which ones get inquiries | ₱4,000 | 1 day |
+| **"Near Tourist Spots" badge** | Tag listings as "Near Tibiao Falls" / "Near Seco Island" / "Eco-friendly lot" — plays to your tourism angle | ₱5,000 | 1 day |
+| **Facebook Messenger button** | Direct chat from the listing to your FB Messenger (your clients are already there) | ₱4,000 | 1 day |
+| **WhatsApp/Viber button** | Same idea, but for OFW buyers | ₱4,000 | 1 day |
 
-### Phase 3 — Nice-to-Have
+**Pick any combination. No minimum.** If you only want Photo Upload + Email Notifications = ₱17,000 total.
 
-| Feature | Description | Effort |
-|---------|-------------|--------|
-| Saved searches + alerts | Buyers save filters, get email when new matching lots are listed | 2-4 days |
-| Lead pipeline | Track inquiries through: New → Contacted → Negotiating → Reserved → Closed | 2-4 days |
-| Bulk CSV import/export | Upload multiple listings at once, export leads | 1-2 days |
-| Multi-seller support | Allow other brokers/sellers to list (with admin approval) | 5-8 days |
+### My Starter Pack Recommendation (for your use case specifically)
 
-### Phase 4 — Advanced
+Based on your eco-tourism/Tibiao focus, I'd prioritize:
 
-| Feature | Description | Effort |
-|---------|-------------|--------|
-| Reservation payments | PayMongo/Xendit integration for online deposits | 1-2 weeks |
-| Native mobile app | iOS + Android app (or PWA as a lighter alternative) | PWA: 2-4 days / Native: 3-6 weeks |
-| Map story mode | Animated zoom from Panay → municipality → barangay → lot | 1-2 days |
-| Family review mode | Share private link where family members can comment | 2 days |
-| Hazard flags | Flood/landslide warnings from HazardHunterPH | 2 days |
+1. **Photo upload** (₱12,000) — must-have for rural land sales
+2. **Email notifications** (₱5,000) — don't lose inquiries
+3. **Facebook Messenger button** (₱4,000) — your clients already use FB
+4. **"Near Tourist Spots" badge** (₱5,000) — your competitive edge
+
+**Starter Pack Total: ₱26,000** — one-time, 1-week turnaround.
 
 ---
 
-## 4. Hosting Costs — Free Tier & Beyond
+## 3. What You'll Actually Pay for Hosting
 
-### Free Tier Coverage (What You Get for Free)
+I built LotView on free-tier services on purpose. For your realistic expected traffic, hosting is **₱0/month** for a very long time.
 
-| Service | Free Tier Limit | What That Means |
-|---------|-----------------|-----------------|
-| **Vercel** | 100 GB bandwidth/month | ~40,000 page loads/month or ~430 visits/day |
-| **Supabase** | 500 MB database, 1 GB storage, 50K monthly active users | ~3,000–5,000 listings OR ~400 listings with photos |
-| **Google Maps** | 10,000 map loads/month | ~333 map loads/day or ~220 unique users/day |
-| **Cloudflare** | Unlimited bandwidth + DDoS | No practical limit |
+### Free Tier Stays Free If:
 
-### Realistic Cost as Traffic Grows
+- Fewer than ~400 visitors per day (you're unlikely to hit this in year 1)
+- Fewer than 5,000 listings at any time (you'd have to be selling lots aggressively)
+- Fewer than 400 lots with photos (Supabase storage limit)
 
-Assumptions: 3 page views per visitor, 2.5 MB per page, 1.5 map loads per visitor.
+### Realistic Cost Forecast For Your Business
 
-| Daily Visitors | Monthly Cost | Notes |
-|---------------|--------------|-------|
-| **0–100** | **FREE** (₱0) | All services stay within free tiers |
-| **100–500** | **$100–$140/mo** (~₱5,700–₱8,000) | Mostly Google Maps fees kick in |
-| **500–2,000** | **$270–$600/mo** (~₱15,500–₱34,400) | Vercel Pro + Supabase Pro + Maps |
-| **2,000+** | **$600–$1,400/mo** (~₱34,400–₱80,400) | Scale tier on all services |
+| Visitors per day | Monthly cost | When this happens |
+|------------------|--------------|-------------------|
+| **0–100** | **₱0** | First 6–12 months after launch |
+| **100–400** | **₱0** | Steady growth year 1–2 |
+| **400–800** | **~₱2,800/mo** | Going regional / strong FB marketing |
+| **800–2,000** | **~₱8,500/mo** | Breakout success, multiple sellers |
 
-### What Drives the Cost
-1. **Google Maps is the biggest cost driver** — $7 per 1,000 loads after free tier
-2. **Vercel Pro ($20/mo)** needed once bandwidth exceeds 100 GB/month
-3. **Supabase Pro ($25/mo)** needed once you store more than 400 listings with photos
-4. **Cloudflare stays free** regardless of traffic
+The main cost driver is Google Maps loads. If traffic explodes, I'll show you optimizations (static map thumbnails instead of interactive maps on list pages) that can reduce maps cost by 70%.
 
-### Traffic Growth Expectations (Realistic for Panay Market)
-
-| Scenario | Timeframe | Visitors/Day | Inquiries/Month | Monthly Cost |
-|----------|-----------|--------------|-----------------|--------------|
-| **Conservative** | 6–12 months after launch | 50–200 | 5–30 | FREE |
-| **Moderate** | 12–18 months with SEO + FB marketing | 500–1,000 | 20–100 | $100–$300/mo |
-| **Aggressive** | 18+ months regional coverage + paid ads | 2,000+ | 75–250+ | $600+/mo |
-
-**Bottom line:** For the first 6–12 months, hosting is $0. You only start paying when the platform is generating real business.
+**Point is: you don't pay hosting until the platform is already making you real money.**
 
 ---
 
-## 5. Payment Structure — Initial Development
+## 4. Ongoing Maintenance — Your Choice
 
-### Total Project Investment: ₱380,000 – ₱500,000
+Pick one:
 
-The MVP has already been built at no cost to you. This figure covers the remaining roadmap items (Phase 2 features) plus final polish, testing, and handoff.
+### Option A: Pay Only When Something Breaks
 
-### Milestone Breakdown
+No monthly fee. If a bug appears or you want a small change:
+- **Bug fix:** ₱2,500 per bug
+- **Small tweak** (wording, color, small UI): ₱800/hour (usually 1 hour)
+- **New feature:** Quoted from the menu above
 
-| Milestone | Deliverables | Payment | Timeline |
-|-----------|--------------|---------|----------|
-| **Upfront / Project Start** | Secures development slot, deposits tools (Claude Code Pro subscription setup) | **25%** — ₱95,000 | Week 0 |
-| **Milestone 1: Refinement + Email Notifications** | Bug fixes from client feedback on MVP, email notifications for inquiries, staging environment | **20%** — ₱76,000 | Week 1–2 |
-| **Milestone 2: Photos + PDF Brochure** | Photo upload to cloud storage, gallery on listing detail, PDF brochure export | **25%** — ₱95,000 | Week 3–4 |
-| **Milestone 3: SEO + Analytics + Sketch Upload** | SEO for Google ranking, analytics dashboard, sketch map upload feature | **15%** — ₱57,000 | Week 5–6 |
-| **Milestone 4: Testing + Final Deployment + Docs** | Full QA, production deployment, user guide documentation, handoff | **15%** — ₱57,000 | Week 7–8 |
+This is best if the platform runs smoothly and you're not adding features often.
 
-**Total: ₱380,000** (base estimate — higher end of ₱500,000 if scope expands)
+### Option B: Budget Peace-of-Mind Retainer — ₱8,000/month
 
-Payment due within 7 business days of each milestone acceptance.
+- All bug fixes covered (unlimited)
+- Small tweaks covered (up to 4 hours/month)
+- 48-hour response time
+- Monthly check-in call to review analytics
 
----
+Best if you want things just to work without worrying about invoices.
 
-## 6. Post-Launch Support & Maintenance
+### Option C: Active Growth Retainer — ₱25,000/month
 
-Once the platform is live, you have 3 options for ongoing work:
+- Everything in Option B
+- Plus 12 hours/month for new features/improvements
+- 24-hour response time
+- Weekly priority list
 
-### Option A: Monthly Retainer (Recommended for Active Growth)
+Best when you're actively growing and want new features monthly.
 
-| Tier | Hours/Month | Monthly Cost | Best For |
-|------|-------------|--------------|----------|
-| **Part-time retainer** | ~80 hours | ₱100,000 – ₱140,000 | Active development + feature additions |
-| **Full-time retainer** | ~160 hours | ₱200,000 – ₱280,000 | Aggressive growth phase, weekly features |
+### Emergency Support (Any Plan)
 
-**What's included:**
-- All bug fixes (unlimited)
-- Minor UI tweaks and copy edits
-- Small feature additions within monthly hours
-- Priority response (within 24 hours)
-- Monthly performance review
-
-### Option B: Pay-Per-Task (Recommended for Stable Platform)
-
-| Task | Rate |
-|------|------|
-| Bug fix (standard) | ₱3,600 per bug (minimum) |
-| Bug fix (critical/emergency) | ₱2,500/hour (2-hour minimum) |
-| Minor tweak (copy edit, color change, UI adjustment) | ₱1,800/hour |
-| New feature | Quoted separately (fixed price per feature) |
-
-### Option C: Bug-Fix-Only Retainer (Minimal Ongoing)
-
-For a stable platform where you just want protection against bugs:
-
-- **₱15,000/month** — Covers up to 5 bug fixes per month, 48-hour response time
-- Any additional work billed at pay-per-task rates above
-
-### Response Time Commitments
-
-| Severity | Retainer | Pay-Per-Task |
-|----------|----------|--------------|
-| Critical (site down) | 2 hours | 4 hours |
-| High (feature broken) | 24 hours | 48 hours |
-| Medium (UI issue) | 48 hours | Next business week |
-| Low (enhancement) | Within 2 weeks | Quoted individually |
+If the site is down or there's a critical problem:
+- **₱1,500 per hour** (2-hour minimum)
+- Response within 2 hours, any day
 
 ---
 
-## 7. Claude Code Pro Subscription
+## 5. Claude Code Pro Subscription
 
-Claude Code (Anthropic's AI development assistant) powers the rapid development of this project. It's essential for both initial build and ongoing maintenance.
+I use Claude Code (an AI development tool) to build this fast and well. Normally the developer pays for their own tools, but because Claude Code does heavy lifting specifically on your project, I suggest:
 
-### Cost
+- **During active development** (when you're paying for features): You cover **$20/month (~₱1,150)** — the Pro plan
+- **During maintenance phase**: Not needed — I'll only use it if you're actively adding features
 
-| Plan | Monthly Cost | Usage |
-|------|--------------|-------|
-| **Claude Pro** | $20/mo (~₱1,150) | Light use — small fixes, simple features |
-| **Claude Max 5x** | $100/mo (~₱5,750) | Moderate use — active feature development |
-| **Claude Max 20x** | $200/mo (~₱11,500) | Heavy use — multiple large features per month |
-
-### Proposed Arrangement
-
-**During active development (milestone phases):** Client pays **Claude Max 5x ($100/mo)** — this enables fast iteration and high-quality output.
-
-**During maintenance phase:** Client pays **Claude Pro ($20/mo)** — sufficient for bug fixes and small tweaks.
-
-**Payment method options:**
-1. Client sets up own subscription under their credit card, shares API access (simplest)
-2. GM pays and bills the client as a line item each month (reimbursed)
+This is optional. If you'd rather I absorb it, I can — it'll just reflect slightly in my rates.
 
 ---
 
-## 8. Summary: What You're Paying For
+## 6. Realistic Year 1 Budget Scenarios
 
-### Year 1 Total Cost Estimate
+Based on how you use the platform:
 
-**Best case (Conservative growth):**
-- Initial development: ₱380,000 (one-time)
-- Claude Code Pro during build (2 months Max, then Pro): ~$240 = ₱13,800
-- Hosting (FREE for first 6–12 months)
-- Post-launch Bug-Fix-Only retainer (6 months): ₱90,000
-- **Year 1 total: ~₱483,800**
+### Scenario A: "Let me try it first"
+- Start with just the platform as-is (free)
+- Add **Email Notifications** (₱5,000) so you don't miss inquiries
+- No retainer — pay ₱2,500 only if a bug comes up
+- Claude Code Pro not needed
+- **Year 1 total: ₱5,000 – ₱15,000 max**
 
-**Moderate case (Healthy growth):**
-- Initial development: ₱380,000
-- Claude Max during build + 6 months Pro: ~$320 = ₱18,400
-- Hosting (6 months free + 6 months paid at ~$150/mo avg): ~₱51,750
-- Part-time retainer (6 months): ₱600,000
-- **Year 1 total: ~₱1,050,150**
+### Scenario B: "I'm serious about using this"
+- Starter Pack features (₱26,000)
+- Option B retainer (₱8,000/mo × 12 = ₱96,000)
+- Claude Code Pro for 2 months of active dev (₱2,300)
+- Hosting still free
+- **Year 1 total: ~₱124,300**
 
-**Aggressive case (High-growth):**
-- Initial development: ₱500,000
-- Claude Max full year: ~$1,200 = ₱69,000
-- Hosting (full year scaling up): ~₱287,500
-- Full-time retainer (full year): ₱2,400,000
-- **Year 1 total: ~₱3,256,500**
-
----
-
-## 9. Why This Makes Business Sense
-
-1. **Low risk start:** MVP is already built and working. You pay for features you actually want.
-2. **Pay only when growing:** Hosting costs scale with traffic, not upfront. First 6–12 months likely free.
-3. **Flexible engagement:** Pick retainer, pay-per-task, or bug-fix-only based on your actual needs.
-4. **Clear milestones:** Every payment is tied to visible, testable deliverables.
-5. **No vendor lock-in:** Code is on your GitHub, database is yours, you can always bring in another developer.
+### Scenario C: "I want to scale this across Panay"
+- All Phase 2 features (~₱58,000)
+- Option C retainer (₱25,000/mo × 12 = ₱300,000)
+- Claude Code Pro all year (₱13,800)
+- Hosting ~₱20,000 for the year
+- **Year 1 total: ~₱391,800**
 
 ---
 
-## 10. Next Steps
+## 7. How I Protect Your Interest
 
-1. Review this proposal, mark up any questions or changes
-2. Agree on initial milestones and retainer preference
-3. Sign service agreement
-4. 25% upfront payment releases the first milestone work
-5. Kick-off meeting to prioritize Phase 2 features
+- **Code is yours.** It's on your GitHub. Bring in another developer anytime.
+- **Data is yours.** Supabase account is yours. Export anytime.
+- **Domain is yours.** lotview.xmodx.com is on your Cloudflare.
+- **No lock-in.** Cancel the retainer anytime, no penalty.
+- **Transparent pricing.** You always see the menu before you pay.
 
 ---
 
-**Questions? Contact GM Agreda at gm.agreda@gmail.com / 09182624068**
+## 8. Next Steps — No Pressure
+
+1. **Use the demo** for a week or two. Post a sample lot. Send the link to a few OFW friends and see what they say.
+2. **Reply with which features you want** (from Section 2). No need to pick everything — even just 1–2 features is fine.
+3. **Pick a maintenance option** (A, B, or C) — or skip and just pay per-fix.
+4. **Nothing else for now.** No upfront signing fees, no contracts. You commit when you're ready.
+
+---
+
+## Summary Card
+
+| | Cost |
+|--|------|
+| **The working platform (yours to use now)** | FREE |
+| **Hosting year 1 (realistic traffic)** | FREE |
+| **Starter Pack features (recommended)** | ₱26,000 one-time |
+| **Basic retainer** | ₱8,000/mo (optional) |
+| **Claude Code Pro** | ~₱1,150/mo during active dev (optional) |
+| **Bug fixes without retainer** | ₱2,500 each |
+
+**Minimum to start: ₱0. You can use the platform today.**
+**Recommended budget: ₱26,000 one-time + ₱8,000/mo if you want peace of mind.**
+
+---
+
+Contact me anytime: **gm.agreda@gmail.com / 0918 262 4068**
+
+Salamat, Nicson. Looking forward to helping you move lots in Tibiao.
+
+— GM
