@@ -55,16 +55,27 @@ Complete stack powering your platform:
 
 ### Domain Purchase (One-Time Decision)
 
-You'll need a domain for your platform. Options:
+You'll need a domain for your platform. Actual prices depend on which TLD is still available and the current registrar rates at purchase time.
 
-| Option | Price (PHP, annual) | Notes |
-|--------|---------------------|-------|
-| **panayland.com** | ~₱800/year | Standard choice, easy to remember |
-| **panayland.ph** | ~₱2,500/year | More "Philippines" feel |
-| **panayland.com.ph** | ~₱2,500/year | Traditional PH business TLD |
-| **panayland.site / .online / .xyz** | ~₱600/year | Budget option |
+| Typical Option | Budget Cap (PHP, annual) | Notes |
+|----------------|--------------------------|-------|
+| **panayland.com** or .net | up to **₱1,500/year** | Standard choice, easy to remember |
+| **panayland.ph** | up to **₱3,500/year** | More "Philippines" feel |
+| **panayland.com.ph** | up to **₱3,500/year** | Traditional PH business TLD |
+| **Budget alternative** (.site, .online, .xyz) | up to **₱1,000/year** | If premium TLDs are taken or pricing spikes |
 
-I recommend **panayland.com** — balance of cost, trust, and memorability. Registered through Cloudflare (cheapest available price).
+### Budget Cap & Process
+
+- **Maximum annual domain budget: ₱3,500**
+- Once we start, I'll check available TLD options in real-time
+- I'll **consult you before purchase** — you approve the exact domain and price
+- If .com is available at typical rates, expect around ₱800
+- If we go .ph, expect around ₱2,500
+- Premium names (single short words) can spike to ₱1,500–₱3,500 — we'd discuss before buying
+
+**For safety, keep at least ₱3,500 loaded on the card for the domain line item.** Any unused balance stays on your card for other services.
+
+I recommend **.com** if available — best balance of cost, trust, and memorability. Registered through Cloudflare (cheapest source for most TLDs).
 
 ### When Costs Start (Exact Thresholds)
 
@@ -136,11 +147,14 @@ To set up services in **your name** (so everything is yours and you own the acco
 
 ### Initial Load Needed
 
-- Domain purchase: **₱800** (one-time)
+- Domain purchase (budget cap): **₱3,500** (one-time — actual may be less, refund stays on card)
 - Google Cloud billing verification: **₱50** (Google temporarily holds, refunded)
 - Claude Code Pro (first month during active dev): **₱1,500**
+- Buffer for small unexpected charges: **₱500**
 
-**Total first load: ~₱2,500**
+**Total first load: ₱5,500**
+
+This covers the domain even if we have to buy a .ph (which is the most expensive option). Any unused balance stays on your card for later services.
 
 Everything else adds up only when traffic grows or you approve a feature upgrade.
 
@@ -226,29 +240,29 @@ Optional. If you'd rather I absorb it, I can — my rates would adjust slightly.
 
 ### Scenario A: "Let me try it first"
 - Platform setup (free build, your branding): included
-- Domain (panayland.com): ₱800
+- Domain (up to ₱3,500 — actual confirmed at purchase): ₱800–₱3,500
 - Email Notifications: ₱5,000
 - No retainer — pay ₱2,500 only if a bug comes up
 - Hosting stays free (< 100 visitors/day)
-- **Year 1 total: ₱6,000 – ₱20,000**
+- **Year 1 total: ₱6,000 – ₱25,000**
 
 ### Scenario B: "I'm serious about this"
 - Platform setup: included
-- Domain: ₱800
+- Domain: up to ₱3,500
 - Starter Pack features: ₱26,000
 - Option B retainer: ₱8,000 × 12 = ₱96,000
 - Claude Code Pro for 2 months: ₱3,000
 - Hosting (free 6mo, ~₱2,000/mo next 6mo): ₱12,000
-- **Year 1 total: ~₱138,000**
+- **Year 1 total: ~₱140,000**
 
 ### Scenario C: "I want to dominate Panay"
 - Platform setup: included
-- Domain: ₱800
+- Domain: up to ₱3,500
 - All Phase 2 features: ~₱58,000
 - Option C retainer: ₱25,000 × 12 = ₱300,000
 - Claude Code Pro all year: ₱18,000
 - Hosting at growth traffic: ~₱80,000
-- **Year 1 total: ~₱457,000**
+- **Year 1 total: ~₱460,000**
 
 ---
 
@@ -285,8 +299,8 @@ Optional. If you'd rather I absorb it, I can — my rates would adjust slightly.
 
 ## 10. Next Steps
 
-1. **Prepare the prepaid card** (GCash/Maya virtual card is simplest) with ~₱2,500 initial load
-2. **Approve the domain** — panayland.com (or your preferred choice)
+1. **Prepare the prepaid card** (GCash/Maya virtual card is simplest) with **₱5,500 initial load**
+2. **Approve the domain options + budget cap** — I'll check availability and consult you before purchase (max ₱3,500)
 3. **Approve your watermark text** — suggested: "PANAY LAND • NICSON CALAWAG • [your contact number]"
 4. **Pick which features** from Section 4 (start with Starter Pack recommended, or pick 1–2 to try)
 5. **Pick a maintenance option** (A, B, or C) — or none for now
@@ -301,17 +315,17 @@ Optional. If you'd rather I absorb it, I can — my rates would adjust slightly.
 | | Cost (PHP) |
 |--|-----------|
 | **Platform build with your branding** | FREE |
-| **Domain (panayland.com)** | ₱800/year |
+| **Domain (budget cap — actual confirmed before purchase)** | up to ₱3,500/year |
 | **Hosting months 1–6 (typical traffic)** | FREE |
 | **Hosting months 7–12 (moderate growth)** | ~₱2,000/mo |
-| **Initial card load** | ₱2,500 |
+| **Initial card load** | ₱5,500 |
 | **Starter Pack features (recommended)** | ₱26,000 one-time |
 | **Basic retainer (optional)** | ₱8,000/mo |
 | **Claude Code Pro (during feature work)** | ~₱1,500/mo |
 | **Bug fixes without retainer** | ₱2,500 each |
 
-**Minimum to start: ~₱3,300** (domain + initial card load).
-**Recommended full package: ~₱35,000** (domain + card load + Starter Pack + 1 month retainer).
+**Minimum to start: ₱5,500** (initial card load including domain budget cap).
+**Recommended full package: ~₱40,000** (card load + Starter Pack + 1 month retainer).
 
 ---
 
