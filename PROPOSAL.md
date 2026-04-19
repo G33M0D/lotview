@@ -1,12 +1,12 @@
 # Panay Land — Project Proposal
 
-**Prepared for:** Flord Nicson J. Calawag
+**Prepared for:** Flord J. Calawag
 **Prepared by:** GM Agreda
 **Date:** 2026-04-19
 
 ---
 
-## Hi Nicson
+## Hi Flord
 
 Following up on your interest after seeing LotView (my own platform), this proposal is for **Panay Land** — a brand-new, dedicated platform built specifically for your land listings. It will be your own product with your own branding, hosting, and data.
 
@@ -26,7 +26,7 @@ A fresh build (not a shared demo — your own instance) with:
 - Document checklist (Title, Tax Dec, Lot Plan, etc.)
 - Admin panel where only you can post listings
 - Google/email sign-in for buyers to save favorites
-- **Watermarked maps with YOUR branding** — e.g., "PANAY LAND • NICSON CALAWAG • 0917-XXX-XXXX" plus the viewer's email, to stop competitors from stealing your listings
+- **Watermarked maps with YOUR branding** — e.g., "PANAY LAND • FLORD CALAWAG • 0917-XXX-XXXX" plus the viewer's email, to stop competitors from stealing your listings
 - Hidden exact boundaries for anonymous visitors — they must sign in to see the real polygon
 - Cloudflare DDoS protection
 - Runs on your own domain (see domain section below)
@@ -301,7 +301,7 @@ Optional. If you'd rather I absorb it, I can — my rates would adjust slightly.
 
 1. **Prepare the prepaid card** (GCash/Maya virtual card is simplest) with **₱5,500 initial load**
 2. **Approve the domain options + budget cap** — I'll check availability and consult you before purchase (max ₱3,500)
-3. **Approve your watermark text** — suggested: "PANAY LAND • NICSON CALAWAG • [your contact number]"
+3. **Approve your watermark text** — suggested: "PANAY LAND • FLORD CALAWAG • [your contact number]"
 4. **Pick which features** from Section 4 (start with Starter Pack recommended, or pick 1–2 to try)
 5. **Pick a maintenance option** (A, B, or C) — or none for now
 6. **Sign & we start** — no upfront fees, build begins
@@ -331,6 +331,6 @@ Optional. If you'd rather I absorb it, I can — my rates would adjust slightly.
 
 Contact me anytime: **gm.agreda@gmail.com / 0918 262 4068**
 
-Salamat, Nicson. Excited to build this for you.
+Salamat, Flord. Excited to build this for you.
 
 — GM
